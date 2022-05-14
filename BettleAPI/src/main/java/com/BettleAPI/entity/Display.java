@@ -1,25 +1,27 @@
 package com.BettleAPI.entity;
 
+
+import com.BettleAPI.entity.compositeId.DisplayId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.UUID;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode()
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Bet extends BaseEntity {
+public class Display {
 
-    private String title;
-    private double odd;
-    private int mbn;
+    @EmbeddedId
+    private DisplayId id;
 
-    private UUID game_id;
+    private double hasOdd;
 }
+
 

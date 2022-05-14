@@ -5,14 +5,21 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.UUID;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode()
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Admin extends BaseEntity {
+public class Admin {
+
+    @Id
+    @Column(name = "id", columnDefinition = "BINARY(16)")
+    private UUID id;
 
     private int salary;
     private String phoneNumber;

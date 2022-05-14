@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @EnableConfigurationProperties
-@EntityScan(basePackages = {"com.app.entity"})
+@EntityScan(basePackages = {"com.BettleAPI.entity"})
 @ComponentScan(basePackages = {"com.BettleAPI"})
 @EnableJpaRepositories(basePackages = {"com.BettleAPI.repository"})
 @SpringBootApplication(exclude = { org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class})
