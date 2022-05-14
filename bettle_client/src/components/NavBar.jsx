@@ -3,17 +3,15 @@ import { NavLink } from "react-router-dom";
 
 function NavBar(){
     return(
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a href="javascript:void(0);" class="navbar-brand m-2" >Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <NavLink to="/" className="nav-links">Bettle</NavLink>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-                <NavLink to="/" className={(navData)=> navData.isActive ? '' : "nav-links"}><a href="javascript:void(0);" class="nav-item nav-link">Home</a></NavLink>
-                <NavLink to="/users" className={(navData)=> navData.isActive ? '' : "nav-links"}><a href="javascript:void(0);" class="nav-item nav-link">Users</a></NavLink>
-                <a href="javascript:void(0);" class="nav-item nav-link">Pricing</a>
-                <a href="javascript:void(0);" class="nav-item nav-link disabled" tabindex="-1" aria-disabled="true">Disabled</a>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+                <NavLink to="/home" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Home</NavLink>
+                <NavLink to="/users" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Users</NavLink>
           </div>
         </div>
       </nav>

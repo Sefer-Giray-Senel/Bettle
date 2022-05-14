@@ -43,5 +43,15 @@
 
 .nav-links{
   text-decoration: none;
+  color:#282c34;
+  margin: 6px;
+  margin-top: 9px;
+}
+
+.nav-links-active{
+  text-decoration: none;
+  color:darkviolet;
+  margin: 6px;
+  margin-top: 9px;
 }
 

@@ -29,7 +29,7 @@ class UserComponent extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {
+                    {
                             this.state.users.map(
                                 user =>
                                 <tr key = {user.id}>
