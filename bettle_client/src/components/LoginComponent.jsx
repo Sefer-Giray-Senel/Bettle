@@ -1,14 +1,21 @@
 import React, {useState} from "react";
 import UserService from "../services/UserService";
-
-function LoginComponent () {
+function LoginComponent ({setName,getName}) {
 
     const [details, setDetails] = useState({username: "", password: ""});
+    const [errmsg, setErrMsg] = useState({errmsg: ""});
 
     const handleLogin = e => {
         e.preventDefault();
 
-        UserService.logIn(details);
+        const response = UserService.logIn(details);
+        if(response !== true){
+            setErrMsg({errmsg : response});
+            setName("Usman");
+        }else{
+            setName(details.username);
+        }
+
     }
 
     return (
