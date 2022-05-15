@@ -5,6 +5,7 @@ import UserComponent from './components/UserComponent';
 import HomeComponent from './components/HomeComponent';
 import NavBar from './components/NavBar';
 import LoginComponent from './components/LoginComponent';
+import RegisterComponent from './components/RegisterComponent';
 
 function App() {
   const [name, setNameInside] = useState({username: (localStorage.getItem('username') !== null ? localStorage.getItem('username') : "") });
@@ -28,6 +29,7 @@ function App() {
         <Route path='/home' element={<HomeComponent/>} />
         <Route path='/users' element={<UserComponent/>} />
         <Route path='/' element={<LoginComponent setName={setName} getName={getName} />} />
+        <Route path='/register' element={<RegisterComponent/>} />
       </Routes>
     </div>
   );

@@ -2,26 +2,25 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import UserService from "../services/UserService";
 
-function LoginComponent ({setName,getName}) {
+function RegisterComponent (/*{setName,getName}*/) {
 
     const [details, setDetails] = useState({username: "", password: ""});
     const [errmsg, setErrMsg] = useState({errmsg: ""});
 
-    const handleLogin = e => {
+    const handleRegister = e => {
         e.preventDefault();
 
-        const response = UserService.logIn(details);
+        const response = UserService.register(details);
         if(response !== true){
             setErrMsg({errmsg : response});
-            setName("Usman");
         }else{
-            setName(details.username);
+            //setName(details.username);
         }
 
     }
 
     return (
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleRegister}>
             <div className="form-inner">
                 <div className="form-group">
                     <label htmlFor="username">Username</label>
@@ -31,13 +30,13 @@ function LoginComponent ({setName,getName}) {
                     <label htmlFor="Password">Password</label>
                     <input type="password" name="password" id="password" onChange={e => setDetails({...details, password: e.target.value})} value={details.password}/>
                 </div>
-                <button>Log in</button>
+                <button>Register</button>
             </div>
-            <Link to="/register">Register</Link>
+            <Link to="/">Login</Link>
         </form>
             
     );
     
 }
  
-export default LoginComponent;
+export default RegisterComponent;

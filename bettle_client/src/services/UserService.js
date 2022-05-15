@@ -16,6 +16,17 @@ class UserService{
         }
     }
 
+    async register(details){
+        try{
+            const response = await axios.post("http://localhost:8080/register", details);
+            return response;
+        }
+        catch(e){
+            console.log(e);
+            return e;
+        }
+    }
+
 }
 
 export default new UserService();
