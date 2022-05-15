@@ -2,6 +2,7 @@ package com.BettleAPI.service;
 
 import com.BettleAPI.entity.Friend;
 
+import com.BettleAPI.entity.compositeId.FriendId;
 import com.BettleAPI.repository.FriendRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -19,15 +20,15 @@ public class FriendService {
     public Friend save(Friend friend) {
         return friendRepository.save(friend);
     }
-/*
-    public void delete(UUID id) {
+
+    public void delete(FriendId id) {
         friendRepository.deleteById(id);
     }
 
     public List<Friend> findAll() {
         return friendRepository.findAll();
     }
-
+/*
     public Friend getByID(UUID id) { return friendRepository.getById(id);}
 
     public Long count() {

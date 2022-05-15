@@ -19,7 +19,7 @@ public class AdminService {
     public Admin save(Admin admin) {
         return adminRepository.save(admin);
     }
-/*
+
     public void delete(UUID id) {
         adminRepository.deleteById(id);
     }
@@ -28,6 +28,7 @@ public class AdminService {
         return adminRepository.findAll();
     }
 
+/*
     public Admin getByID(UUID id) { return adminRepository.getById(id);}
 
     public Long count() {

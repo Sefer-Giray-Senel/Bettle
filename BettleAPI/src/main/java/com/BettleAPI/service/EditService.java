@@ -2,6 +2,7 @@ package com.BettleAPI.service;
 
 import com.BettleAPI.entity.Edit;
 
+import com.BettleAPI.entity.compositeId.EditId;
 import com.BettleAPI.repository.EditRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -19,15 +20,15 @@ public class EditService {
     public Edit save(Edit edit) {
         return editRepository.save(edit);
     }
-/*
-    public void delete(UUID id) {
+
+    public void delete(EditId id) {
         editRepository.deleteById(id);
     }
 
     public List<Edit> findAll() {
         return editRepository.findAll();
     }
-
+/*
     public Edit getByID(UUID id) { return editRepository.getById(id);}
 
     public Long count() {

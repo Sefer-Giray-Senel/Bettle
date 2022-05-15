@@ -19,7 +19,7 @@ public class SocialUserService {
     public SocialUser save(SocialUser socialUser) {
         return socialUserRepository.save(socialUser);
     }
-/*
+
     public void delete(UUID id) {
         socialUserRepository.deleteById(id);
     }
@@ -27,7 +27,7 @@ public class SocialUserService {
     public List<SocialUser> findAll() {
         return socialUserRepository.findAll();
     }
-
+/*
     public SocialUser getByID(UUID id) { return socialUserRepository.getById(id);}
 
     public Long count() {

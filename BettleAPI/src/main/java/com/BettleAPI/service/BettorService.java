@@ -19,7 +19,7 @@ public class BettorService {
     public Bettor save(Bettor bettor) {
         return bettorRepository.save(bettor);
     }
-/*
+
     public void delete(UUID id) {
         bettorRepository.deleteById(id);
     }
@@ -27,7 +27,7 @@ public class BettorService {
     public List<Bettor> findAll() {
         return bettorRepository.findAll();
     }
-
+/*
     public Bettor getByID(UUID id) { return bettorRepository.getById(id);}
 
     public Long count() {

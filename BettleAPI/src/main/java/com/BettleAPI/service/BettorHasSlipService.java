@@ -2,6 +2,7 @@ package com.BettleAPI.service;
 
 import com.BettleAPI.entity.BettorHasSlip;
 
+import com.BettleAPI.entity.compositeId.HasSlipId;
 import com.BettleAPI.repository.BettorHasSlipRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -19,15 +20,15 @@ public class BettorHasSlipService {
     public BettorHasSlip save(BettorHasSlip bettorHasSlip) {
         return bettorHasSlipRepository.save(bettorHasSlip);
     }
-/*
-    public void delete(UUID id) {
+
+    public void delete(HasSlipId id) {
         bettorHasSlipRepository.deleteById(id);
     }
 
     public List<BettorHasSlip> findAll() {
         return bettorHasSlipRepository.findAll();
     }
-
+/*
     public BettorHasSlip getByID(UUID id) { return bettorHasSlipRepository.getById(id);}
 
     public Long count() {

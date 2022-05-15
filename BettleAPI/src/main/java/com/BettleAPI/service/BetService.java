@@ -19,16 +19,19 @@ public class BetService {
     public Bet save(Bet bet) {
         return betRepository.save(bet);
     }
-/*
-    public void delete(UUID id) {
-        betRepository.deleteById(id);
-    }
 
     public List<Bet> findAll() {
         return betRepository.findAll();
     }
 
-    public Bet getByID(UUID id) { return betRepository.getById(id);}
+//    public Bet getByID(UUID id) { return betRepository.getById(id);}
+
+
+    public void delete(UUID id) {
+        betRepository.deleteById(id);
+    }
+
+/*
 
     public Long count() {
         return betRepository.count();

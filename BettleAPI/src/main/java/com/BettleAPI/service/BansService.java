@@ -2,6 +2,7 @@ package com.BettleAPI.service;
 
 import com.BettleAPI.entity.Bans;
 
+import com.BettleAPI.entity.compositeId.BansId;
 import com.BettleAPI.repository.BansRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -19,15 +20,15 @@ public class BansService {
     public Bans save(Bans bans) {
         return bansRepository.save(bans);
     }
-/*
-    public void delete(UUID id) {
+
+    public void delete(BansId id) {
         bansRepository.deleteById(id);
     }
 
     public List<Bans> findAll() {
         return bansRepository.findAll();
     }
-
+/*
     public Bans getByID(UUID id) { return bansRepository.getById(id);}
 
     public Long count() {

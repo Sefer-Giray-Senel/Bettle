@@ -2,6 +2,7 @@ package com.BettleAPI.service;
 
 import com.BettleAPI.entity.Subscribe;
 
+import com.BettleAPI.entity.compositeId.SubscribeId;
 import com.BettleAPI.repository.SubscribeRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -19,15 +20,15 @@ public class SubscribeService {
     public Subscribe save(Subscribe subscribe) {
         return subscribeRepository.save(subscribe);
     }
-/*
-    public void delete(UUID id) {
+
+    public void delete(SubscribeId id) {
         subscribeRepository.deleteById(id);
     }
 
     public List<Subscribe> findAll() {
         return subscribeRepository.findAll();
     }
-
+/*
     public Subscribe getByID(UUID id) { return subscribeRepository.getById(id);}
 
     public Long count() {

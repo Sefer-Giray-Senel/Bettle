@@ -7,6 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class AdminRepository {
@@ -15,7 +18,23 @@ public class AdminRepository {
 
     @Transactional
     public Admin save(Admin admin) {
-        /* sql statement */
+        entityManager.createNativeQuery("INSERT INTO admin (id, phone_number, salary) VALUES (?,?,?)")
+                .setParameter(1, admin.getId())
+                .setParameter(2, admin.getPhoneNumber())
+                .setParameter(3, admin.getSalary())
+                .executeUpdate();
         return admin;
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    public List<Admin> findAll() {
+        Query query = entityManager.createQuery("select a from Admin a", Admin.class);
+        return query.getResultList();
+    }
+
+    public void deleteById(UUID id) {
+        entityManager.createNativeQuery("DELETE FROM admin WHERE id = ?")
+                .setParameter(1, id)
+                .executeUpdate();
     }
 }

@@ -19,7 +19,7 @@ public class GameService {
     public Game save(Game match) {
         return gameRepository.save(match);
     }
-/*
+
     public void delete(UUID id) {
         gameRepository.deleteById(id);
     }
@@ -27,7 +27,7 @@ public class GameService {
     public List<Game> findAll() {
         return gameRepository.findAll();
     }
-
+/*
     public Game getByID(UUID id) { return gameRepository.getById(id);}
 
     public Long count() {

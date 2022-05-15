@@ -2,11 +2,14 @@ package com.BettleAPI.repository;
 
 
 import com.BettleAPI.entity.Edit;
+import com.BettleAPI.entity.compositeId.EditId;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 public class EditRepository {
@@ -15,7 +18,23 @@ public class EditRepository {
 
     @Transactional
     public Edit save(Edit edit) {
-        /* sql statement */
+        entityManager.createNativeQuery("INSERT INTO edit (bet_id, user_id) VALUES (?,?)")
+                .setParameter(1, edit.getId().getBetId())
+                .setParameter(2, edit.getId().getUserId())
+                .executeUpdate();
         return edit;
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    public List<Edit> findAll() {
+        Query query = entityManager.createQuery("select a from Edit a", Edit.class);
+        return query.getResultList();
+    }
+
+    public void deleteById(EditId id) {
+        entityManager.createNativeQuery("DELETE FROM edit WHERE bet_id = ? AND user_id = ?")
+                .setParameter(1, id.getBetId())
+                .setParameter(2, id.getUserId())
+                .executeUpdate();
     }
 }

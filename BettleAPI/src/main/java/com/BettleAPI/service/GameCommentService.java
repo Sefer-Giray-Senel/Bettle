@@ -2,6 +2,7 @@ package com.BettleAPI.service;
 
 import com.BettleAPI.entity.GameComment;
 
+import com.BettleAPI.entity.compositeId.GameCommentId;
 import com.BettleAPI.repository.GameCommentRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -19,15 +20,15 @@ public class GameCommentService {
     public GameComment save(GameComment gameComment) {
         return gameCommentRepository.save(gameComment);
     }
-/*
-    public void delete(UUID id) {
+
+    public void delete(GameCommentId id) {
         gameCommentRepository.deleteById(id);
     }
 
     public List<GameComment> findAll() {
         return gameCommentRepository.findAll();
     }
-
+/*
     public GameComment getByID(UUID id) { return gameCommentRepository.getById(id);}
 
     public Long count() {

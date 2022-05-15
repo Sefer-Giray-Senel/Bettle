@@ -2,6 +2,7 @@ package com.BettleAPI.service;
 
 import com.BettleAPI.entity.SlipComment;
 
+import com.BettleAPI.entity.compositeId.PostLikeId;
 import com.BettleAPI.repository.SlipCommentRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,8 @@ public class SlipCommentService {
     public SlipComment save(SlipComment slipComment) {
         return slipCommentRepository.save(slipComment);
     }
-/*
-    public void delete(UUID id) {
+
+    public void delete(PostLikeId id) {
         slipCommentRepository.deleteById(id);
     }
 
@@ -28,6 +29,7 @@ public class SlipCommentService {
         return slipCommentRepository.findAll();
     }
 
+    /*
     public SlipComment getByID(UUID id) { return slipCommentRepository.getById(id);}
 
     public Long count() {

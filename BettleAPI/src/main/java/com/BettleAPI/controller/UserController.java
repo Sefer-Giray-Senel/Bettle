@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import com.BettleAPI.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @RestController
 public class UserController {
 
-    @PostMapping("/user")
+    @CrossOrigin("http://localhost:3000")
+    @PostMapping("/login")
     public User login(@RequestParam("username") String username, @RequestParam("password") String pwd) {
 
         String token = getJWTToken(username);
@@ -27,7 +29,6 @@ public class UserController {
         user.setUsername(username);
         user.setToken(token);
         return user;
-
     }
 
     private String getJWTToken(String username) {
@@ -37,7 +38,7 @@ public class UserController {
 
         String token = Jwts
                 .builder()
-                .setId("softtekJWT")
+                .setId("usman")
                 .setSubject(username)
                 .claim("authorities",
                         grantedAuthorities.stream()

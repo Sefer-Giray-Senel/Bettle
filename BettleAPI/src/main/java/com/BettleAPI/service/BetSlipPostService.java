@@ -19,7 +19,7 @@ public class BetSlipPostService {
     public BetSlipPost save(BetSlipPost betSlipPost) {
         return betSlipPostRepository.save(betSlipPost);
     }
-/*
+
     public void delete(UUID id) {
         betSlipPostRepository.deleteById(id);
     }
@@ -27,7 +27,7 @@ public class BetSlipPostService {
     public List<BetSlipPost> findAll() {
         return betSlipPostRepository.findAll();
     }
-
+/*
     public BetSlipPost getByID(UUID id) { return betSlipPostRepository.getById(id);}
 
     public Long count() {
