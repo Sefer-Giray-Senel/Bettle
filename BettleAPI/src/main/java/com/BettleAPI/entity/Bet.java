@@ -20,6 +20,6 @@ public class Bet extends BaseEntity {
     private double odd;
     private int mbn;
 
-    private UUID game_id;
+    private UUID gameId;
 }
 

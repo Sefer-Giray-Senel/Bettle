@@ -15,6 +15,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DisplayId implements Serializable {
-    private UUID betId;
-    private UUID betSlipId;
+    private long betId;
+    private long betSlipId;
 }

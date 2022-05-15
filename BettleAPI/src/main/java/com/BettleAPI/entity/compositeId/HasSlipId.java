@@ -15,6 +15,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HasSlipId implements Serializable {
-    private UUID userId;
-    private UUID betSlipId;
+    private long userId;
+    private long betSlipId;
 }

@@ -19,8 +19,7 @@ import java.util.UUID;
 public class Editor {
 
     @Id
-    @Column(name = "id", columnDefinition = "BINARY(16)")
-    private UUID id;
+    private long id;
 
     private int subscriberCount;
     private int successfulBetSlipCount;

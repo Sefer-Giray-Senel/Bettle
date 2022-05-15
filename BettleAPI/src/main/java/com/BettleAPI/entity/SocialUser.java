@@ -19,8 +19,7 @@ import java.util.UUID;
 public class SocialUser {
 
     @Id
-    @Column(name = "id", columnDefinition = "BINARY(16)")
-    private UUID id;
+    private long id;
 
     private String firstName;
     private String lastName;

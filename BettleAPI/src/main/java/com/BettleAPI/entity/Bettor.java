@@ -18,8 +18,7 @@ import java.util.UUID;
 public class Bettor {
 
     @Id
-    @Column(name = "id", columnDefinition = "BINARY(16)")
-    private UUID id;
+    private long id;
 
     private double balance;
     private int friendCount;

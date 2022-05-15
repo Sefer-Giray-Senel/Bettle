@@ -15,6 +15,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EditId implements Serializable {
-    private UUID userId;
-    private UUID betId;
+    private long userId;
+    private long betId;
 }

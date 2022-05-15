@@ -4,20 +4,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.UUID;
 
-@EqualsAndHashCode(callSuper = true)
+
+@EqualsAndHashCode()
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User extends BaseEntity {
+public class User {
+
+    @Id
+    private long id;
 
     private String username;
     private String password;
 
-    private String role; //edit this, use Spring Roles
+    private String token;
+
+    //private String role; //edit this, use Spring Roles
 }

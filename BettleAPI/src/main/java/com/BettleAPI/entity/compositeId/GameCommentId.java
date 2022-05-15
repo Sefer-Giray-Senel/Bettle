@@ -16,6 +16,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GameCommentId implements Serializable {
-    private UUID userId;
-    private UUID matchId;
+    private long userId;
+    private long matchId;
 }

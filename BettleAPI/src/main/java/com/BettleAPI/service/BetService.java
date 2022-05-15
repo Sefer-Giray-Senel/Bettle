@@ -2,6 +2,7 @@ package com.BettleAPI.service;
 
 import com.BettleAPI.entity.Bet;
 
+import com.BettleAPI.repository.modify_repository.BetModifyRepository;
 import com.BettleAPI.repository.BetRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 public class BetService {
     private final BetRepository betRepository;
+    private final BetModifyRepository betModifyRepository;
 
     public Bet save(Bet bet) {
         return betRepository.save(bet);
@@ -33,5 +35,6 @@ public class BetService {
     public Long count() {
         return betRepository.count();
     }
+
 }
 

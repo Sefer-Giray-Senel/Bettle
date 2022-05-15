@@ -15,6 +15,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FriendId implements Serializable {
-    private UUID firstBettorId;
-    private UUID secondBettorId;
+    private long firstBettorId;
+    private long secondBettorId;
 }
