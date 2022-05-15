@@ -19,7 +19,7 @@ public class BetSlipService {
     public BetSlip save(BetSlip betSlip) {
         return betSlipRepository.save(betSlip);
     }
-
+/*
     public void delete(UUID id) {
         betSlipRepository.deleteById(id);
     }
@@ -33,5 +33,7 @@ public class BetSlipService {
     public Long count() {
         return betSlipRepository.count();
     }
+
+ */
 }
 

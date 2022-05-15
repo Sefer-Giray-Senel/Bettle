@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-/*
+
 import com.BettleAPI.entity.Game;
 
 import com.BettleAPI.repository.GameRepository;
@@ -19,7 +19,7 @@ public class GameService {
     public Game save(Game match) {
         return gameRepository.save(match);
     }
-
+/*
     public void delete(UUID id) {
         gameRepository.deleteById(id);
     }
@@ -33,6 +33,6 @@ public class GameService {
     public Long count() {
         return gameRepository.count();
     }
-}
+ */
 
-*/
+}

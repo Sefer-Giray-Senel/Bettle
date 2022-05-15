@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-/*
+
 import com.BettleAPI.entity.Edit;
 
 import com.BettleAPI.repository.EditRepository;
@@ -19,7 +19,7 @@ public class EditService {
     public Edit save(Edit edit) {
         return editRepository.save(edit);
     }
-
+/*
     public void delete(UUID id) {
         editRepository.deleteById(id);
     }
@@ -33,6 +33,6 @@ public class EditService {
     public Long count() {
         return editRepository.count();
     }
-}
 
-*/
+ */
+}

@@ -19,7 +19,7 @@ public class BettorService {
     public Bettor save(Bettor bettor) {
         return bettorRepository.save(bettor);
     }
-
+/*
     public void delete(UUID id) {
         bettorRepository.deleteById(id);
     }
@@ -33,5 +33,6 @@ public class BettorService {
     public Long count() {
         return bettorRepository.count();
     }
+    */
 }
 

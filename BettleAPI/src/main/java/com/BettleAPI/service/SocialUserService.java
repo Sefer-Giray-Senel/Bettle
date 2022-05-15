@@ -19,7 +19,7 @@ public class SocialUserService {
     public SocialUser save(SocialUser socialUser) {
         return socialUserRepository.save(socialUser);
     }
-
+/*
     public void delete(UUID id) {
         socialUserRepository.deleteById(id);
     }
@@ -33,5 +33,7 @@ public class SocialUserService {
     public Long count() {
         return socialUserRepository.count();
     }
+
+ */
 }
 

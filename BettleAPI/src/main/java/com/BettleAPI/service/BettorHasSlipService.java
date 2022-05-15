@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-/*
+
 import com.BettleAPI.entity.BettorHasSlip;
 
 import com.BettleAPI.repository.BettorHasSlipRepository;
@@ -19,7 +19,7 @@ public class BettorHasSlipService {
     public BettorHasSlip save(BettorHasSlip bettorHasSlip) {
         return bettorHasSlipRepository.save(bettorHasSlip);
     }
-
+/*
     public void delete(UUID id) {
         bettorHasSlipRepository.deleteById(id);
     }
@@ -33,6 +33,7 @@ public class BettorHasSlipService {
     public Long count() {
         return bettorHasSlipRepository.count();
     }
+
+ */
 }
 
-*/

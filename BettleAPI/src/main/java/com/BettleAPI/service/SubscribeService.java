@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-/*
+
 import com.BettleAPI.entity.Subscribe;
 
 import com.BettleAPI.repository.SubscribeRepository;
@@ -19,7 +19,7 @@ public class SubscribeService {
     public Subscribe save(Subscribe subscribe) {
         return subscribeRepository.save(subscribe);
     }
-
+/*
     public void delete(UUID id) {
         subscribeRepository.deleteById(id);
     }
@@ -33,6 +33,6 @@ public class SubscribeService {
     public Long count() {
         return subscribeRepository.count();
     }
-}
 
-*/
+ */
+}

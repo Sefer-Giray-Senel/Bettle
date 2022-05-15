@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-/*
+
 import com.BettleAPI.entity.PostLike;
 
 import com.BettleAPI.repository.PostLikeRepository;
@@ -19,7 +19,7 @@ public class PostLikeService {
     public PostLike save(PostLike postLike) {
         return postLikeRepository.save(postLike);
     }
-
+/*
     public void delete(UUID id) {
         postLikeRepository.deleteById(id);
     }
@@ -33,6 +33,6 @@ public class PostLikeService {
     public Long count() {
         return postLikeRepository.count();
     }
-}
 
-*/
+ */
+}

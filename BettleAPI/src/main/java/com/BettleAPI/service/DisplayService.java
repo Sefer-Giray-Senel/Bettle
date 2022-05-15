@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-/*
+
 import com.BettleAPI.entity.Display;
 
 import com.BettleAPI.repository.DisplayRepository;
@@ -19,7 +19,7 @@ public class DisplayService {
     public Display save(Display display) {
         return displayRepository.save(display);
     }
-
+/*
     public void delete(UUID id) {
         displayRepository.deleteById(id);
     }
@@ -33,6 +33,5 @@ public class DisplayService {
     public Long count() {
         return displayRepository.count();
     }
-}
-
 */
+}

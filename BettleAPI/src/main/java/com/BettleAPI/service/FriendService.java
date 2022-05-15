@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-/*
+
 import com.BettleAPI.entity.Friend;
 
 import com.BettleAPI.repository.FriendRepository;
@@ -19,7 +19,7 @@ public class FriendService {
     public Friend save(Friend friend) {
         return friendRepository.save(friend);
     }
-
+/*
     public void delete(UUID id) {
         friendRepository.deleteById(id);
     }
@@ -33,7 +33,8 @@ public class FriendService {
     public Long count() {
         return friendRepository.count();
     }
+    */
 }
-*/
+
 
 

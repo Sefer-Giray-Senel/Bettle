@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-/*
+
 import com.BettleAPI.entity.Bans;
 
 import com.BettleAPI.repository.BansRepository;
@@ -19,7 +19,7 @@ public class BansService {
     public Bans save(Bans bans) {
         return bansRepository.save(bans);
     }
-
+/*
     public void delete(UUID id) {
         bansRepository.deleteById(id);
     }
@@ -33,5 +33,5 @@ public class BansService {
     public Long count() {
         return bansRepository.count();
     }
+    */
 }
-*/

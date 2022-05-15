@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-/*
+
 import com.BettleAPI.entity.SlipComment;
 
 import com.BettleAPI.repository.SlipCommentRepository;
@@ -19,7 +19,7 @@ public class SlipCommentService {
     public SlipComment save(SlipComment slipComment) {
         return slipCommentRepository.save(slipComment);
     }
-
+/*
     public void delete(UUID id) {
         slipCommentRepository.deleteById(id);
     }
@@ -33,6 +33,6 @@ public class SlipCommentService {
     public Long count() {
         return slipCommentRepository.count();
     }
-}
 
-*/
+ */
+}

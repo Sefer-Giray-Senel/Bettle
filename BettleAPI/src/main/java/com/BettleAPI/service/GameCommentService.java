@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-/*
+
 import com.BettleAPI.entity.GameComment;
 
 import com.BettleAPI.repository.GameCommentRepository;
@@ -19,7 +19,7 @@ public class GameCommentService {
     public GameComment save(GameComment gameComment) {
         return gameCommentRepository.save(gameComment);
     }
-
+/*
     public void delete(UUID id) {
         gameCommentRepository.deleteById(id);
     }
@@ -33,6 +33,6 @@ public class GameCommentService {
     public Long count() {
         return gameCommentRepository.count();
     }
-}
 
-*/
+ */
+}

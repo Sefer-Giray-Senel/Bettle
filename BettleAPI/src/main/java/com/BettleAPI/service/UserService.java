@@ -29,7 +29,7 @@ public class UserService implements UserDetailsService {
 
         return user.map(MyUserDetails::new).get();
     }
-
+/*
     public User save(User user) {
         return userRepository.save(user);
     }
@@ -47,5 +47,7 @@ public class UserService implements UserDetailsService {
     public Long count() {
         return userRepository.count();
     }
+
+     */
 }
 

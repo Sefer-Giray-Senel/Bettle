@@ -19,7 +19,7 @@ public class EditorService {
     public Editor save(Editor editor) {
         return editorRepository.save(editor);
     }
-
+/*
     public void delete(UUID id) {
         editorRepository.deleteById(id);
     }
@@ -33,5 +33,7 @@ public class EditorService {
     public Long count() {
         return editorRepository.count();
     }
+
+ */
 }
 

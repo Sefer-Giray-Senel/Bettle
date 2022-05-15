@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-/*
+
 import com.BettleAPI.entity.EditorHasSlip;
 
 import com.BettleAPI.repository.EditorHasSlipRepository;
@@ -19,7 +19,7 @@ public class EditorHasSlipService {
     public EditorHasSlip save(EditorHasSlip editorHasSlip) {
         return editorHasSlipRepository.save(editorHasSlip);
     }
-
+/*
     public void delete(UUID id) {
         editorHasSlipRepository.deleteById(id);
     }
@@ -33,6 +33,6 @@ public class EditorHasSlipService {
     public Long count() {
         return editorHasSlipRepository.count();
     }
-}
 
-*/
+ */
+}
