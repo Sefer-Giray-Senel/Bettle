@@ -15,6 +15,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GameCommentId implements Serializable {
-    private long userId;
-    private long matchId;
+    private int userId;
+    private int matchId;
 }

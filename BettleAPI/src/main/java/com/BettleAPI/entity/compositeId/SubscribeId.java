@@ -14,6 +14,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SubscribeId implements Serializable {
-    private long bettorId;
-    private long editorId;
+    private int bettorId;
+    private int editorId;
 }

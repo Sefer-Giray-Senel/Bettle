@@ -14,6 +14,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HasSlipId implements Serializable {
-    private long userId;
-    private long betSlipId;
+    private int userId;
+    private int betSlipId;
 }

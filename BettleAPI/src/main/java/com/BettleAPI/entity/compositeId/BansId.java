@@ -14,6 +14,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BansId implements Serializable {
-    private long adminId;
-    private long socialUserId;
+    private int adminId;
+    private int socialUserId;
 }

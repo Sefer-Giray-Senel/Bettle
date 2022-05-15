@@ -13,6 +13,5 @@ public class BaseEntity implements Serializable {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @Column(name = "id", columnDefinition = "BINARY(16)")
-    private long id;
+    private int id;
 }

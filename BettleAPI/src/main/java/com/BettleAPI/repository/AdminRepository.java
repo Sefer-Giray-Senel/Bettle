@@ -32,9 +32,9 @@ public class AdminRepository {
         return query.getResultList();
     }
 
-    public Admin findOneById(long id){
-        return (Admin) entityManager.createQuery("select a from Admin a where a.id =: id")
-                .setParameter("id", id)
+    public Admin findOneById(int givenId){
+        return entityManager.createQuery("select a from Admin a where a.id =?1", Admin.class)
+                .setParameter(1, givenId)
                 .getSingleResult();
     }
 

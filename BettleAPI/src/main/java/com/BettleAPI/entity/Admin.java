@@ -17,7 +17,8 @@ import javax.persistence.Id;
 public class Admin {
 
     @Id
-    private long id;
+    @Column(columnDefinition = "INT(11)")
+    private int id;
 
     private int salary;
     private String phoneNumber;

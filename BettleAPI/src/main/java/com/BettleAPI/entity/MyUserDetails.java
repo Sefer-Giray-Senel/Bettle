@@ -10,7 +10,7 @@ import java.util.UUID;
 public class MyUserDetails implements UserDetails {
     private String password;
     private String username;
-    private long id;
+    private int id;
 
     public MyUserDetails(User user) {
         this.id = user.getId();

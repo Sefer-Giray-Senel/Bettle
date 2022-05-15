@@ -14,6 +14,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FriendId implements Serializable {
-    private long firstBettorId;
-    private long secondBettorId;
+    private int firstBettorId;
+    private int secondBettorId;
 }

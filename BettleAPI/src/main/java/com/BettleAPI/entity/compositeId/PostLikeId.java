@@ -14,6 +14,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostLikeId implements Serializable {
-    private long betSlipPostId;
-    private long userId;
+    private int betSlipPostId;
+    private int userId;
 }
