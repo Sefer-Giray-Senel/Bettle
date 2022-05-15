@@ -1,7 +1,7 @@
 package com.BettleAPI.repository;
 
 
-import com.BettleAPI.entity.User;
+import com.BettleAPI.entity.Display;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,13 +9,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Repository
-public class UserRepository {
+public class DisplayRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
     @Transactional
-    public User save(User user) {
+    public Display save(Display display) {
         /* sql statement */
-        return user;
+        return display;
     }
 }

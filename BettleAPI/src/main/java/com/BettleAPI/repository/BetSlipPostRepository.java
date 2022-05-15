@@ -1,15 +1,21 @@
 package com.BettleAPI.repository;
 
-import com.BettleAPI.entity.BetSlipPost;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import com.BettleAPI.entity.BetSlipPost;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Repository
-@EnableJpaRepositories
-public interface BetSlipPostRepository extends JpaRepository<BetSlipPost, UUID> {
+public class BetSlipPostRepository {
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Transactional
+    public BetSlipPost save(BetSlipPost betSlipPost) {
+        /* sql statement */
+        return betSlipPost;
+    }
 }

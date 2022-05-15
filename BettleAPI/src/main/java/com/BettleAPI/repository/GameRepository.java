@@ -1,13 +1,21 @@
 package com.BettleAPI.repository;
 
-import com.BettleAPI.entity.Game;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
+import com.BettleAPI.entity.Game;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Repository
-@EnableJpaRepositories
-public interface GameRepository extends JpaRepository<Game, UUID> {
+public class GameRepository {
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Transactional
+    public Game save(Game game) {
+        /* sql statement */
+        return game;
+    }
 }
