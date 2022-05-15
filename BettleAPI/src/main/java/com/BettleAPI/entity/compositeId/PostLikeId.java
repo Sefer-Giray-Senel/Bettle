@@ -15,6 +15,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostLikeId implements Serializable {
-    private long betSlipPostId;
-    private long userId;
+    private UUID betSlipPostId;
+    private UUID userId;
 }

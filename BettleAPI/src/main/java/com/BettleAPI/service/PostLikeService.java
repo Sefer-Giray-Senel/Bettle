@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-
+/*
 import com.BettleAPI.entity.PostLike;
 
 import com.BettleAPI.repository.PostLikeRepository;
@@ -35,3 +35,4 @@ public class PostLikeService {
     }
 }
 
+*/

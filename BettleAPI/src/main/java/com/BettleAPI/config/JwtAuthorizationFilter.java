@@ -1,5 +1,5 @@
 package com.BettleAPI.config;
-/*
+
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -57,7 +57,6 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
      *
      * @param claims
      */
-/*
     private void setUpSpringAuthentication(Claims claims) {
         @SuppressWarnings("unchecked")
         List<String> authorities = (List) claims.get("authorities");
@@ -76,4 +75,3 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     }
 
 }
-*/

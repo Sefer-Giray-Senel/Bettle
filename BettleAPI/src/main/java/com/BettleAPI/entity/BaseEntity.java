@@ -10,7 +10,10 @@ import java.util.UUID;
 @MappedSuperclass
 @Data
 public class BaseEntity implements Serializable {
+
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name = "id", columnDefinition = "BINARY(16)")
+    private UUID id;
 }

@@ -15,6 +15,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SubscribeId implements Serializable {
-    private long bettorId;
-    private long editorId;
+    private UUID bettorId;
+    private UUID editorId;
 }

@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-
+/*
 import com.BettleAPI.entity.GameComment;
 
 import com.BettleAPI.repository.GameCommentRepository;
@@ -35,3 +35,4 @@ public class GameCommentService {
     }
 }
 
+*/

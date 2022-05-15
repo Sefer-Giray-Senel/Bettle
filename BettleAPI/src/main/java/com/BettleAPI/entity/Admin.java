@@ -18,7 +18,7 @@ import java.util.UUID;
 public class Admin {
 
     @Id
-    private long id;
+    private UUID id;
 
     private int salary;
     private String phoneNumber;

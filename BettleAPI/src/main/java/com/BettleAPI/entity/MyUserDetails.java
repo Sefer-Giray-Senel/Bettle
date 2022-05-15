@@ -10,7 +10,7 @@ import java.util.UUID;
 public class MyUserDetails implements UserDetails {
     private String password;
     private String username;
-    private long id;
+    private UUID id;
 
     public MyUserDetails(User user) {
         this.id = user.getId();
@@ -36,7 +36,7 @@ public class MyUserDetails implements UserDetails {
         return username;
     }
 
-    public long getUUID(){return id;}
+    public UUID getUUID(){return id;}
 
     @Override
     public boolean isAccountNonExpired() {

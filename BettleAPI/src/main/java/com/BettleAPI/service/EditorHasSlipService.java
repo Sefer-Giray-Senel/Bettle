@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-
+/*
 import com.BettleAPI.entity.EditorHasSlip;
 
 import com.BettleAPI.repository.EditorHasSlipRepository;
@@ -35,3 +35,4 @@ public class EditorHasSlipService {
     }
 }
 
+*/

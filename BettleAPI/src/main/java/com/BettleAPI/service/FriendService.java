@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-
+/*
 import com.BettleAPI.entity.Friend;
 
 import com.BettleAPI.repository.FriendRepository;
@@ -34,4 +34,6 @@ public class FriendService {
         return friendRepository.count();
     }
 }
+*/
+
 

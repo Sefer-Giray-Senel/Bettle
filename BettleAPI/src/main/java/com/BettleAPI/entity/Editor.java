@@ -19,7 +19,7 @@ import java.util.UUID;
 public class Editor {
 
     @Id
-    private long id;
+    private UUID id;
 
     private int subscriberCount;
     private int successfulBetSlipCount;

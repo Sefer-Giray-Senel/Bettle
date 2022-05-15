@@ -15,6 +15,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BansId implements Serializable {
-    private long adminId;
-    private long socialUserId;
+    private UUID adminId;
+    private UUID socialUserId;
 }

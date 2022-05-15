@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-
+/*
 import com.BettleAPI.entity.Bans;
 
 import com.BettleAPI.repository.BansRepository;
@@ -34,4 +34,4 @@ public class BansService {
         return bansRepository.count();
     }
 }
-
+*/

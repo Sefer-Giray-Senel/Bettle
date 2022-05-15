@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-
+/*
 import com.BettleAPI.entity.SlipComment;
 
 import com.BettleAPI.repository.SlipCommentRepository;
@@ -35,3 +35,4 @@ public class SlipCommentService {
     }
 }
 
+*/

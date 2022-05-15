@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-
+/*
 import com.BettleAPI.entity.Subscribe;
 
 import com.BettleAPI.repository.SubscribeRepository;
@@ -35,3 +35,4 @@ public class SubscribeService {
     }
 }
 
+*/

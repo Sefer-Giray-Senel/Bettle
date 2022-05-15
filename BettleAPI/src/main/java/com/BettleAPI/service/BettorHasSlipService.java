@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-
+/*
 import com.BettleAPI.entity.BettorHasSlip;
 
 import com.BettleAPI.repository.BettorHasSlipRepository;
@@ -35,3 +35,4 @@ public class BettorHasSlipService {
     }
 }
 
+*/

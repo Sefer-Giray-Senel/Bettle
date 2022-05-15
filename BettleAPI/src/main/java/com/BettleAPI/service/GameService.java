@@ -1,5 +1,5 @@
 package com.BettleAPI.service;
-
+/*
 import com.BettleAPI.entity.Game;
 
 import com.BettleAPI.repository.GameRepository;
@@ -35,3 +35,4 @@ public class GameService {
     }
 }
 
+*/

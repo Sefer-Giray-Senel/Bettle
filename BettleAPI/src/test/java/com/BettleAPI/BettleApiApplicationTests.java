@@ -1,7 +1,7 @@
 package com.BettleAPI;
 
 import com.BettleAPI.entity.Bet;
-import com.BettleAPI.repository.modify_repository.BetModifyRepository;
+import com.BettleAPI.repository.BetRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import java.util.UUID;
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 class BettleApiApplicationTests {
 
-	private final BetModifyRepository betModifyingRepository;
+	private final BetRepository betRepository;
 
 	@Test
 	void contextLoads() {
@@ -31,7 +31,7 @@ class BettleApiApplicationTests {
 		bet.setOdd(1.5);
 		bet.setTitle("Over 2.5");
 		System.out.println("bet id: "+ bet.getId() + "game id: " + bet.getGameId());
-		betModifyingRepository.insertWithQuery(bet);
+		betRepository.save(bet);
 	}
 */
 }

@@ -18,7 +18,7 @@ import java.util.UUID;
 public class Bettor {
 
     @Id
-    private long id;
+    private UUID id;
 
     private double balance;
     private int friendCount;

@@ -1,7 +1,8 @@
 package com.BettleAPI.controller;
-/*
+
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import com.BettleAPI.entity.User;
@@ -22,6 +23,7 @@ public class UserController {
 
         String token = getJWTToken(username);
         User user = new User();
+
         user.setUsername(username);
         user.setToken(token);
         return user;
@@ -49,4 +51,3 @@ public class UserController {
         return "Bearer " + token;
     }
 }
-*/
