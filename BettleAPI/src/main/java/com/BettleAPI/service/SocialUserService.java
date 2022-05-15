@@ -20,7 +20,7 @@ public class SocialUserService {
         return socialUserRepository.save(socialUser);
     }
 
-    public void delete(UUID id) {
+    public void delete(int id) {
         socialUserRepository.deleteById(id);
     }
 

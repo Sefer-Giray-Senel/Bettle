@@ -1,6 +1,7 @@
 package com.BettleAPI.repository;
 
 
+import com.BettleAPI.entity.BetSlip;
 import com.BettleAPI.entity.Edit;
 import com.BettleAPI.entity.compositeId.EditId;
 import org.springframework.stereotype.Repository;
@@ -29,6 +30,13 @@ public class EditRepository {
     public List<Edit> findAll() {
         Query query = entityManager.createQuery("select a from Edit a", Edit.class);
         return query.getResultList();
+    }
+
+    public Edit findOneById(int givenBetId, int givenUserId){
+        return entityManager.createQuery("select a from Edit a where a.id.userId =?1 and a.id.betId =?2", Edit.class)
+                .setParameter(1, givenUserId)
+                .setParameter(2, givenBetId)
+                .getSingleResult();
     }
 
     public void deleteById(EditId id) {

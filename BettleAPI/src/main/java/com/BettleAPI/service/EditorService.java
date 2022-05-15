@@ -20,7 +20,7 @@ public class EditorService {
         return editorRepository.save(editor);
     }
 
-    public void delete(UUID id) {
+    public void delete(int id) {
         editorRepository.deleteById(id);
     }
 

@@ -1,6 +1,7 @@
 package com.BettleAPI.repository;
 
 
+import com.BettleAPI.entity.Bans;
 import com.BettleAPI.entity.Bet;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,20 +31,19 @@ public class BetRepository {
         return bet;
     }
 
-    @SuppressWarnings(value = "unchecked") //FIX MEEEEEE-----------------------------------------------------------
-    public Bet getById(UUID id) {
-        Query query = entityManager.createQuery("select a from Bet a", Bet.class);
-        Bet bet = ((Bet) query.getResultList().get(0));
-        return bet;
-    }
-
     @SuppressWarnings(value = "unchecked")
     public List<Bet> findAll() {
         Query query = entityManager.createQuery("select a from Bet a", Bet.class);
         return query.getResultList();
     }
 
-    public void deleteById(UUID id) {
+    public Bet findOneById(int givenId){
+        return entityManager.createQuery("select a from Bet a where a.id =?1", Bet.class)
+                .setParameter(1, givenId)
+                .getSingleResult();
+    }
+
+    public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM bet WHERE id = ?")
                 .setParameter(1, id)
                 .executeUpdate();

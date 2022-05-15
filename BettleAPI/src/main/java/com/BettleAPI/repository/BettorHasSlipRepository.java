@@ -1,6 +1,7 @@
 package com.BettleAPI.repository;
 
 
+import com.BettleAPI.entity.BetSlip;
 import com.BettleAPI.entity.BettorHasSlip;
 import com.BettleAPI.entity.compositeId.HasSlipId;
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,13 @@ public class BettorHasSlipRepository {
     public List<BettorHasSlip> findAll() {
         Query query = entityManager.createQuery("select a from BettorHasSlip a", BettorHasSlip.class);
         return query.getResultList();
+    }
+
+    public BettorHasSlip findOneById(int givenBetSlipId, int givenUserId){
+        return entityManager.createQuery("select a from BettorHasSlip a where a.id.betSlipId =?1 and a.id.userId =?2", BettorHasSlip.class)
+                .setParameter(1, givenBetSlipId)
+                .setParameter(2, givenUserId)
+                .getSingleResult();
     }
 
     public void deleteById(HasSlipId id) {

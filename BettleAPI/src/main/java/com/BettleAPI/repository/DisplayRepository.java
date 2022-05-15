@@ -1,6 +1,7 @@
 package com.BettleAPI.repository;
 
 
+import com.BettleAPI.entity.BetSlip;
 import com.BettleAPI.entity.Display;
 import com.BettleAPI.entity.compositeId.DisplayId;
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,13 @@ public class DisplayRepository {
     public List<Display> findAll() {
         Query query = entityManager.createQuery("select a from Display a", Display.class);
         return query.getResultList();
+    }
+
+    public Display findOneById(int givenBetId, int givenBetSlipId){
+        return entityManager.createQuery("select a from Display a where a.id.betSlipId =?1 and a.id.betId =?2", Display.class)
+                .setParameter(1, givenBetSlipId)
+                .setParameter(2, givenBetId)
+                .getSingleResult();
     }
 
     public void deleteById(DisplayId id) {

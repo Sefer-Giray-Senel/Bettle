@@ -1,6 +1,7 @@
 package com.BettleAPI.repository;
 
 
+import com.BettleAPI.entity.BetSlip;
 import com.BettleAPI.entity.Game;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +34,13 @@ public class GameRepository {
         return query.getResultList();
     }
 
-    public void deleteById(UUID id) {
+    public Game findOneById(int givenId){
+        return entityManager.createQuery("select a from Game a where a.id =?1", Game.class)
+                .setParameter(1, givenId)
+                .getSingleResult();
+    }
+
+    public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM game WHERE id = ?")
                 .setParameter(1, id)
                 .executeUpdate();

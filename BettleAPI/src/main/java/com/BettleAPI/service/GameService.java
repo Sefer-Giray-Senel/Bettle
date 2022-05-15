@@ -20,7 +20,7 @@ public class GameService {
         return gameRepository.save(match);
     }
 
-    public void delete(UUID id) {
+    public void delete(int id) {
         gameRepository.deleteById(id);
     }
 

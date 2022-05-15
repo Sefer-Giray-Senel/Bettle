@@ -27,7 +27,7 @@ public class BetService {
 //    public Bet getByID(UUID id) { return betRepository.getById(id);}
 
 
-    public void delete(UUID id) {
+    public void delete(int id) {
         betRepository.deleteById(id);
     }
 

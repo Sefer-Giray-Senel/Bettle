@@ -20,7 +20,7 @@ public class BetSlipService {
         return betSlipRepository.save(betSlip);
     }
 
-    public void delete(UUID id) {
+    public void delete(int id) {
         betSlipRepository.deleteById(id);
     }
 

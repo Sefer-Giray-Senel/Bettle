@@ -20,7 +20,7 @@ public class BettorService {
         return bettorRepository.save(bettor);
     }
 
-    public void delete(UUID id) {
+    public void delete(int id) {
         bettorRepository.deleteById(id);
     }
 

@@ -20,7 +20,7 @@ public class AdminService {
         return adminRepository.save(admin);
     }
 
-    public void delete(UUID id) {
+    public void delete(int id) {
         adminRepository.deleteById(id);
     }
 

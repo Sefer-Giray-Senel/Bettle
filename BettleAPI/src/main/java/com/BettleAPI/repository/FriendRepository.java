@@ -1,6 +1,7 @@
 package com.BettleAPI.repository;
 
 
+import com.BettleAPI.entity.BetSlip;
 import com.BettleAPI.entity.Friend;
 import com.BettleAPI.entity.compositeId.FriendId;
 import org.springframework.stereotype.Repository;
@@ -29,6 +30,13 @@ public class FriendRepository {
     public List<Friend> findAll() {
         Query query = entityManager.createQuery("select a from Friend a", Friend.class);
         return query.getResultList();
+    }
+
+    public Friend findOneById(int givenFirstId, int givenSecondId){
+        return entityManager.createQuery("select a from Friend a where a.id.firstBettorId =?1 and a.id.secondBettorId =?2", Friend.class)
+                .setParameter(1, givenFirstId)
+                .setParameter(2, givenSecondId)
+                .getSingleResult();
     }
 
     public void deleteById(FriendId id) {

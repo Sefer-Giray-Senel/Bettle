@@ -25,7 +25,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findUserByPassword(username);
 
-        user.orElseThrow(()->new UsernameNotFoundException("user with email " + username + " not found"));
+        user.orElseThrow(()->new UsernameNotFoundException("user with username " + username + " not found"));
 
         return user.map(MyUserDetails::new).get();
     }
@@ -34,7 +34,7 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
-    public void delete(UUID id) {
+    public void delete(int id) {
         userRepository.deleteById(id);
     }
 

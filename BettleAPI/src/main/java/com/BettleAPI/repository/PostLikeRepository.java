@@ -1,6 +1,7 @@
 package com.BettleAPI.repository;
 
 
+import com.BettleAPI.entity.BetSlip;
 import com.BettleAPI.entity.PostLike;
 import com.BettleAPI.entity.compositeId.PostLikeId;
 import org.springframework.stereotype.Repository;
@@ -29,6 +30,13 @@ public class PostLikeRepository {
     public List<PostLike> findAll() {
         Query query = entityManager.createQuery("select a from PostLike a", PostLike.class);
         return query.getResultList();
+    }
+
+    public PostLike findOneById(int givenBetSlipPostId, int givenUserId){
+        return entityManager.createQuery("select a from PostLike a where a.id.userId =?1 and a.id.betSlipPostId =?2", PostLike.class)
+                .setParameter(1, givenUserId)
+                .setParameter(2,givenBetSlipPostId)
+                .getSingleResult();
     }
 
     public void deleteById(PostLikeId id) {

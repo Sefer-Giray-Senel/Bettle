@@ -1,6 +1,7 @@
 package com.BettleAPI.repository;
 
 
+import com.BettleAPI.entity.Admin;
 import com.BettleAPI.entity.Bans;
 import com.BettleAPI.entity.compositeId.BansId;
 import org.springframework.stereotype.Repository;
@@ -31,6 +32,13 @@ public class BansRepository {
     public List<Bans> findAll() {
         Query query = entityManager.createQuery("select a from Bans a", Bans.class);
         return query.getResultList();
+    }
+
+    public Bans findOneById(int givenAdminId, int givenSocialUserId){
+        return entityManager.createQuery("select a from Bans a where a.id.adminId =?1 and a.id.socialUserId =?2", Bans.class)
+                .setParameter(1, givenAdminId)
+                .setParameter(2, givenSocialUserId)
+                .getSingleResult();
     }
 
     public void deleteById(BansId id) {

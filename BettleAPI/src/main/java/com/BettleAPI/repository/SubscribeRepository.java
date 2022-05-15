@@ -1,6 +1,7 @@
 package com.BettleAPI.repository;
 
 
+import com.BettleAPI.entity.BetSlip;
 import com.BettleAPI.entity.Subscribe;
 import com.BettleAPI.entity.compositeId.SubscribeId;
 import org.springframework.stereotype.Repository;
@@ -29,6 +30,13 @@ public class SubscribeRepository {
     public List<Subscribe> findAll() {
         Query query = entityManager.createQuery("select a from Subscribe a", Subscribe.class);
         return query.getResultList();
+    }
+
+    public Subscribe findOneById(int givenBettorId, int givenEditorId){
+        return entityManager.createQuery("select a from Subscribe a where a.id.bettorId =?1 and a.id.editorId =?2", Subscribe.class)
+                .setParameter(1, givenBettorId)
+                .setParameter(2, givenEditorId)
+                .getSingleResult();
     }
 
     public void deleteById(SubscribeId id) {

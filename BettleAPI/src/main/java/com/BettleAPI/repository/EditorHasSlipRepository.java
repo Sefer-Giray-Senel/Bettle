@@ -1,6 +1,7 @@
 package com.BettleAPI.repository;
 
 
+import com.BettleAPI.entity.BetSlip;
 import com.BettleAPI.entity.EditorHasSlip;
 import com.BettleAPI.entity.compositeId.HasSlipId;
 import org.springframework.stereotype.Repository;
@@ -29,6 +30,13 @@ public class EditorHasSlipRepository {
     public List<EditorHasSlip> findAll() {
         Query query = entityManager.createQuery("select a from EditorHasSlip a", EditorHasSlip.class);
         return query.getResultList();
+    }
+
+    public EditorHasSlip findOneById(int givenUserId, int givenBetSlipId){
+        return entityManager.createQuery("select a from EditorHasSlip a where a.id.userId =?1 and a.id.betSlipId =?2", EditorHasSlip.class)
+                .setParameter(1, givenUserId)
+                .setParameter(2, givenBetSlipId)
+                .getSingleResult();
     }
 
     public void deleteById(HasSlipId id) {

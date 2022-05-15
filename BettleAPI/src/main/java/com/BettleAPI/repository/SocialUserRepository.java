@@ -1,6 +1,7 @@
 package com.BettleAPI.repository;
 
 
+import com.BettleAPI.entity.BetSlip;
 import com.BettleAPI.entity.SocialUser;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,13 @@ public class SocialUserRepository {
         return query.getResultList();
     }
 
-    public void deleteById(UUID id) {
+    public SocialUser findOneById(int givenId){
+        return entityManager.createQuery("select a from SocialUser a where a.id =?1", SocialUser.class)
+                .setParameter(1, givenId)
+                .getSingleResult();
+    }
+
+    public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM social_user WHERE id = ?")
                 .setParameter(1, id)
                 .executeUpdate();

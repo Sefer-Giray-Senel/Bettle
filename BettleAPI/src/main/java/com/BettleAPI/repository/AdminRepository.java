@@ -38,7 +38,7 @@ public class AdminRepository {
                 .getSingleResult();
     }
 
-    public void deleteById(UUID id) {
+    public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM admin WHERE id = ?")
                 .setParameter(1, id)
                 .executeUpdate();

@@ -2,6 +2,7 @@ package com.BettleAPI.repository;
 
 
 import com.BettleAPI.entity.BetSlip;
+import com.BettleAPI.entity.BetSlipPost;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +32,13 @@ public class BetSlipRepository {
         return query.getResultList();
     }
 
-    public void deleteById(UUID id) {
+    public BetSlip findOneById(int givenId){
+        return entityManager.createQuery("select a from BetSlip a where a.id =?1", BetSlip.class)
+                .setParameter(1, givenId)
+                .getSingleResult();
+    }
+
+    public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM bet_slip WHERE id = ?")
                 .setParameter(1, id)
                 .executeUpdate();

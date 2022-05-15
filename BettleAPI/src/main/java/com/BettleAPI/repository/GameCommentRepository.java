@@ -1,6 +1,7 @@
 package com.BettleAPI.repository;
 
 
+import com.BettleAPI.entity.BetSlip;
 import com.BettleAPI.entity.GameComment;
 import com.BettleAPI.entity.compositeId.GameCommentId;
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,13 @@ public class GameCommentRepository {
     public List<GameComment> findAll() {
         Query query = entityManager.createQuery("select a from GameComment a", GameComment.class);
         return query.getResultList();
+    }
+
+    public GameComment findOneById(int givenMatchId, int givenUserId){
+        return entityManager.createQuery("select a from GameComment a where a.id.matchId =?1 and a.id.userId =?2", GameComment.class)
+                .setParameter(1, givenMatchId)
+                .setParameter(2, givenUserId)
+                .getSingleResult();
     }
 
     public void deleteById(GameCommentId id) {
