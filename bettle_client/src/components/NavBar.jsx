@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 function NavBar({setName,getName}){
-    console.log(getName());
     return(
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <NavLink to="/" className="nav-links">Bettle</NavLink>

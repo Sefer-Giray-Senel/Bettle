@@ -22,21 +22,15 @@ class UserComponent extends React.Component {
                 <table className ="table table-striped">
                     <thead>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Username</td>
                         </tr>
                     </thead>
                     <tbody>
                     {
                             this.state.users.map(
                                 user =>
-                                <tr key = {user.id}>
-                                    <td>{user.id}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                <tr key = {user.username}>
+                                    <td>{user.username}</td>
                                 </tr>
                             )
                         }

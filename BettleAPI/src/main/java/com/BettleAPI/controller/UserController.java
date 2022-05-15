@@ -19,7 +19,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @RestController
 public class UserController {
 
-    @CrossOrigin("http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/login")
     public User login(@RequestParam("username") String username, @RequestParam("password") String pwd) {
 
