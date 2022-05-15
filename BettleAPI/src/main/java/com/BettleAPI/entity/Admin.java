@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.UUID;
 
 @EqualsAndHashCode()
 @Data
@@ -18,7 +17,7 @@ import java.util.UUID;
 public class Admin {
 
     @Id
-    private UUID id;
+    private long id;
 
     private int salary;
     private String phoneNumber;

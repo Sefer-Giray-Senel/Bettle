@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -20,6 +19,6 @@ public class Bet extends BaseEntity {
     private double odd;
     private int mbn;
 
-    private UUID gameId;
+    private long gameId;
 }
 

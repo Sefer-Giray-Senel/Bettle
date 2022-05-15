@@ -11,9 +11,8 @@ import java.util.UUID;
 @Data
 public class BaseEntity implements Serializable {
 
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @Column(name = "id", columnDefinition = "BINARY(16)")
-    private UUID id;
+    private long id;
 }

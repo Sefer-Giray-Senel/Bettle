@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
-import java.util.UUID;
 
 @Embeddable
 @EqualsAndHashCode()
@@ -15,6 +14,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BansId implements Serializable {
-    private UUID adminId;
-    private UUID socialUserId;
+    private long adminId;
+    private long socialUserId;
 }

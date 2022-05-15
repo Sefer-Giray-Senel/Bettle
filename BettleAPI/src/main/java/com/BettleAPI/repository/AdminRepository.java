@@ -32,6 +32,12 @@ public class AdminRepository {
         return query.getResultList();
     }
 
+    public Admin findOneById(long id){
+        return (Admin) entityManager.createQuery("select a from Admin a where a.id =: id")
+                .setParameter("id", id)
+                .getSingleResult();
+    }
+
     public void deleteById(UUID id) {
         entityManager.createNativeQuery("DELETE FROM admin WHERE id = ?")
                 .setParameter(1, id)

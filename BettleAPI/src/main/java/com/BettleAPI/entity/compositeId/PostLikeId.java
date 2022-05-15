@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
-import java.util.UUID;
 
 @Embeddable
 @EqualsAndHashCode()
@@ -15,6 +14,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostLikeId implements Serializable {
-    private UUID betSlipPostId;
-    private UUID userId;
+    private long betSlipPostId;
+    private long userId;
 }

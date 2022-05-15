@@ -19,7 +19,7 @@ import java.util.UUID;
 public class SocialUser {
 
     @Id
-    private UUID id;
+    private long id;
 
     private String firstName;
     private String lastName;
