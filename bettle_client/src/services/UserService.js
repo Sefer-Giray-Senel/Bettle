@@ -29,11 +29,13 @@ class UserService{
     }
 
     async register(details){
+        console.log(details);
         try{
             await axios.post("http://localhost:8080/register", {}, {
                 params: {
                     username: details.username,
-                    password: details.password
+                    password: details.password,
+                    role: details.role
                 }
             });
             return true;
