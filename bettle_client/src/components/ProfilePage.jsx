@@ -1,6 +1,7 @@
 import React from "react";
 import "../css/profilePage.css";
 import UserService from "../services/UserService";
+import BetService from "../services/BetService";
 
 class ProfilePage extends React.Component {
     state = { 
@@ -10,7 +11,7 @@ class ProfilePage extends React.Component {
     
     componentDidMount(){
         UserService.getUser().then((response) => this.setState({user:response.data}));
-        UserSerivce.getPosts().then((response) => this.setState({posts:response.data}));
+        BetService.getPosts().then((response) => this.setState({posts:response.data}));
     }
 
 
@@ -36,35 +37,17 @@ class ProfilePage extends React.Component {
                                     <a href="#">
                                     <img src="https://i.imgur.com/bDLhJiP.jpg" width="350px" height="150"/>
                                     </a>
-                                    <ul>
-                                        {post.map((bet) => <li key={bet.id}>{bet.title}</li>)}
-                                    </ul>
-                                    <ul class="list-group">
-                                        <li class="list-group-item disabled">Cras justo odio</li>
-                                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                                        <li class="list-group-item">Morbi leo risus</li>
-                                        <li class="list-group-item">Porta ac consectetur ac</li>
-                                        <li class="list-group-item">Vestibulum at eros</li>
+                                    <ul className="list-group">
+                                        {post.map((bet) => <li className="list-group-item" key={bet.id}>{bet.title}</li>)}
                                     </ul>
                                 </li>
                                 )} 
-
                             </ul>
 
-                            <div className="buttons">
-
-                            </div>
-
-
                         </div>
-
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>);
     }
 }

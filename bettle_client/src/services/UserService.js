@@ -46,6 +46,11 @@ class UserService{
         }
     }
 
+    
+    getUser(){
+        return axios.get("http://localhost:8080/register");
+    }
+
 }
 
 export default new UserService();
