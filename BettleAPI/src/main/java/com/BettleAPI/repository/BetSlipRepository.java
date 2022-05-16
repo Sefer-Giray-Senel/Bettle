@@ -46,7 +46,7 @@ public class BetSlipRepository {
     }
 
     public void updateBetSlip(int id, double odd, boolean shared) {
-        if(odd != -1) {
+        if (odd != -1) {
             entityManager.createQuery("update BetSlip a set a.odd =?1 where a.id =?2")
                     .setParameter(1, odd)
                     .setParameter(2, id)
@@ -56,5 +56,12 @@ public class BetSlipRepository {
                     .setParameter(2, id)
                     .executeUpdate();
         }
+    }
+
+    public List<BetSlip> findBetSlipsByShared(int id, boolean shared) {
+        Query query = entityManager.createQuery("select a from BetSlip a where a.shared = ?1 and a.id = ?2", BetSlip.class)
+                    .setParameter(1, shared)
+                    .setParameter(2, id);
+        return query.getResultList();
     }
 }

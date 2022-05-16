@@ -31,5 +31,9 @@ public class BetSlipService {
     public BetSlip findOneById(int id) { return betSlipRepository.findOneById(id);}
 
     public void updateBetSlip(int id, double odd, boolean shared) { betSlipRepository.updateBetSlip(id, odd, shared); }
+
+    public List<BetSlip> findBetSlipsByShared(int id, boolean shared) {
+        return betSlipRepository.findBetSlipsByShared(id, shared);
+    }
 }
 

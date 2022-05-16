@@ -164,21 +164,21 @@ public class BetSlipController {
         throw new ResponseStatusException(HttpStatus.OK, "Bet Slip was successfully saved");
     }
 
-    @GetMapping("/blabla")
-    public List<BetSlipDto> getBetsByUserId(@RequestParam("user_id") int userId) {
-        List<Integer> betSlipIdList = bettorHasSlipService.findBetSlipIdByUserId(userId);
+    @GetMapping("/list-unshared")
+    public List<BetSlipDto> getUnsharedBetSlips(@RequestParam("user_id") int userId) {
+        List<BetSlip> unsharedBetSlipList = betSlipService.findBetSlipsByShared(userId, false);
         List<BetSlipDto> betSlipDtoList = new ArrayList<>();
 
-        for (int k: betSlipIdList) {
+        for (BetSlip k: unsharedBetSlipList) {
             BetSlipDto betSlipDto = new BetSlipDto();
 
-            List<Integer> betIdList= displayService.findBetsByBetSlipId(k);
+            List<Integer> betIdList= displayService.findBetsByBetSlipId(k.getId());
             List<Bet> betList = new ArrayList<>();
             for (int m: betIdList)
                 betList.add(betService.findOneById(m));
 
             betSlipDto.setBetList(betList);
-            betSlipDto.setBetSlipId(k);
+            betSlipDto.setBetSlipId(k.getId());
             betSlipDtoList.add(betSlipDto);
         }
 
