@@ -40,8 +40,8 @@ public class SlipCommentRepository {
                 .getSingleResult();
     }
 
-    public List<String> findCommentBySlipPostId(int betSlipPostId){
-        return entityManager.createQuery("select a.comment from SlipComment a where a.id.betSlipPostId =?1")
+    public List<SlipComment> findCommentsBySlipPostId(int betSlipPostId){
+        return entityManager.createQuery("select a from SlipComment a where a.id.betSlipPostId =?1")
                 .setParameter(1, betSlipPostId)
                 .getResultList();
     }

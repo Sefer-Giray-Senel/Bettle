@@ -40,8 +40,8 @@ public class GameCommentRepository {
                 .getSingleResult();
     }
 
-    public List<String> findCommentsByGameId(int matchId){
-        return entityManager.createQuery("select a.comment from GameComment a where a.id.matchId =?1")
+    public List<GameComment> findCommentsByGameId(int matchId){
+        return entityManager.createQuery("select a from GameComment a where a.id.matchId =?1")
                 .setParameter(1, matchId)
                 .getResultList();
     }

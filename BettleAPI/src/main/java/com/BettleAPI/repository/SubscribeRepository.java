@@ -39,9 +39,15 @@ public class SubscribeRepository {
                 .getSingleResult();
     }
 
-    public List<Integer> findSubscribedIdByUserId(int userId){
+    public List<Integer> findSubscribedIdsByEditorId(int editorId){
+        return entityManager.createQuery("select a.id.bettorId from Subscribe a where a.id.editorId =?1")
+                .setParameter(1, editorId)
+                .getResultList();
+    }
+
+    public List<Integer> findSubscribedEditorIdsByBettorId(int bettorId){
         return entityManager.createQuery("select a.id.editorId from Subscribe a where a.id.bettorId =?1")
-                .setParameter(1, userId)
+                .setParameter(1, bettorId)
                 .getResultList();
     }
 

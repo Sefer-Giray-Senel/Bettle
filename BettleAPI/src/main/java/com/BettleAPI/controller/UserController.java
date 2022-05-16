@@ -77,10 +77,17 @@ public class UserController {
         return userService.findAll();
     }
 
-    @DeleteMapping("/{id}")
+    @PutMapping
+    public void updateUser(@RequestParam("user_id") int id, @RequestParam("username") String username, @RequestParam("password") String password) {
+        userService.updateUser(id, username, password);
+    }
+
+   /*
+   @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable int id) {
         userService.delete(id);
     }
+   */
 
 
     private String getJWTToken(String username) {

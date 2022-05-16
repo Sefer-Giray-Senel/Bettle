@@ -39,7 +39,7 @@ public class EditorHasSlipRepository {
                 .getSingleResult();
     }
 
-    public List<Integer> findBetSlipIdByEditorId(int userId){
+    public List<Integer> findBetSlipIdsByEditorId(int userId){
         return entityManager.createQuery("select a.id.betSlipId from EditorHasSlip a where a.id.userId =?1")
                 .setParameter(1, userId)
                 .getResultList();

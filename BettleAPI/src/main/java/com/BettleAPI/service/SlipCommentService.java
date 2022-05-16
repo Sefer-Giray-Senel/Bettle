@@ -31,5 +31,5 @@ public class SlipCommentService {
 
     public SlipComment findOneById(PostLikeId id) { return slipCommentRepository.findOneById(id.getBetSlipPostId(), id.getUserId());}
 
-    public List<String> findCommentBySlipPostId(int betSlipPostId){ return slipCommentRepository.findCommentBySlipPostId(betSlipPostId); }
+    public List<SlipComment> findCommentsBySlipPostId(int betSlipPostId){ return slipCommentRepository.findCommentsBySlipPostId(betSlipPostId); }
 }

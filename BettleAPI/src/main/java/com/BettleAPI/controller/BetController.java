@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "bets")
+@RequestMapping(path = "bet")
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 public class BetController {
     private final BetService betService;
 
-    @GetMapping
+    @GetMapping("/list-by-game")
     public List<Bet> betListByGame(@RequestParam("game_id") int gameId) {
         return betService.findBetsForGame(gameId);
     }
@@ -24,5 +24,9 @@ public class BetController {
     public void deleteBet(@PathVariable int id) {
         betService.delete(id);
     }
-    
+
+    @PutMapping
+    public void updateBet(@RequestParam("bet_id") int id, @RequestParam("odd") double odd) {
+        betService.updateBet(id,odd);
+    }
 }

@@ -39,11 +39,18 @@ public class PostLikeRepository {
                 .getSingleResult();
     }
 
-    public List<Integer> findLikedPostsByUserId(int userId){
+/*    public List<Integer> findLikedPostsByUserId(int userId){
         return entityManager.createQuery("select a.id.betSlipPostId from PostLike a where a.id.userId =?1")
                 .setParameter(1, userId)
                 .getResultList();
     }
+*/
+    public List<Integer> findUserIdsByLikedPostId(int postId){
+        return entityManager.createQuery("select a.id.userId from PostLike a where a.id.betSlipPostId =?1")
+                .setParameter(1, postId)
+                .getResultList();
+    }
+
 
     public void deleteById(PostLikeId id) {
         entityManager.createNativeQuery("DELETE FROM post_like WHERE bet_slip_post_id = ? AND user_id = ?")

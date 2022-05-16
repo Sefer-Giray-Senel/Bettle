@@ -31,5 +31,5 @@ public class EditorHasSlipService {
 
     public EditorHasSlip findOneById(HasSlipId id) { return editorHasSlipRepository.findOneById(id.getUserId(), id.getBetSlipId());}
 
-    public List<Integer> findBetSlipIdByEditorId(int userId){ return editorHasSlipRepository.findBetSlipIdByEditorId(userId); }
+    public List<Integer> findBetSlipIdsByEditorId(int userId){ return editorHasSlipRepository.findBetSlipIdsByEditorId(userId); }
 }

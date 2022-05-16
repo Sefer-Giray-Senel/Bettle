@@ -31,5 +31,7 @@ public class PostLikeService {
 
     public PostLike findOneById(PostLikeId id) { return postLikeRepository.findOneById(id.getBetSlipPostId(),id.getUserId());}
 
-    public List<Integer> findLikedPostsByUserId(int userId){ return postLikeRepository.findLikedPostsByUserId(userId); }
+    //public List<Integer> findLikedPostsByUserId(int userId){ return postLikeRepository.findLikedPostsByUserId(userId); }
+
+    public List<Integer> findUserIdsByLikedPostId(int postId){ return postLikeRepository.findUserIdsByLikedPostId(postId); }
 }

@@ -31,5 +31,5 @@ public class GameCommentService {
 
     public GameComment findOneById(GameCommentId id) { return gameCommentRepository.findOneById(id.getMatchId(), id.getUserId());}
 
-    public List<String> findCommentsByGameId(int matchId){ return gameCommentRepository.findCommentsByGameId(matchId); }
+    public List<GameComment> findCommentsByGameId(int matchId){ return gameCommentRepository.findCommentsByGameId(matchId); }
 }

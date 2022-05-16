@@ -31,5 +31,7 @@ public class SubscribeService {
 
     public Subscribe findOneById(SubscribeId id) { return subscribeRepository.findOneById(id.getBettorId(), id.getEditorId());}
 
-    public List<Integer> findSubscribedIdByUserId(int userId){ return subscribeRepository.findSubscribedIdByUserId(userId); }
+    public List<Integer> findSubscribedIdsByEditorId(int editorId){ return subscribeRepository.findSubscribedIdsByEditorId(editorId); }
+
+    public List<Integer> findSubscribedEditorIdsByBettorId(int bettorId){ return subscribeRepository.findSubscribedEditorIdsByBettorId(bettorId); }
 }
