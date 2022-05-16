@@ -1,27 +1,25 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link , Navigate} from "react-router-dom";
 import UserService from "../services/UserService";
 
 function RegisterComponent (/*{setName,getName}*/) {
 
     const [details, setDetails] = useState({username: "", password: ""});
     const [errmsg, setErrMsg] = useState({message : ""});
+    const [success, setSuccess] = useState({state: false});
 
-    const handleRegister = (e, nextState, replaceState) => {
+    const handleRegister = (e) => {
         e.preventDefault();
 
         const response = UserService.register(details);
         response.then(value => {
-            console.log(value);
             if(value !== true){
                 setErrMsg({message : value.message});
             }
             else{
-                //replaceState({ nextPathname: nextState.location.pathname }, '/login');
-                //setName(details.username);
+                setSuccess({state: true});
             }
         });
-
     }
 
     return (
@@ -38,6 +36,8 @@ function RegisterComponent (/*{setName,getName}*/) {
                 <button>Register</button>
             </div>
             <Link to="/">Login</Link>
+            <div>{errmsg.message}</div>
+            { success.state ? (<Navigate push to="/"/>) : null }
         </form>
             
     );
