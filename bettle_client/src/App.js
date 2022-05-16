@@ -9,6 +9,7 @@ import RegisterComponent from './components/RegisterComponent';
 import BetslipPage from './components/BetslipPage';
 import FeedPage from './components/FeedPage';
 import ProfilePage from './components/ProfilePage';
+import BetsPage from './components/BetsPage';
 
 function App() {
   const [name, setNameInside] = useState({username: (localStorage.getItem('username') !== null ? localStorage.getItem('username') : "") });
@@ -39,6 +40,7 @@ function App() {
         <Route path='/betslip' element={<BetslipPage/>} />
         <Route path='/feed' element={<FeedPage/>} />
         <Route path='/profile' element={<ProfilePage/>} />
+        <Route path='/bets' element={<BetsPage/>} />
       </Routes>
     </div>
   );

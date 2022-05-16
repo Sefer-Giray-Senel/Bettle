@@ -1,13 +1,12 @@
 package com.BettleAPI.controller;
 
-import com.BettleAPI.entity.BetSlipPost;
-import com.BettleAPI.entity.Posted;
-import com.BettleAPI.entity.SlipComment;
-import com.BettleAPI.entity.User;
+import com.BettleAPI.dto.BetSlipPostDto;
+import com.BettleAPI.entity.*;
 import com.BettleAPI.entity.compositeId.PostedId;
 import com.BettleAPI.service.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.dialect.function.AbstractAnsiTrimEmulationFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +23,8 @@ public class BetSlipPostController {
     private final UserService userService;
     private final SlipCommentService slipCommentService;
     private final PostedService postedService;
+    private final DisplayService displayService;
+    private final BetService betService;
 
     @GetMapping()
     public List<BetSlipPost> getBetSlipPosts() {
@@ -78,5 +79,28 @@ public class BetSlipPostController {
         return slipCommentService.findCommentsBySlipPostId(id);
     }
 
+    @GetMapping("/posted")
+    public List<BetSlipPostDto> getAllPostCommentsFromUserId(@RequestParam("user_id") int id) {
+        List<Integer> betSlips = postedService.findAllBetSlipsByUserId(id);
+
+        List<BetSlipPostDto> dtos = new ArrayList<>();
+        for(int k : betSlips){
+            List<Integer> betIds = displayService.findBetsByBetSlipId(k);
+
+            List<Bet> bets = new ArrayList<>();
+            for(int m: betIds)
+                bets.add(betService.findOneById(m));
+            
+            String postText = betSlipPostService.findOneById(postedService.findPostFromBetSlipId(k)).getPostText();
+
+            BetSlipPostDto dto = new BetSlipPostDto();
+            dto.setBets(bets);
+            dto.setText(postText);
+            dto.setBetSlipId(k);
+
+            dtos.add(dto);
+        }
+        return dtos;
+    }
 
 }
