@@ -16,7 +16,6 @@ import javax.persistence.NoResultException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @RestController
 @RequestMapping(path = "bet-slip")
@@ -68,9 +67,34 @@ public class BetSlipController {
             displayService.save(display);
         }
 
-        //Add has slip logic here too
+        betSlipService.updateBetSlip(id, odd, betSlip.isShared());
 
-        betSlipService.updateBetSlip(id, odd);
+        try {
+            Editor editor = editorService.findOneById(id);
+
+            editorHasSlipService.delete(new HasSlipId(id, betSlip.getId()));
+
+            HasSlipId editorHasSlipId = new HasSlipId();
+            editorHasSlipId.setBetSlipId(betSlip.getId());
+            editorHasSlipId.setUserId(id);
+
+            EditorHasSlip editorHasSlip = new EditorHasSlip();
+            editorHasSlip.setId(editorHasSlipId);
+
+            editorHasSlipService.save(editorHasSlip);
+        }
+        catch(NoResultException e) {
+            bettorHasSlipService.delete(new HasSlipId(id, betSlip.getId()));
+
+            HasSlipId bettorHasSlipId = new HasSlipId();
+            bettorHasSlipId.setBetSlipId(betSlip.getId());
+            bettorHasSlipId.setUserId(id);
+
+            BettorHasSlip bettorHasSlip = new BettorHasSlip();
+            bettorHasSlip.setId(bettorHasSlipId);
+
+            bettorHasSlipService.save(bettorHasSlip);
+        }
     }
 
     @GetMapping
@@ -96,11 +120,6 @@ public class BetSlipController {
 
         double odd = 1;
 
-        Random rd = new Random();
-        int upperbound = Integer.MAX_VALUE;
-        int int_random = rd.nextInt(upperbound);
-        betSlip.setId(int_random);
-
         for (Bet k: betList) {
             odd *= k.getOdd();
 
@@ -116,11 +135,12 @@ public class BetSlipController {
         }
 
         betSlip.setOdd(odd);
+        betSlip.setShared(false);
         betSlipService.save(betSlip);
 
-        System.out.println(userId);
-        Editor editor = editorService.findOneById(userId);
-        if(editor != null) {
+        try {
+            Editor editor = editorService.findOneById(userId);
+
             HasSlipId editorHasSlipId = new HasSlipId();
             editorHasSlipId.setBetSlipId(betSlip.getId());
             editorHasSlipId.setUserId(userId);
@@ -130,8 +150,7 @@ public class BetSlipController {
 
             editorHasSlipService.save(editorHasSlip);
         }
-        else{
-            Bettor bettor = bettorService.findOneById(userId);
+        catch(NoResultException e) {
 
             HasSlipId bettorHasSlipId = new HasSlipId();
             bettorHasSlipId.setBetSlipId(betSlip.getId());
@@ -145,24 +164,27 @@ public class BetSlipController {
         throw new ResponseStatusException(HttpStatus.OK, "Bet Slip was successfully saved");
     }
 
-    @GetMapping("/blabla")
-    public List<BetSlipDto> getBetsByUserId(@RequestParam("user_id") int userId) {
-        List<Integer> betSlipIdList = bettorHasSlipService.findBetSlipIdByUserId(userId);
+    @GetMapping("/list-unshared")
+    public List<BetSlipDto> getUnsharedBetSlips(@RequestParam("user_id") int userId) {
+        List<BetSlip> unsharedBetSlipList = betSlipService.findBetSlipsByShared(userId, false);
         List<BetSlipDto> betSlipDtoList = new ArrayList<>();
 
-        for (int k: betSlipIdList) {
+        for (BetSlip k: unsharedBetSlipList) {
             BetSlipDto betSlipDto = new BetSlipDto();
 
-            List<Integer> betIdList= displayService.findBetsByBetSlipId(k);
+            List<Display> displayList= displayService.findDisplaysByBetSlipId(k.getId());
             List<Bet> betList = new ArrayList<>();
-            for (int m: betIdList)
-                betList.add(betService.findOneById(m));
-
+            for (Display m: displayList) {
+                Bet tempBet = betService.findOneById(m.getId().getBetId());
+                tempBet.setOdd(m.getHasOdd());
+                betList.add(tempBet);
+            }
             betSlipDto.setBetList(betList);
-            betSlipDto.setBetSlipId(k);
+            betSlipDto.setBetSlipId(k.getId());
             betSlipDtoList.add(betSlipDto);
         }
 
         return betSlipDtoList;
     }
+
 }

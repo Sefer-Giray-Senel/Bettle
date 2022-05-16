@@ -17,4 +17,5 @@ import javax.persistence.Entity;
 public class BetSlip extends BaseEntity{
 
     private double odd;
+    private boolean shared;
 }
