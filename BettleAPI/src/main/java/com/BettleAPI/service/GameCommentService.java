@@ -30,10 +30,5 @@ public class GameCommentService {
     }
 
     public GameComment findOneById(GameCommentId id) { return gameCommentRepository.findOneById(id.getMatchId(), id.getUserId());}
-/*
-    public Long count() {
-        return gameCommentRepository.count();
-    }
 
- */
 }

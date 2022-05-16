@@ -29,11 +29,5 @@ public class BettorService {
     }
 
     public Bettor findOneById(int id) { return bettorRepository.findOneById(id);}
-
-    /*
-    public Long count() {
-        return bettorRepository.count();
-    }
-    */
 }
 

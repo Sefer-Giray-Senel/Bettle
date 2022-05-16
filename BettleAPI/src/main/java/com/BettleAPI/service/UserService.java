@@ -39,11 +39,5 @@ public class UserService {
 
     public User findOneById(int id) { return userRepository.findOneById(id);}
 
-    /*
-    public Long count() {
-        return userRepository.count();
-    }
-
-     */
 }
 

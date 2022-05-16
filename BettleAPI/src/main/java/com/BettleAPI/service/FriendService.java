@@ -30,11 +30,7 @@ public class FriendService {
     }
 
     public Friend findOneById(FriendId id) { return friendRepository.findOneById(id.getFirstBettorId(), id.getSecondBettorId());}
-/*
-    public Long count() {
-        return friendRepository.count();
-    }
-    */
+
 }
 
 

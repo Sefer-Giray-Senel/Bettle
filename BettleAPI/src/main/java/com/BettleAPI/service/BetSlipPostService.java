@@ -29,11 +29,5 @@ public class BetSlipPostService {
     }
 
     public BetSlipPost findOneById(int id) { return betSlipPostRepository.findOneById(id);}
-/*
-    public Long count() {
-        return betSlipPostRepository.count();
-    }
-
- */
 }
 

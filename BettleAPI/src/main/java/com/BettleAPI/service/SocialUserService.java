@@ -29,11 +29,6 @@ public class SocialUserService {
     }
 
     public SocialUser findOneById(int id) { return socialUserRepository.findOneById(id);}
-/*
-    public Long count() {
-        return socialUserRepository.count();
-    }
 
- */
 }
 

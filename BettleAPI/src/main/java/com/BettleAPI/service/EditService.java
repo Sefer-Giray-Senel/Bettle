@@ -30,10 +30,5 @@ public class EditService {
     }
 
     public Edit findOneById(EditId id) { return editRepository.findOneById(id.getBetId(), id.getUserId());}
-/*
-    public Long count() {
-        return editRepository.count();
-    }
 
- */
 }

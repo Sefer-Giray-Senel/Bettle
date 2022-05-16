@@ -28,13 +28,7 @@ public class EditorService {
         return editorRepository.findAll();
     }
 
-
     public Editor findOneById(int id) { return editorRepository.findOneById(id);}
-/*
-    public Long count() {
-        return editorRepository.count();
-    }
 
- */
 }
 

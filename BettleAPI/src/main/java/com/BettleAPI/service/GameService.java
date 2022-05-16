@@ -29,10 +29,5 @@ public class GameService {
     }
 
     public Game findOneById(int id) { return gameRepository.findOneById(id);}
-/*
-    public Long count() {
-        return gameRepository.count();
-    }
- */
 
 }

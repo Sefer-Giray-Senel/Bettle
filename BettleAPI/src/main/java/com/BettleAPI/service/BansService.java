@@ -30,10 +30,4 @@ public class BansService {
     }
 
     public Bans findOneById(BansId id) { return bansRepository.findOneById(id.getAdminId(), id.getSocialUserId());}
-
-/*
-    public Long count() {
-        return bansRepository.count();
-    }
-    */
 }

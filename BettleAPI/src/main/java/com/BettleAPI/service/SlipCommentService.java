@@ -30,10 +30,5 @@ public class SlipCommentService {
     }
 
     public SlipComment findOneById(PostLikeId id) { return slipCommentRepository.findOneById(id.getBetSlipPostId(), id.getUserId());}
-/*
-    public Long count() {
-        return slipCommentRepository.count();
-    }
 
- */
 }

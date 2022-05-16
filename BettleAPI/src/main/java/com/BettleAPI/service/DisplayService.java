@@ -30,9 +30,4 @@ public class DisplayService {
     }
 
     public Display findOneById(DisplayId id) { return displayRepository.findOneById(id.getBetId(), id.getBetSlipId());}
-/*
-    public Long count() {
-        return displayRepository.count();
-    }
-*/
 }

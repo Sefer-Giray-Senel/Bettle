@@ -31,12 +31,5 @@ public class AdminService {
     public Admin findOneById(int id) {
         return adminRepository.findOneById(id);
     }
-
-/*
-
-    public Long count() {
-        return adminRepository.count();
-    }
-    */
 }
 

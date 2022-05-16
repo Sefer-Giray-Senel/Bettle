@@ -30,10 +30,5 @@ public class PostLikeService {
     }
 
     public PostLike findOneById(PostLikeId id) { return postLikeRepository.findOneById(id.getBetSlipPostId(),id.getUserId());}
-/*
-    public Long count() {
-        return postLikeRepository.count();
-    }
 
- */
 }

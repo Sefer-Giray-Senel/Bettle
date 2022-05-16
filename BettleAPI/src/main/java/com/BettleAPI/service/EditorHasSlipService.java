@@ -30,10 +30,4 @@ public class EditorHasSlipService {
     }
 
     public EditorHasSlip findOneById(HasSlipId id) { return editorHasSlipRepository.findOneById(id.getUserId(), id.getBetSlipId());}
-/*
-    public Long count() {
-        return editorHasSlipRepository.count();
-    }
-
- */
 }
