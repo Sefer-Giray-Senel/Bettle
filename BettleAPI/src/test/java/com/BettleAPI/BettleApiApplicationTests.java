@@ -1,14 +1,8 @@
 package com.BettleAPI;
 
-import com.BettleAPI.entity.Admin;
-import com.BettleAPI.entity.Bans;
-import com.BettleAPI.entity.Bet;
-import com.BettleAPI.entity.User;
+import com.BettleAPI.entity.*;
 import com.BettleAPI.entity.compositeId.BansId;
-import com.BettleAPI.repository.AdminRepository;
-import com.BettleAPI.repository.BansRepository;
-import com.BettleAPI.repository.BetRepository;
-import com.BettleAPI.repository.UserRepository;
+import com.BettleAPI.repository.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
@@ -27,19 +21,49 @@ class BettleApiApplicationTests {
 	private final UserRepository userRepository;
 	private final BansRepository bansRepository;
 	private final BetRepository betRepository;
+	private final GameRepository gameRepository;
 
 	@Test
 	void contextLoads() {
 	}
-/*
+
 	@Test
 	public void basicInsertTest() {
+		Game game1 = new Game();
+		Game game2 = new Game();
+		Bet	bet1 = new Bet();
+		Bet bet2 = new Bet();
+		Date date = new Date(500);
 
-		User user = userRepository.findPasswordByUsername("usman");
-		System.out.println(user.getPassword());
+		game1.setDate(date);
+		game1.setId(1);
+		game1.setFirstTeamName("FB");
+		game1.setSecondTeamName("GS");
+
+		game2.setId(2);
+		game2.setDate(date);
+		game2.setFirstTeamName("kB");
+		game2.setSecondTeamName("er");
+
+		bet1.setTitle("deneme1");
+		bet1.setGameId(1);
+		bet1.setMbn(10);
+		bet1.setOdd(2.1);
+		bet1.setId(1);
+
+		bet2.setTitle("deneme2");
+		bet2.setGameId(2);
+		bet2.setMbn(21);
+		bet2.setOdd(3.1);
+		bet2.setId(2);
+
+		gameRepository.save(game1);
+		gameRepository.save(game2);
+
+		betRepository.save(bet1);
+		betRepository.save(bet2);
+
+		System.out.println(betRepository.findBetsForGame(1).size());
+
 	}
-
-
- */
-
 }
