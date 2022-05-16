@@ -54,4 +54,13 @@ public class BetRepository {
                 .setParameter(1, id)
                 .executeUpdate();
     }
+
+    public void updateBet(int id, double odd) {
+        if(odd != -1) {
+            entityManager.createQuery("update Bet a set a.odd =?1 where a.id =?2")
+                    .setParameter(1, odd)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
+    }
 }

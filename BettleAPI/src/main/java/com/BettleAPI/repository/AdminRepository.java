@@ -38,6 +38,15 @@ public class AdminRepository {
                 .getSingleResult();
     }
 
+    public void updateAdmin(int id, String phoneNo) {
+        if(phoneNo != "") {
+            entityManager.createQuery("update Admin a set a.phoneNumber =?1 where a.id =?2")
+                    .setParameter(1, phoneNo)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
+    }
+
     public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM admin WHERE id = ?")
                 .setParameter(1, id)

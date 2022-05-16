@@ -44,4 +44,19 @@ public class EditorRepository {
                 .setParameter(1, id)
                 .executeUpdate();
     }
+
+    public void updateEditor(int id, int subscriberCount, int successfulBetSlipCount){
+        if(subscriberCount!= -1) {
+            entityManager.createQuery("update Editor a set a.subscriberCount =?1 where a.id =?2")
+                    .setParameter(1, subscriberCount)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
+        if(successfulBetSlipCount!= -1) {
+            entityManager.createQuery("update Editor a set a.successfulBetSlipCount =?1 where a.id =?2")
+                    .setParameter(1, successfulBetSlipCount)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
+    }
 }

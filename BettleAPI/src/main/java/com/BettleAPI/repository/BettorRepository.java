@@ -44,4 +44,19 @@ public class BettorRepository {
                 .setParameter(1, id)
                 .executeUpdate();
     }
+
+    public void updateBettor(int id, int balance, int friend_count) {
+        if (balance != -1) {
+            entityManager.createQuery("update Bettor a set a.balance =?1 where a.id =?2")
+                    .setParameter(1, balance)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
+        if(friend_count != -1) {
+            entityManager.createQuery("update Bettor a set a.friendCount =?1 where a.id =?2")
+                    .setParameter(1, friend_count)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
+    }
 }

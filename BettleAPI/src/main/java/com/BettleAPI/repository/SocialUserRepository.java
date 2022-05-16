@@ -45,6 +45,40 @@ public class SocialUserRepository {
                 .getSingleResult();
     }
 
+    @Transactional
+    public void updateSocialUser(int id, String email, String firstName, String gender, String lastName, String nationality){
+        if(email != "") {
+            entityManager.createQuery("update SocialUser a set a.email =?1 where a.id =?2")
+                    .setParameter(1, email)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
+        if(firstName != "") {
+            entityManager.createQuery("update SocialUser a set a.firstName =?1 where a.id =?2")
+                    .setParameter(1, firstName)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
+        if(gender != "") {
+            entityManager.createQuery("update SocialUser a set a.gender =?1 where a.id =?2")
+                    .setParameter(1, gender)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
+        if(lastName != "") {
+            entityManager.createQuery("update SocialUser a set a.lastName =?1 where a.id =?2")
+                    .setParameter(1, lastName)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
+        if(nationality != "") {
+            entityManager.createQuery("update SocialUser a set a.nationality =?1 where a.id =?2")
+                    .setParameter(1, nationality)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
+    }
+
     public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM social_user WHERE id = ?")
                 .setParameter(1, id)

@@ -57,13 +57,20 @@ class BettleApiApplicationTests {
 		bet2.setOdd(3.1);
 		bet2.setId(2);
 
-		gameRepository.save(game1);
-		gameRepository.save(game2);
+		User deneme = new User();
+		deneme.setId(13);
+		deneme.setPassword("123");
+		deneme.setUsername("kaan");
 
-		betRepository.save(bet1);
-		betRepository.save(bet2);
+		//userRepository.save(deneme);
 
-		System.out.println(betRepository.findBetsForGame(1).size());
+		userRepository.updateUser(13,"","usman");
 
+		System.out.println("username: " + userRepository.findOneById(13).getUsername() + " password: " + userRepository.findOneById(13).getPassword());
+		//gameRepository.save(game1);
+		//gameRepository.save(game2);
+
+		//betRepository.save(bet1);
+		//betRepository.save(bet2);
 	}
 }

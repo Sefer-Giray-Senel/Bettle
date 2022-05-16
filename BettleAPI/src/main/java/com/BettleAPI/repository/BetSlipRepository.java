@@ -43,4 +43,13 @@ public class BetSlipRepository {
                 .setParameter(1, id)
                 .executeUpdate();
     }
+
+    public void updateBetSlip(int id, double odd) {
+        if(odd != -1) {
+            entityManager.createQuery("update BetSlip a set a.odd =?1 where a.id =?2")
+                    .setParameter(1, odd)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
+    }
 }

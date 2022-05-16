@@ -57,4 +57,20 @@ public class UserRepository {
                 .setParameter(1, id)
                 .executeUpdate();
     }
+
+    @Transactional
+    public void updateUser(int id, String password, String username){
+        if(username != "") {
+            entityManager.createQuery("update User a set a.username =?1 where a.id =?2")
+                    .setParameter(1, username)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
+        if(password != "") {
+            entityManager.createQuery("update User a set a.password =?1 where a.id =?2")
+                    .setParameter(1, password)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
+    }
 }

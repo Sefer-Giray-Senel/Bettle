@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,6 +41,15 @@ public class GameRepository {
         return entityManager.createQuery("select a from Game a where a.id =?1", Game.class)
                 .setParameter(1, givenId)
                 .getSingleResult();
+    }
+
+    public void updateGame(int id, Date date) {
+        if(date != null) {
+            entityManager.createQuery("update Game a set a.date =?1 where a.id =?2")
+                    .setParameter(1, date)
+                    .setParameter(2, id)
+                    .executeUpdate();
+        }
     }
 
     public void deleteById(int id) {
