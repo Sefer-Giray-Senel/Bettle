@@ -15,7 +15,8 @@ function NavBar({setName,getName}){
                 <div className="navbar-nav">
                     <NavLink to="/users" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Users</NavLink>
                     <NavLink to="/profile" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Profile</NavLink>
-                    <NavLink to="betslip" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Bet</NavLink>
+                    <NavLink to="/betslip" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Bet Now</NavLink>
+                    <NavLink to="/bets" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Your Bets</NavLink>
                     <NavLink to="/feed" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Feed</NavLink>
                     <button onClick={() => setName("")}>Logout</button>
                 </div>}
