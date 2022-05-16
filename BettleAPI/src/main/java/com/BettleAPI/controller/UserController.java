@@ -60,7 +60,7 @@ public class UserController {
 
         User existingUser = userService.findUserByUsername(username);
         if (existingUser != null)
-            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Actor Not Found");
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Username is taken");
 
         User user = new User();
 

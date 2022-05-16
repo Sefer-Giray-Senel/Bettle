@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.Optional;
 import javax.persistence.Query;
@@ -42,9 +43,13 @@ public class UserRepository {
     }
 
     public User findUserByUsername(String username){
-        return entityManager.createQuery("select a from User a where a.username =?1", User.class)
-                .setParameter(1, username)
-                .getSingleResult();
+        try {
+            return entityManager.createQuery("select a from User a where a.username =?1", User.class)
+                    .setParameter(1, username)
+                    .getSingleResult();
+        }catch(NoResultException e){
+            return null;
+        }
     }
 
     public void deleteById(int id) {
