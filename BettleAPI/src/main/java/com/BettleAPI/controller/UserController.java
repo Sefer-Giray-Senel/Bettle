@@ -21,10 +21,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-<<<<<<< Updated upstream
-=======
-import org.springframework.ui.Model;
->>>>>>> Stashed changes
+
 import org.springframework.web.bind.annotation.*;
 
 import io.jsonwebtoken.Jwts;
@@ -84,15 +81,10 @@ public class UserController {
         userService.delete(id);
     }
 
-<<<<<<< Updated upstream
-    @GetMapping("/users")
-    public List<Admin> userList() {
-        return adminService.findAll();
-=======
+
     @PostMapping("/users")
     public User saveUser(User user) {
         return userService.save(user);
->>>>>>> Stashed changes
     }
 
     private String getJWTToken(String username) {
