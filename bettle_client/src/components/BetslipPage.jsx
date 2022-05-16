@@ -19,7 +19,7 @@ class BetslipPage extends React.Component {
 
     getBets = (match) => {
         this.setState({activeId:match.id});
-        BetService.getBets(match.id).then((response) => {
+        BetService.getBetsByMatch(match.id).then((response) => {
             var extendedBets = JSON.parse(JSON.stringify(response.data));
             extendedBets.forEach((bet) => {
                 bet.match = match.firstTeamName + " - " + match.secondTeamName + " (" + match.date + ")"
