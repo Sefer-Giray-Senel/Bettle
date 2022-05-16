@@ -37,7 +37,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public User login(@RequestParam("username") String username, @RequestParam("password") String pwd) {
+    public UserDto login(@RequestParam("username") String username, @RequestParam("password") String pwd) {
 
         String token = getJWTToken(username);
         User user = userService.findUserByUsername(username);
@@ -46,7 +46,7 @@ public class UserController {
             if(pwd.equals(user.getPassword())) {
                 userDto.setId(user.getId());
                 userDto.setToken(token);
-                return user;
+                return userDto;
             }
             else {
                 throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Login failed: Password is wrong");
@@ -77,7 +77,7 @@ public class UserController {
         user.setPassword(pwd);
 
         userService.save(user);
-        throw new ResponseStatusException(HttpStatus.OK, "Succesfully registered");
+        throw new ResponseStatusException(HttpStatus.OK, "Successfully registered");
     }
 
     @GetMapping("/users")

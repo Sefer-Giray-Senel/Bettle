@@ -37,6 +37,11 @@ function RegisterComponent (/*{setName,getName}*/) {
             </div>
             <Link to="/">Login</Link>
             <div>{errmsg.message}</div>
+
+            <div className="alert alert-danger" role="alert">
+                {errmsg.message}
+            </div>
+            
             { success.state ? (<Navigate push to="/"/>) : null }
         </form>
             

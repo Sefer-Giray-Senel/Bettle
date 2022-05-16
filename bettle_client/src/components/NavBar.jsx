@@ -11,8 +11,14 @@ function NavBar({setName,getName}){
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
                 <NavLink to="/home" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Home</NavLink>
-                <NavLink to="/users" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Users</NavLink>
-                {(getName() !== "") ? <button onClick={() => setName("")}>Logout</button> : ""}
+                {(getName() === "") ? "" : 
+                <div className="navbar-nav">
+                    <NavLink to="/users" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Users</NavLink>
+                    <NavLink to="/profile" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Profile</NavLink>
+                    <NavLink to="/create_bet" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Bet</NavLink>
+                    <NavLink to="/feed" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Feed</NavLink>
+                    <button onClick={() => setName("")}>Logout</button>
+                </div>}
           </div>
         </div>
       </nav>

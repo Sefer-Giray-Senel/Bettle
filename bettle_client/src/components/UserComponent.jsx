@@ -11,6 +11,7 @@ class UserComponent extends React.Component {
 
     componentDidMount(){
         UserService.getUsers().then((response) => {
+            console.log(response);
             this.setState({users : response.data})
         })
     }
