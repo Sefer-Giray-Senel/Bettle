@@ -35,7 +35,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findPasswordByUsername(String username) {
+    public User findUserByUsername(String username) {
         return userRepository.findPasswordByUsername(username);
     }
 

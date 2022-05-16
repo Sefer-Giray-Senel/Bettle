@@ -40,7 +40,7 @@ public class UserController {
     public User login(@RequestParam("username") String username, @RequestParam("password") String pwd) {
 
         String token = getJWTToken(username);
-        User user = userService.findPasswordByUsername(username);
+        User user = userService.findUserByUsername(username);
         UserDto userDto = new UserDto();
         if (user != null) {
             if(pwd.equals(user.getPassword())) {
@@ -61,6 +61,14 @@ public class UserController {
         Random rd = new Random();
         int upperbound = Integer.MAX_VALUE;
         int int_random = rd.nextInt(upperbound);
+
+        if ( username.equals("") || pwd.equals(""))
+            return HttpStatus.BAD_REQUEST;
+
+
+        User existingUser = userService.findUserByUsername(username);
+        if (existingUser != null)
+            return HttpStatus.EXPECTATION_FAILED;
 
         User user = new User();
 
