@@ -50,4 +50,16 @@ public class PostedRepository {
                 .setParameter(3, id.getUserId())
                 .executeUpdate();
     }
+
+    public List<Integer> findAllBetSlipsByUserId(int givenUserId){
+        return entityManager.createQuery("select a.id.betSlipId from Posted a where a.id.userId =?1")
+                .setParameter(1, givenUserId)
+                .getResultList();
+    }
+
+    public Integer findPostFromBetSlipId(int betSlipId){
+        return (Integer) entityManager.createQuery("select a.id.betSlipPostId from Posted a where a.id.betSlipId =?1")
+                .setParameter(1,betSlipId)
+                .getSingleResult();
+    }
 }
