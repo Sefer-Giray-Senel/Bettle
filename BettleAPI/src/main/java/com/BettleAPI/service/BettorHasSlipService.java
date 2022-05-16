@@ -30,5 +30,7 @@ public class BettorHasSlipService {
     }
 
     public BettorHasSlip findOneById(HasSlipId id) { return bettorHasSlipRepository.findOneById(id.getBetSlipId(), id.getUserId());}
+
+    public List<Integer> findBetSlipIdByUserId(int userId){ return findBetSlipIdByUserId(userId); }
 }
 

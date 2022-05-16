@@ -29,5 +29,7 @@ public class BettorService {
     }
 
     public Bettor findOneById(int id) { return bettorRepository.findOneById(id);}
+
+    public void updateBettor(int id, int balance, int friend_count) { bettorRepository.updateBettor(id, balance, friend_count); }
 }
 

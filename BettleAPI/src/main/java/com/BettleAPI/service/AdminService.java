@@ -31,5 +31,7 @@ public class AdminService {
     public Admin findOneById(int id) {
         return adminRepository.findOneById(id);
     }
+
+    public void updateAdmin(int id, String phoneNo) { adminRepository.updateAdmin(id, phoneNo); }
 }
 

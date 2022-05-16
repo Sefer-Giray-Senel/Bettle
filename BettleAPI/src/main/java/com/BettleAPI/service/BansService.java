@@ -30,4 +30,6 @@ public class BansService {
     }
 
     public Bans findOneById(BansId id) { return bansRepository.findOneById(id.getAdminId(), id.getSocialUserId());}
+
+    public Integer findAdminIdByBannedUser(int userId){ return bansRepository.findAdminIdByBannedUser(userId); }
 }

@@ -33,5 +33,7 @@ public class BetService {
     public List<Bet> findBetsForGame(int gameId) {
         return betRepository.findBetsForGame(gameId);
     }
+
+    public void updateBet(int id, double odd) { betRepository.updateBet(id,odd); }
 }
 

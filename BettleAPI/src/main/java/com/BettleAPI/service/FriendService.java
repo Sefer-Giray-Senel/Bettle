@@ -31,6 +31,7 @@ public class FriendService {
 
     public Friend findOneById(FriendId id) { return friendRepository.findOneById(id.getFirstBettorId(), id.getSecondBettorId());}
 
+    public List<Integer> findFriendsByUserId(int userId){ return friendRepository.findFriendsByUserId(userId); }
 }
 
 

@@ -30,5 +30,8 @@ public class SocialUserService {
 
     public SocialUser findOneById(int id) { return socialUserRepository.findOneById(id);}
 
+    public void updateSocialUser(int id, String email, String firstName, String gender, String lastName, String nationality){
+        socialUserRepository.updateSocialUser(id,email,firstName,gender,lastName,nationality);
+    }
 }
 

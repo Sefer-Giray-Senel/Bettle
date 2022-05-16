@@ -39,5 +39,6 @@ public class UserService {
 
     public User findOneById(int id) { return userRepository.findOneById(id);}
 
+    public void updateUser(int id, String password, String username){ userRepository.updateUser(id, password, username); }
 }
 

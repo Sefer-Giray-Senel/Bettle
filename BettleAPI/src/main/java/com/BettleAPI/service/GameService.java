@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,4 +31,5 @@ public class GameService {
 
     public Game findOneById(int id) { return gameRepository.findOneById(id);}
 
+    public void updateGame(int id, Date date) { gameRepository.updateGame(id, date); }
 }

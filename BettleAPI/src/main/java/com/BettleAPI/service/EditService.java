@@ -31,4 +31,5 @@ public class EditService {
 
     public Edit findOneById(EditId id) { return editRepository.findOneById(id.getBetId(), id.getUserId());}
 
+    public List<Integer> findBetIdByUserId(int userId){ return editRepository.findBetIdByUserId(userId); }
 }

@@ -67,25 +67,6 @@ class BettleApiApplicationTests {
 
 		//userRepository.save(deneme);
 
-		userRepository.updateUser(13,"","usman");
-
-		BetSlip betSlip = new BetSlip();
-		betSlip.setOdd(5.1);
-		betSlip.setId(1);
-
-		betSlipRepository.save(betSlip);
-
-		HasSlipId hasSlipId = new HasSlipId();
-		hasSlipId.setBetSlipId(1);
-		hasSlipId.setUserId(13);
-
-		BettorHasSlip bettorHasSlip = new BettorHasSlip();
-		bettorHasSlip.setId(hasSlipId);
-		bettorHasSlip.setPlacedCash(100);
-
-		bettorHasSlipRepository.save(bettorHasSlip);
-
-		System.out.println("betid: " + bettorHasSlipRepository.findBetSlipIdByUserId(13));
 		//System.out.println("username: " + userRepository.findOneById(13).getUsername() + " password: " + userRepository.findOneById(13).getPassword());
 		//gameRepository.save(game1);
 		//gameRepository.save(game2);

@@ -30,5 +30,7 @@ public class EditorService {
 
     public Editor findOneById(int id) { return editorRepository.findOneById(id);}
 
+    public void updateEditor(int id, int subscriberCount, int successfulBetSlipCount){ editorRepository.updateEditor(id, subscriberCount, successfulBetSlipCount); }
+
 }
 

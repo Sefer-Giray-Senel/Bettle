@@ -30,4 +30,6 @@ public class DisplayService {
     }
 
     public Display findOneById(DisplayId id) { return displayRepository.findOneById(id.getBetId(), id.getBetSlipId());}
+
+    public List<Integer> findBetsByBetSlipId(int betSlipId){ return displayRepository.findBetsByBetSlipId(betSlipId); }
 }
