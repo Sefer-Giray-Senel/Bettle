@@ -29,7 +29,7 @@ class BettleApiApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
+/*
 	@Test
 	public void basicInsertTest() {
 		Game game1 = new Game();
@@ -73,5 +73,20 @@ class BettleApiApplicationTests {
 
 		//betRepository.save(bet1);
 		//betRepository.save(bet2);
+	}*/
+/*
+	@Test
+	public void betInsert() {
+		Bet bet = new Bet();
+		bet.setId(5);
+		bet.setTitle("KG");
+		bet.setMbn(1);
+		bet.setOdd(1.7);
+		bet.setGameId(2);
+
+		betRepository.save(bet);
+
 	}
+ */
 }
+

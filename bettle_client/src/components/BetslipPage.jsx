@@ -7,6 +7,7 @@ class BetslipPage extends React.Component {
         activeId: 0,
         bets:[],
         betslip:[],
+        maxMbn: 0,
         enable: false
     } 
 
@@ -19,22 +20,58 @@ class BetslipPage extends React.Component {
     getBets = (match) => {
         this.setState({activeId:match.id});
         BetService.getBets(match.id).then((response) => {
-            this.setState({bets: response.data.map(bet => bet["match"] = match.name)});
+            var extendedBets = JSON.parse(JSON.stringify(response.data));
+            extendedBets.forEach((bet) => {
+                bet.match = match.firstTeamName + " - " + match.secondTeamName + " (" + match.date + ")"
+            });
+            this.setState({bets: extendedBets});
         });
     }
 
     addBet = (bet) => {
-        const betslip = [...this.state.betslip, bet];
-        this.setState({betslip});
+        if( this.state.betslip.find(b => b.id === bet.id) === undefined){
+            const betslip = [...this.state.betslip, bet];
+            this.setState({betslip});
+            if(bet.mbn > this.state.maxMbn){
+                this.setState({maxMbn: bet.mbn});
+                if(betslip.length >= bet.mbn){
+                    this.setState({enable: true});
+                }
+                else{
+                    this.setState({enable: false});
+                }
+            }else{
+                if(betslip.length >= this.state.maxMbn){
+                    this.setState({enable: true});
+                }
+            }            
+        }
     }
 
-    removeBet = (betId) => {
-        const betslip = this.state.betslip.filter(b => b.id !== betId);
+    removeBet = (bet) => {
+        const betslip = this.state.betslip.filter(b => b.id !== bet.id);
         this.setState({betslip});
+        if(bet.mbn === this.state.maxMbn ){
+            const newMbn = Math.max(...betslip.map(bet => bet.mbn));
+            this.setState({maxMbn:newMbn});
+            if(betslip.length < newMbn){
+                this.setState({enable: false});
+            }
+            else{
+                this.setState({enable: true});
+            }
+        }
+        else if(betslip.length < this.state.maxMbn)
+            this.setState({enable: false});
+
+        if(betslip.length === 0){
+            this.setState({enable: false});
+            this.setState({maxMbn: 0});
+        }
     }
 
     createBetslip = () => {
-        BetService.createBetslip(this.state.betslip);
+        BetService.createBetslip(this.state.betslip.map(bet => bet.id));
     }
 
     render() { 
@@ -42,20 +79,23 @@ class BetslipPage extends React.Component {
         <div>
             Betslip Page
             <div style={{overflow: 'hidden'}}>
-                <div class="list-group">
+                <div className="list-group">
+                    <h3>Matches</h3>
                     {this.state.matches.map(match => <button type="button" onClick={() => this.getBets(match)}
                         className={this.state.activeId === match.id ? "list-group-item list-group-item-action active" : 
-                        "list-group-item list-group-item-action"} key={match.id}>{match.name}</button>)}
+                        "list-group-item list-group-item-action"} key={match.id}>{match.firstTeamName} - {match.secondTeamName} ({match.date})</button>)}
                 </div>
-                <div class="list-group">
+                <div className="list-group">
+                    <h3>Bets</h3>
                     {this.state.bets.map(bet => <button type="button" onClick={() => this.addBet(bet)}
-                        className="list-group-item list-group-item-action" key={bet.id}>{bet.name}</button>)}
+                        className="list-group-item list-group-item-action" key={bet.id}>{bet.title}</button>)}
                 </div>
-                <div>BETSLIP
-                <ul class="list-group list-group-flush">
-                    {this.state.betslip.map(bet => <li className="list-group-item" key={bet.id}>{bet.matchName} - {bet.name}
-                        <button type="button" onClick={() => this.removeBet(bet)} className="btn btn-danger">X</button></li>)}
-                </ul>
+                <div>
+                    <h3>Your Betslip</h3>
+                    <ul className="list-group list-group-flush">
+                        {this.state.betslip.map(bet => <li className="list-group-item" key={bet.id}>{bet.match} - {bet.title} - MBN: {bet.mbn} ... 
+                            <button type="button" onClick={() => this.removeBet(bet)} className="btn btn-danger">X</button></li>)}
+                    </ul>
                     { this.state.enable ? <button onClick={this.createBetslip}>Create</button> : <button disabled>Create</button> }
                 </div>
             </div>

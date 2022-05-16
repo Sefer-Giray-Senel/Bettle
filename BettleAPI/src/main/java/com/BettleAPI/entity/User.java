@@ -23,5 +23,5 @@ public class User {
     private String username;
     private String password;
 
-    //private String role; //edit this, use Spring Roles
+    //private String role;
 }
