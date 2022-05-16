@@ -2,35 +2,47 @@ import axios from "axios";
 class BetService{
 
     getMatches(){
-        return axios.get("http://localhost:8080/matches", {
+        return axios.get("http://localhost:8080/match/list", {
             headers: {
             Authorization: localStorage.getItem('token')
             }
         });
     }
 
-    getBets(matchId){
-        return axios.post("http://localhost:8080/matches", {
+    async getBets(matchId){
+        const response = await axios.get("http://localhost:8080/bet/list-by-game", {
             headers: {
-            Authorization: localStorage.getItem('token')
-            }}, {
+                Authorization: localStorage.getItem('token')
+            },
             params: {
-                matchId: matchId
+                game_id: matchId
             }
         });
+        return response;
     }
 
-    createBetslip(betslip){
-        return axios.post("http://localhost:8080/matches", {
+    createBetslip(bets){
+        return axios.post("http://localhost:8080/bet-slip", {
             headers: {
             Authorization: localStorage.getItem('token')
-            }}, {
+            },
             params: {
-                bets: betslip
+                user_id: localStorage.getItem('id'),
+                bets: bets
             }
         });
     }
 
+    getBetslips(){
+        return axios.get("http://localhost:8080/match", {
+            headers: {
+            Authorization: localStorage.getItem('token')
+            },
+            params: {
+                user_id: localStorage.getItem('id')
+            }
+        });
+    }
 }
 
 export default new BetService();
