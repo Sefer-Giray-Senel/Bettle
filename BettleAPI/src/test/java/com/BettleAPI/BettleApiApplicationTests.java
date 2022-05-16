@@ -31,23 +31,15 @@ class BettleApiApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
+/*
 	@Test
 	public void basicInsertTest() {
 
-		Bet bet = new Bet();
-		bet.setId(2);
-		bet.setMbn(2);
-		bet.setGameId(3);
-		bet.setOdd(3.1);
-		bet.setTitle("deneme");
-
-		betRepository.save(bet);
-
-		Bans bans2 = bansRepository.findOneById(1,1);
-		System.out.println(bans2.getBanReason());
-		System.out.println(betRepository.findOneById(2).getOdd());
+		User user = userRepository.findPasswordByUsername("usman");
+		System.out.println(user.getPassword());
 	}
 
+
+ */
 
 }

@@ -2,6 +2,7 @@ package com.BettleAPI.repository;
 
 
 import com.BettleAPI.entity.BetSlip;
+import com.BettleAPI.entity.Subscribe;
 import com.BettleAPI.entity.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,9 +41,15 @@ public class UserRepository {
                 .getSingleResult();
     }
 
-    public Optional<User> findUserByPassword(String username) { //---------------not correct
+  /*  public Optional<User> findUserByPassword(String username) { //---------------not correct
         User user = new User();
         return Optional.of(user);
+    }*/
+
+    public User findPasswordByUsername(String username){
+        return entityManager.createQuery("select a from User a where a.username =?1", User.class)
+                .setParameter(1, username)
+                .getSingleResult();
     }
 
     public void deleteById(int id) {

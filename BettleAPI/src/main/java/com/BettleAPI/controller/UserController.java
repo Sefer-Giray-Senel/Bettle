@@ -3,9 +3,11 @@ package com.BettleAPI.controller;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.BettleAPI.config.JwtAuthorizationFilter;
+import com.BettleAPI.dto.UserDto;
 import com.BettleAPI.entity.Admin;
 import com.BettleAPI.entity.User;
 import com.BettleAPI.service.AdminService;
@@ -15,33 +17,82 @@ import io.jsonwebtoken.security.Keys;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+<<<<<<< Updated upstream
+=======
+import org.springframework.ui.Model;
+>>>>>>> Stashed changes
 import org.springframework.web.bind.annotation.*;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.web.server.ResponseStatusException;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class UserController {
-    private final AdminService adminService;
+    private final UserService userService;
 
     @PostMapping("/login")
     public User login(@RequestParam("username") String username, @RequestParam("password") String pwd) {
 
         String token = getJWTToken(username);
+        User user = userService.findPasswordByUsername(username);
+        UserDto userDto = new UserDto();
+        if (user != null) {
+            if(pwd.equals(user.getPassword())) {
+                userDto.setId(user.getId());
+                userDto.setToken(token);
+                return user;
+            }
+            else {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Login failed: Password is wrong");
+            }
+        }
+        else
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Login failed: User does not exist");
+    }
+
+    @PostMapping("/register")
+    public User register(@RequestParam("username") String username, @RequestParam("password") String pwd) {
+        Random rd = new Random();
+        int upperbound = Integer.MAX_VALUE;
+        int int_random = rd.nextInt(upperbound);
+
         User user = new User();
 
+        user.setId(int_random);
         user.setUsername(username);
-        user.setToken(token);
-        return user;
+        user.setPassword(pwd);
+
+        throw new ResponseStatusException(HttpStatus.OK, "Everything is fine");
     }
 
     @GetMapping("/users")
+    public List<User> userList() {
+        return userService.findAll();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable int id) {
+        userService.delete(id);
+    }
+
+<<<<<<< Updated upstream
+    @GetMapping("/users")
     public List<Admin> userList() {
         return adminService.findAll();
+=======
+    @PostMapping("/users")
+    public User saveUser(User user) {
+        return userService.save(user);
+>>>>>>> Stashed changes
     }
 
     private String getJWTToken(String username) {

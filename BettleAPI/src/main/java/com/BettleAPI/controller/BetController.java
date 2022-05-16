@@ -23,4 +23,6 @@ import java.util.UUID;
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 public class BetController {
     private final BetService betService;
+
+
 }
