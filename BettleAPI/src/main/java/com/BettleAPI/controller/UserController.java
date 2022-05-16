@@ -57,18 +57,18 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public HttpStatus register(@RequestParam("username") String username, @RequestParam("password") String pwd) {
+    public void register(@RequestParam("username") String username, @RequestParam("password") String pwd) {
         Random rd = new Random();
         int upperbound = Integer.MAX_VALUE;
         int int_random = rd.nextInt(upperbound);
 
         if ( username.equals("") || pwd.equals(""))
-            return HttpStatus.BAD_REQUEST;
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Empty username is not valid");
 
 
         User existingUser = userService.findUserByUsername(username);
         if (existingUser != null)
-            return HttpStatus.EXPECTATION_FAILED;
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Actor Not Found");
 
         User user = new User();
 
@@ -77,7 +77,7 @@ public class UserController {
         user.setPassword(pwd);
 
         userService.save(user);
-        return HttpStatus.OK;
+        throw new ResponseStatusException(HttpStatus.OK, "Succesfully registered");
     }
 
     @GetMapping("/users")
