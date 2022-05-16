@@ -49,7 +49,7 @@ public class UserController {
                 return user;
             }
             else {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Login failed: Password is wrong");
+                throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Login failed: Password is wrong");
             }
         }
         else
@@ -68,6 +68,7 @@ public class UserController {
         user.setUsername(username);
         user.setPassword(pwd);
 
+        userService.save(user);
         throw new ResponseStatusException(HttpStatus.OK, "Everything is fine");
     }
 
