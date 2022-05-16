@@ -7,7 +7,11 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.BettleAPI.dto.UserDto;
+import com.BettleAPI.entity.Bettor;
+import com.BettleAPI.entity.Editor;
 import com.BettleAPI.entity.User;
+import com.BettleAPI.service.BettorService;
+import com.BettleAPI.service.EditorService;
 import com.BettleAPI.service.UserService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +31,8 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class UserController {
     private final UserService userService;
+    private final EditorService editorService;
+    private final BettorService bettorService;
 
     @PostMapping("/login")
     public UserDto login(@RequestParam("username") String username, @RequestParam("password") String pwd) {
@@ -49,7 +55,9 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public void register(@RequestParam("username") String username, @RequestParam("password") String pwd) {
+    public void register(@RequestParam("username") String username, @RequestParam("password") String pwd,
+                         @RequestParam("role") String role) {
+
         Random rd = new Random();
         int upperbound = Integer.MAX_VALUE;
         int int_random = rd.nextInt(upperbound);
@@ -69,6 +77,23 @@ public class UserController {
         user.setPassword(pwd);
 
         userService.save(user);
+
+        if(role.equals("EDITOR")) {
+            Editor newEditor = new Editor();
+            newEditor.setSubscriberCount(0);
+            newEditor.setSuccessfulBetSlipCount(0);
+            newEditor.setId(user.getId());
+
+            editorService.save(newEditor);
+        }
+        else{
+            Bettor newBettor = new Bettor();
+            newBettor.setBalance(0);
+            newBettor.setFriendCount(0);
+            newBettor.setId(user.getId());
+
+            bettorService.save(newBettor);
+        }
         throw new ResponseStatusException(HttpStatus.OK, "Successfully registered");
     }
 
