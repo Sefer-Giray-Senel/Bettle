@@ -16,6 +16,7 @@ import javax.persistence.NoResultException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping(path = "bet-slip")
@@ -95,6 +96,11 @@ public class BetSlipController {
 
         double odd = 1;
 
+        Random rd = new Random();
+        int upperbound = Integer.MAX_VALUE;
+        int int_random = rd.nextInt(upperbound);
+        betSlip.setId(int_random);
+
         for (Bet k: betList) {
             odd *= k.getOdd();
 
@@ -112,9 +118,9 @@ public class BetSlipController {
         betSlip.setOdd(odd);
         betSlipService.save(betSlip);
 
-        try {
-            Editor editor = editorService.findOneById(userId);
-
+        System.out.println(userId);
+        Editor editor = editorService.findOneById(userId);
+        if(editor != null) {
             HasSlipId editorHasSlipId = new HasSlipId();
             editorHasSlipId.setBetSlipId(betSlip.getId());
             editorHasSlipId.setUserId(userId);
@@ -124,7 +130,7 @@ public class BetSlipController {
 
             editorHasSlipService.save(editorHasSlip);
         }
-        catch(NoResultException e) {
+        else{
             Bettor bettor = bettorService.findOneById(userId);
 
             HasSlipId bettorHasSlipId = new HasSlipId();

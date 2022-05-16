@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
@@ -34,9 +35,13 @@ public class EditorRepository {
     }
 
     public Editor findOneById(int givenId){
-        return entityManager.createQuery("select a from Editor a where a.id =?1", Editor.class)
-                .setParameter(1, givenId)
-                .getSingleResult();
+        try{
+            return entityManager.createQuery("select a from Editor a where a.id =?1", Editor.class)
+                    .setParameter(1, givenId)
+                    .getSingleResult();
+        }catch(NoResultException e){
+            return null;
+        }
     }
 
     public void deleteById(int id) {

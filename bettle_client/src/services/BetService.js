@@ -23,15 +23,13 @@ class BetService{
 
     createBetslip(bets){
         console.log(bets);
-        return axios.post("http://localhost:8080/bet-slip", {
+        return axios.post("http://localhost:8080/bet-slip?user_id=" + localStorage.getItem('id') + 
+            "&" + bets.map((n) => `bets=${n}`).join('&'), {
             headers: {
-            Authorization: localStorage.getItem('token')
-            },
-            params: {
-                bets: bets,
-                user_id: localStorage.getItem('id')
+                Authorization: localStorage.getItem('token')
             }
         });
+        //"http://localhost:8080/bet-slip?user_id=" + localStorage.getItem('id') + "&" + bets.map((n, index) => `bets[${index}]=${n}`).join('&')
     }
 
     getBetslips(){
