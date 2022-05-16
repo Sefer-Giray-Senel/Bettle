@@ -27,9 +27,9 @@ public class BetSlipService {
     public List<BetSlip> findAll() {
         return betSlipRepository.findAll();
     }
-/*
-    public BetSlip getByID(UUID id) { return betSlipRepository.getById(id);}
 
+    public BetSlip findOneById(int id) { return betSlipRepository.findOneById(id);}
+/*
     public Long count() {
         return betSlipRepository.count();
     }

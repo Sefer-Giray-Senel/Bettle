@@ -41,11 +41,6 @@ public class UserRepository {
                 .getSingleResult();
     }
 
-  /*  public Optional<User> findUserByPassword(String username) { //---------------not correct
-        User user = new User();
-        return Optional.of(user);
-    }*/
-
     public User findUserByUsername(String username){
         return entityManager.createQuery("select a from User a where a.username =?1", User.class)
                 .setParameter(1, username)

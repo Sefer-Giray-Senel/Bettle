@@ -28,9 +28,9 @@ public class SubscribeService {
     public List<Subscribe> findAll() {
         return subscribeRepository.findAll();
     }
-/*
-    public Subscribe getByID(UUID id) { return subscribeRepository.getById(id);}
 
+    public Subscribe findOneById(SubscribeId id) { return subscribeRepository.findOneById(id.getBettorId(), id.getEditorId());}
+/*
     public Long count() {
         return subscribeRepository.count();
     }

@@ -6,19 +6,13 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.BettleAPI.config.JwtAuthorizationFilter;
 import com.BettleAPI.dto.UserDto;
-import com.BettleAPI.entity.Admin;
 import com.BettleAPI.entity.User;
-import com.BettleAPI.service.AdminService;
 import com.BettleAPI.service.UserService;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 
@@ -27,8 +21,6 @@ import org.springframework.web.bind.annotation.*;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.web.server.ResponseStatusException;
-
-import javax.servlet.http.HttpServletResponse;
 
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 @CrossOrigin(origins = "http://localhost:3000")
@@ -90,11 +82,6 @@ public class UserController {
         userService.delete(id);
     }
 
-
-    @PostMapping("/users")
-    public User saveUser(User user) {
-        return userService.save(user);
-    }
 
     private String getJWTToken(String username) {
         String secretKey = "4jJYJXkzUQFTp5ioE1Mq5glhxr15fomjSlCGmzU2snAMvVSdC8CsQPjE1QzvVtaf1X2HwKfdEwt2640K7WIvgCx3lIU8eAaNMCZp7o7BYTMKh8";

@@ -28,9 +28,9 @@ public class EditService {
     public List<Edit> findAll() {
         return editRepository.findAll();
     }
-/*
-    public Edit getByID(UUID id) { return editRepository.getById(id);}
 
+    public Edit findOneById(EditId id) { return editRepository.findOneById(id.getBetId(), id.getUserId());}
+/*
     public Long count() {
         return editRepository.count();
     }

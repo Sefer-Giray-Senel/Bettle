@@ -28,9 +28,9 @@ public class GameCommentService {
     public List<GameComment> findAll() {
         return gameCommentRepository.findAll();
     }
-/*
-    public GameComment getByID(UUID id) { return gameCommentRepository.getById(id);}
 
+    public GameComment findOneById(GameCommentId id) { return gameCommentRepository.findOneById(id.getMatchId(), id.getUserId());}
+/*
     public Long count() {
         return gameCommentRepository.count();
     }

@@ -24,7 +24,7 @@ public class BetService {
         return betRepository.findAll();
     }
 
-//    public Bet getByID(UUID id) { return betRepository.getById(id);}
+   public Bet findOneById(int id) { return betRepository.findOneById(id);}
 
 
     public void delete(int id) {

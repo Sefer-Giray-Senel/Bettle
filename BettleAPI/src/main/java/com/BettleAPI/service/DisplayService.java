@@ -28,9 +28,9 @@ public class DisplayService {
     public List<Display> findAll() {
         return displayRepository.findAll();
     }
-/*
-    public Display getByID(UUID id) { return displayRepository.getById(id);}
 
+    public Display findOneById(DisplayId id) { return displayRepository.findOneById(id.getBetId(), id.getBetSlipId());}
+/*
     public Long count() {
         return displayRepository.count();
     }

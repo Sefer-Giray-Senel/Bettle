@@ -28,9 +28,9 @@ public class EditorService {
         return editorRepository.findAll();
     }
 
-    /*
-    public Editor getByID(UUID id) { return editorRepository.getById(id);}
 
+    public Editor findOneById(int id) { return editorRepository.findOneById(id);}
+/*
     public Long count() {
         return editorRepository.count();
     }

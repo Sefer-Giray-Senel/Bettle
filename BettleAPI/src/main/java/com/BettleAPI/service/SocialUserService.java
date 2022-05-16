@@ -27,9 +27,9 @@ public class SocialUserService {
     public List<SocialUser> findAll() {
         return socialUserRepository.findAll();
     }
-/*
-    public SocialUser getByID(UUID id) { return socialUserRepository.getById(id);}
 
+    public SocialUser findOneById(int id) { return socialUserRepository.findOneById(id);}
+/*
     public Long count() {
         return socialUserRepository.count();
     }

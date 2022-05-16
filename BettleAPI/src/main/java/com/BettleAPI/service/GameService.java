@@ -27,9 +27,9 @@ public class GameService {
     public List<Game> findAll() {
         return gameRepository.findAll();
     }
-/*
-    public Game getByID(UUID id) { return gameRepository.getById(id);}
 
+    public Game findOneById(int id) { return gameRepository.findOneById(id);}
+/*
     public Long count() {
         return gameRepository.count();
     }

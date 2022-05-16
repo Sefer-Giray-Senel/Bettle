@@ -28,9 +28,9 @@ public class EditorHasSlipService {
     public List<EditorHasSlip> findAll() {
         return editorHasSlipRepository.findAll();
     }
-/*
-    public EditorHasSlip getByID(UUID id) { return editorHasSlipRepository.getById(id);}
 
+    public EditorHasSlip findOneById(HasSlipId id) { return editorHasSlipRepository.findOneById(id.getUserId(), id.getBetSlipId());}
+/*
     public Long count() {
         return editorHasSlipRepository.count();
     }
