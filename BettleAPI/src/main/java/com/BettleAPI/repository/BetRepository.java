@@ -43,6 +43,12 @@ public class BetRepository {
                 .getSingleResult();
     }
 
+    public List<Bet> findBetsForGame(int gameId){
+        return entityManager.createQuery("select a from Bet a where a.gameId =?1", Bet.class)
+                .setParameter(1, gameId)
+                .getResultList();
+    }
+
     public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM bet WHERE id = ?")
                 .setParameter(1, id)
