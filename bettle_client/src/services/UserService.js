@@ -29,7 +29,12 @@ class UserService{
 
     async register(details){
         try{
-            const response = await axios.post("http://localhost:8080/register", details);
+            const response = await axios.post("http://localhost:8080/register", {}, {
+                params: {
+                    username: details.username,
+                    password: details.password
+                }
+            });
             return true;
         }
         catch(e){

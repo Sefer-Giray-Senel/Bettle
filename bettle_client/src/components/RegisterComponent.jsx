@@ -5,17 +5,22 @@ import UserService from "../services/UserService";
 function RegisterComponent (/*{setName,getName}*/) {
 
     const [details, setDetails] = useState({username: "", password: ""});
-    const [errmsg, setErrMsg] = useState({errmsg: ""});
+    const [errmsg, setErrMsg] = useState({message : ""});
 
-    const handleRegister = e => {
+    const handleRegister = (e, nextState, replaceState) => {
         e.preventDefault();
 
         const response = UserService.register(details);
-        if(response.type !== Promise){
-            setErrMsg({errmsg : response});
-        }else{
-            //setName(details.username);
-        }
+        response.then(value => {
+            console.log(value);
+            if(value !== true){
+                setErrMsg({message : value.message});
+            }
+            else{
+                //replaceState({ nextPathname: nextState.location.pathname }, '/login');
+                //setName(details.username);
+            }
+        });
 
     }
 

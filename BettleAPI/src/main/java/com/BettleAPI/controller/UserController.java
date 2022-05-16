@@ -57,7 +57,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public User register(@RequestParam("username") String username, @RequestParam("password") String pwd) {
+    public HttpStatus register(@RequestParam("username") String username, @RequestParam("password") String pwd) {
         Random rd = new Random();
         int upperbound = Integer.MAX_VALUE;
         int int_random = rd.nextInt(upperbound);
@@ -69,7 +69,7 @@ public class UserController {
         user.setPassword(pwd);
 
         userService.save(user);
-        throw new ResponseStatusException(HttpStatus.OK, "Everything is fine");
+        return HttpStatus.OK;
     }
 
     @GetMapping("/users")

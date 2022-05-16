@@ -21,7 +21,7 @@ public class UserRepository {
 
     @Transactional
     public User save(User user) {
-        entityManager.createNativeQuery("INSERT INTO user (id, password, username) VALUES (?,?,?,?)")
+        entityManager.createNativeQuery("INSERT INTO user (id, password, username) VALUES (?,?,?)")
                 .setParameter(1, user.getId())
                 .setParameter(2, user.getPassword())
                 .setParameter(3, user.getUsername())
