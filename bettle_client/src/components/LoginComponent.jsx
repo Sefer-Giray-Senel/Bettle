@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import UserService from "../services/UserService";
+import "../css/login.css";
 
 function LoginComponent ({setName}) {
 
@@ -25,17 +26,17 @@ function LoginComponent ({setName}) {
     }
 
     return (
-        <form onSubmit={handleLogin}>
+        <form className="form-properties" onSubmit={handleLogin}>
             <div className="form-inner">
                 <div className="form-group">
-                    <label htmlFor="username">Username</label>
+                    <label >Username: </label>
                     <input type="text" name="username" id="username" onChange={e => setDetails({...details, username: e.target.value})} value={details.username}/>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="Password">Password</label>
+                    <label>Password: </label>
                     <input type="password" name="password" id="password" onChange={e => setDetails({...details, password: e.target.value})} value={details.password}/>
                 </div>
-                <button>Log in</button>
+                <button className="loginbtn">Log in</button>
             </div>
             <Link to="/register">Register</Link>
             <div>{errmsg.message}</div>
