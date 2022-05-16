@@ -39,6 +39,12 @@ public class SubscribeRepository {
                 .getSingleResult();
     }
 
+    public List<Integer> findSubscribedIdByUserId(int userId){
+        return entityManager.createQuery("select a.id.editorId from Subscribe a where a.id.bettorId =?1")
+                .setParameter(1, userId)
+                .getResultList();
+    }
+
     public void deleteById(SubscribeId id) {
         entityManager.createNativeQuery("DELETE FROM subscribe WHERE bettor_id = ? AND editor_id = ?")
                 .setParameter(1, id.getBettorId())

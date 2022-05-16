@@ -39,6 +39,12 @@ public class FriendRepository {
                 .getSingleResult();
     }
 
+    public List<Integer> findFriendsByUserId(int userId){
+        return entityManager.createQuery("select a.id.secondBettorId from Friend a where a.id.firstBettorId =?1")
+                .setParameter(1, userId)
+                .getResultList();
+    }
+
     public void deleteById(FriendId id) {
         entityManager.createNativeQuery("DELETE FROM friend WHERE first_bettor_id = ? AND second_bettor_id = ?")
                 .setParameter(1, id.getFirstBettorId())

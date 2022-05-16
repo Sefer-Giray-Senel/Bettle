@@ -2,6 +2,7 @@ package com.BettleAPI;
 
 import com.BettleAPI.entity.*;
 import com.BettleAPI.entity.compositeId.BansId;
+import com.BettleAPI.entity.compositeId.HasSlipId;
 import com.BettleAPI.repository.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,8 @@ class BettleApiApplicationTests {
 	private final BansRepository bansRepository;
 	private final BetRepository betRepository;
 	private final GameRepository gameRepository;
+	private final BetSlipRepository betSlipRepository;
+	private final BettorHasSlipRepository bettorHasSlipRepository;
 
 	@Test
 	void contextLoads() {
@@ -66,7 +69,24 @@ class BettleApiApplicationTests {
 
 		userRepository.updateUser(13,"","usman");
 
-		System.out.println("username: " + userRepository.findOneById(13).getUsername() + " password: " + userRepository.findOneById(13).getPassword());
+		BetSlip betSlip = new BetSlip();
+		betSlip.setOdd(5.1);
+		betSlip.setId(1);
+
+		betSlipRepository.save(betSlip);
+
+		HasSlipId hasSlipId = new HasSlipId();
+		hasSlipId.setBetSlipId(1);
+		hasSlipId.setUserId(13);
+
+		BettorHasSlip bettorHasSlip = new BettorHasSlip();
+		bettorHasSlip.setId(hasSlipId);
+		bettorHasSlip.setPlacedCash(100);
+
+		bettorHasSlipRepository.save(bettorHasSlip);
+
+		System.out.println("betid: " + bettorHasSlipRepository.findBetSlipIdByUserId(13));
+		//System.out.println("username: " + userRepository.findOneById(13).getUsername() + " password: " + userRepository.findOneById(13).getPassword());
 		//gameRepository.save(game1);
 		//gameRepository.save(game2);
 

@@ -40,6 +40,12 @@ public class BettorHasSlipRepository {
                 .getSingleResult();
     }
 
+    public List<Integer> findBetSlipIdByUserId(int userId){
+        return entityManager.createQuery("select a.id.betSlipId from BettorHasSlip a where a.id.userId =?1")
+                .setParameter(1, userId)
+                .getResultList();
+    }
+
     public void deleteById(HasSlipId id) {
         entityManager.createNativeQuery("DELETE FROM bettor_has_slip WHERE bet_slip_id = ? AND user_id = ?")
                 .setParameter(1, id.getBetSlipId())

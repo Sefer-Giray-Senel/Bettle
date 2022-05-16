@@ -40,6 +40,12 @@ public class SlipCommentRepository {
                 .getSingleResult();
     }
 
+    public List<String> findCommentBySlipPostId(int betSlipPostId){
+        return entityManager.createQuery("select a.comment from SlipComment a where a.id.betSlipPostId =?1")
+                .setParameter(1, betSlipPostId)
+                .getResultList();
+    }
+
     public void deleteById(PostLikeId id) {
         entityManager.createNativeQuery("DELETE FROM slip_comment WHERE bet_slip_post_id = ? AND user_id = ?")
                 .setParameter(1, id.getBetSlipPostId())

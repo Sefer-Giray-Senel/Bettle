@@ -39,6 +39,12 @@ public class PostLikeRepository {
                 .getSingleResult();
     }
 
+    public List<Integer> findLikedPostsByUserId(int userId){
+        return entityManager.createQuery("select a.id.betSlipPostId from PostLike a where a.id.userId =?1")
+                .setParameter(1, userId)
+                .getResultList();
+    }
+
     public void deleteById(PostLikeId id) {
         entityManager.createNativeQuery("DELETE FROM post_like WHERE bet_slip_post_id = ? AND user_id = ?")
                 .setParameter(1, id.getBetSlipPostId())

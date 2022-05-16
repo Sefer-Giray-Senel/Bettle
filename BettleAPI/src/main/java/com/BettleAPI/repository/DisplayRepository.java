@@ -4,6 +4,7 @@ package com.BettleAPI.repository;
 import com.BettleAPI.entity.BetSlip;
 import com.BettleAPI.entity.Display;
 import com.BettleAPI.entity.compositeId.DisplayId;
+import org.springframework.jmx.export.naming.IdentityNamingStrategy;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +39,12 @@ public class DisplayRepository {
                 .setParameter(1, givenBetSlipId)
                 .setParameter(2, givenBetId)
                 .getSingleResult();
+    }
+
+    public List<Integer> findBetsByBetSlipId(int betSlipId){
+        return entityManager.createQuery("select a.id.betId from Display a where a.id.betSlipId =?1")
+                .setParameter(1, betSlipId)
+                .getResultList();
     }
 
     public void deleteById(DisplayId id) {

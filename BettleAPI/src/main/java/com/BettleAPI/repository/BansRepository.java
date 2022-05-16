@@ -41,6 +41,12 @@ public class BansRepository {
                 .getSingleResult();
     }
 
+    public Integer findAdminIdByBannedUser(int userId){
+        return (Integer) entityManager.createQuery("select a.id.adminId from Bans a where a.id.socialUserId =?1")
+                .setParameter(1, userId)
+                .getSingleResult();
+    }
+
     public void deleteById(BansId id) {
         entityManager.createNativeQuery("DELETE FROM bans WHERE admin_id = ? AND social_user_id = ?")
                 .setParameter(1, id.getAdminId())

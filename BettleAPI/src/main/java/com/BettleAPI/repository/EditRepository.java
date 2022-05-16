@@ -39,6 +39,12 @@ public class EditRepository {
                 .getSingleResult();
     }
 
+    public List<Integer> findBetIdByUserId(int userId){
+        return entityManager.createQuery("select a.id.betId from Edit a where a.id.userId =?1")
+                .setParameter(1, userId)
+                .getResultList();
+    }
+
     public void deleteById(EditId id) {
         entityManager.createNativeQuery("DELETE FROM edit WHERE bet_id = ? AND user_id = ?")
                 .setParameter(1, id.getBetId())

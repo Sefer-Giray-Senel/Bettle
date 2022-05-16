@@ -40,6 +40,12 @@ public class GameCommentRepository {
                 .getSingleResult();
     }
 
+    public List<String> findCommentsByGameId(int matchId){
+        return entityManager.createQuery("select a.comment from GameComment a where a.id.matchId =?1")
+                .setParameter(1, matchId)
+                .getResultList();
+    }
+
     public void deleteById(GameCommentId id) {
         entityManager.createNativeQuery("DELETE FROM game_comment WHERE match_id = ? AND user_id = ?")
                 .setParameter(1, id.getMatchId())
