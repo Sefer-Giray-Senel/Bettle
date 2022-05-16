@@ -1,19 +1,22 @@
 package com.BettleAPI.entity;
 
+import com.BettleAPI.entity.compositeId.PostLikeId;
+import com.BettleAPI.entity.compositeId.PostedId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode()
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class BetSlipPost extends BaseEntity{
-    private String postText;
-    
+public class Posted {
+
+    @EmbeddedId
+    private PostedId id;
 }

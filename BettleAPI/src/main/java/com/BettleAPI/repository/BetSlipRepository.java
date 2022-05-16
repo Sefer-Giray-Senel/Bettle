@@ -19,9 +19,10 @@ public class BetSlipRepository {
 
     @Transactional
     public BetSlip save(BetSlip betSlip) {
-        entityManager.createNativeQuery("INSERT INTO bet_slip (id, odd) VALUES (?,?)")
+        entityManager.createNativeQuery("INSERT INTO bet_slip (id, odd) VALUES (?,?,?)")
                 .setParameter(1, betSlip.getId())
                 .setParameter(2, betSlip.getOdd())
+                .setParameter(3,betSlip.isShared())
                 .executeUpdate();
         return betSlip;
     }
@@ -44,10 +45,14 @@ public class BetSlipRepository {
                 .executeUpdate();
     }
 
-    public void updateBetSlip(int id, double odd) {
+    public void updateBetSlip(int id, double odd, boolean shared) {
         if(odd != -1) {
             entityManager.createQuery("update BetSlip a set a.odd =?1 where a.id =?2")
                     .setParameter(1, odd)
+                    .setParameter(2, id)
+                    .executeUpdate();
+            entityManager.createQuery("update BetSlip a set a.shared =?1 where a.id =?2")
+                    .setParameter(1, shared)
                     .setParameter(2, id)
                     .executeUpdate();
         }

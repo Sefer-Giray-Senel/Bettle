@@ -1,12 +1,11 @@
 package com.BettleAPI.controller;
 
 import com.BettleAPI.entity.BetSlipPost;
+import com.BettleAPI.entity.Posted;
 import com.BettleAPI.entity.SlipComment;
 import com.BettleAPI.entity.User;
-import com.BettleAPI.service.BetSlipPostService;
-import com.BettleAPI.service.PostLikeService;
-import com.BettleAPI.service.SlipCommentService;
-import com.BettleAPI.service.UserService;
+import com.BettleAPI.entity.compositeId.PostedId;
+import com.BettleAPI.service.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @RequestMapping(path = "feed")
 @RestController
@@ -23,6 +23,7 @@ public class BetSlipPostController {
     private final PostLikeService postLikeService;
     private final UserService userService;
     private final SlipCommentService slipCommentService;
+    private final PostedService postedService;
 
     @GetMapping()
     public List<BetSlipPost> getBetSlipPosts() {
@@ -32,6 +33,28 @@ public class BetSlipPostController {
     @GetMapping("/show")
     public BetSlipPost getBetSlipPostById(@RequestParam("bet_slip_post_id") int id) {
         return betSlipPostService.findOneById(id);
+    }
+
+    @PostMapping("/share-bet-slip")
+    public BetSlipPost saveBetSlipPost(@RequestParam("bet_slip_id") int betSlipId, @RequestParam("user_id") int userId, @RequestParam("post_text") String postText) {
+        Random rd = new Random();
+        int upperbound = Integer.MAX_VALUE;
+        int int_random = rd.nextInt(upperbound);
+
+        BetSlipPost betSlipPost = new BetSlipPost();
+        betSlipPost.setId(int_random);
+        betSlipPost.setPostText(postText);
+        betSlipPostService.save(betSlipPost);
+
+        PostedId postedId = new PostedId();
+        postedId.setBetSlipPostId(int_random);
+        postedId.setBetSlipId(betSlipId);
+        postedId.setUserId(userId);
+        Posted posted = new Posted();
+        posted.setId(postedId);
+        postedService.save(posted);
+
+        return betSlipPost;
     }
 
     @DeleteMapping
@@ -54,4 +77,6 @@ public class BetSlipPostController {
     public List<SlipComment> findCommentsBySlipPostId(@RequestParam("post_id") int id) {
         return slipCommentService.findCommentsBySlipPostId(id);
     }
+
+
 }

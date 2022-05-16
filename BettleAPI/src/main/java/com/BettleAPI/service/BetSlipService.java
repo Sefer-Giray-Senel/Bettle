@@ -30,6 +30,6 @@ public class BetSlipService {
 
     public BetSlip findOneById(int id) { return betSlipRepository.findOneById(id);}
 
-    public void updateBetSlip(int id, double odd) { betSlipRepository.updateBetSlip(id, odd); }
+    public void updateBetSlip(int id, double odd, boolean shared) { betSlipRepository.updateBetSlip(id, odd, shared); }
 }
 
