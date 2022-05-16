@@ -28,13 +28,7 @@ public class BettorHasSlipService {
     public List<BettorHasSlip> findAll() {
         return bettorHasSlipRepository.findAll();
     }
-/*
-    public BettorHasSlip getByID(UUID id) { return bettorHasSlipRepository.getById(id);}
 
-    public Long count() {
-        return bettorHasSlipRepository.count();
-    }
-
- */
+    public BettorHasSlip findOneById(HasSlipId id) { return bettorHasSlipRepository.findOneById(id.getBetSlipId(), id.getUserId());}
 }
 

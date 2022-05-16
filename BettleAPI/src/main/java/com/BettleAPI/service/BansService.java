@@ -28,11 +28,6 @@ public class BansService {
     public List<Bans> findAll() {
         return bansRepository.findAll();
     }
-/*
-    public Bans getByID(UUID id) { return bansRepository.getById(id);}
 
-    public Long count() {
-        return bansRepository.count();
-    }
-    */
+    public Bans findOneById(BansId id) { return bansRepository.findOneById(id.getAdminId(), id.getSocialUserId());}
 }

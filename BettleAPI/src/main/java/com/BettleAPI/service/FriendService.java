@@ -28,13 +28,9 @@ public class FriendService {
     public List<Friend> findAll() {
         return friendRepository.findAll();
     }
-/*
-    public Friend getByID(UUID id) { return friendRepository.getById(id);}
 
-    public Long count() {
-        return friendRepository.count();
-    }
-    */
+    public Friend findOneById(FriendId id) { return friendRepository.findOneById(id.getFirstBettorId(), id.getSecondBettorId());}
+
 }
 
 

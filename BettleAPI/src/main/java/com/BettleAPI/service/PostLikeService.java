@@ -28,12 +28,7 @@ public class PostLikeService {
     public List<PostLike> findAll() {
         return postLikeRepository.findAll();
     }
-/*
-    public PostLike getByID(UUID id) { return postLikeRepository.getById(id);}
 
-    public Long count() {
-        return postLikeRepository.count();
-    }
+    public PostLike findOneById(PostLikeId id) { return postLikeRepository.findOneById(id.getBetSlipPostId(),id.getUserId());}
 
- */
 }

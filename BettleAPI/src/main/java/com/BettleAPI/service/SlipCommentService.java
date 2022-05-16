@@ -29,12 +29,6 @@ public class SlipCommentService {
         return slipCommentRepository.findAll();
     }
 
-    /*
-    public SlipComment getByID(UUID id) { return slipCommentRepository.getById(id);}
+    public SlipComment findOneById(PostLikeId id) { return slipCommentRepository.findOneById(id.getBetSlipPostId(), id.getUserId());}
 
-    public Long count() {
-        return slipCommentRepository.count();
-    }
-
- */
 }

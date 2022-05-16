@@ -28,12 +28,8 @@ public class AdminService {
         return adminRepository.findAll();
     }
 
-/*
-    public Admin getByID(UUID id) { return adminRepository.getById(id);}
-
-    public Long count() {
-        return adminRepository.count();
+    public Admin findOneById(int id) {
+        return adminRepository.findOneById(id);
     }
-    */
 }
 

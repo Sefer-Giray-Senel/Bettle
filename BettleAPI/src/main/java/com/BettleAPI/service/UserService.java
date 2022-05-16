@@ -21,8 +21,6 @@ import java.util.UUID;
 public class UserService {
     private final UserRepository userRepository;
 
-
-
     public User save(User user) {
         return userRepository.save(user);
     }
@@ -39,13 +37,7 @@ public class UserService {
         return userRepository.findUserByUsername(username);
     }
 
-    /*
-    public User getByID(UUID id) { return userRepository.getById(id);}
+    public User findOneById(int id) { return userRepository.findOneById(id);}
 
-    public Long count() {
-        return userRepository.count();
-    }
-
-     */
 }
 

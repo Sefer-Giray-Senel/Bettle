@@ -28,11 +28,6 @@ public class DisplayService {
     public List<Display> findAll() {
         return displayRepository.findAll();
     }
-/*
-    public Display getByID(UUID id) { return displayRepository.getById(id);}
 
-    public Long count() {
-        return displayRepository.count();
-    }
-*/
+    public Display findOneById(DisplayId id) { return displayRepository.findOneById(id.getBetId(), id.getBetSlipId());}
 }

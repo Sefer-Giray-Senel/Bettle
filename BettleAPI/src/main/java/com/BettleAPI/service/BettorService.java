@@ -27,12 +27,7 @@ public class BettorService {
     public List<Bettor> findAll() {
         return bettorRepository.findAll();
     }
-/*
-    public Bettor getByID(UUID id) { return bettorRepository.getById(id);}
 
-    public Long count() {
-        return bettorRepository.count();
-    }
-    */
+    public Bettor findOneById(int id) { return bettorRepository.findOneById(id);}
 }
 
