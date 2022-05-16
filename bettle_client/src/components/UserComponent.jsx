@@ -1,5 +1,6 @@
 import React from "react";
 import UserService from "../services/UserService";
+import { Navigate } from "react-router-dom";
 
 class UserComponent extends React.Component {
     constructor(props){
@@ -11,14 +12,14 @@ class UserComponent extends React.Component {
 
     componentDidMount(){
         UserService.getUsers().then((response) => {
-            console.log(response);
             this.setState({users : response.data})
-        })
+        });
     }
 
     render(){
         return (
             <div>
+                { this.props.getName() === "" ? (<Navigate push to="/"/>) : null }
                 <h1 className="text-center">Users List</h1>
                 <table className ="table table-striped">
                     <thead>
