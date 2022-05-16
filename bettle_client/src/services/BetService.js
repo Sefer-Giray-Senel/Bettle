@@ -22,13 +22,14 @@ class BetService{
     }
 
     createBetslip(bets){
+        console.log(bets);
         return axios.post("http://localhost:8080/bet-slip", {
             headers: {
             Authorization: localStorage.getItem('token')
             },
             params: {
-                user_id: localStorage.getItem('id'),
-                bets: bets
+                bets: bets,
+                user_id: localStorage.getItem('id')
             }
         });
     }

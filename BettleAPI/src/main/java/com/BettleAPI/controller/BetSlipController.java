@@ -1,5 +1,6 @@
 package com.BettleAPI.controller;
 
+import com.BettleAPI.dto.BetSlipDto;
 import com.BettleAPI.entity.*;
 import com.BettleAPI.entity.compositeId.DisplayId;
 import com.BettleAPI.entity.compositeId.HasSlipId;
@@ -136,5 +137,26 @@ public class BetSlipController {
             bettorHasSlipService.save(bettorHasSlip);
         }
         throw new ResponseStatusException(HttpStatus.OK, "Bet Slip was successfully saved");
+    }
+
+    @GetMapping("/blabla")
+    public List<BetSlipDto> getBetsByUserId(@RequestParam("user_id") int userId) {
+        List<Integer> betSlipIdList = bettorHasSlipService.findBetSlipIdByUserId(userId);
+        List<BetSlipDto> betSlipDtoList = new ArrayList<>();
+
+        for (int k: betSlipIdList) {
+            BetSlipDto betSlipDto = new BetSlipDto();
+
+            List<Integer> betIdList= displayService.findBetsByBetSlipId(k);
+            List<Bet> betList = new ArrayList<>();
+            for (int m: betIdList)
+                betList.add(betService.findOneById(m));
+
+            betSlipDto.setBetList(betList);
+            betSlipDto.setBetSlipId(k);
+            betSlipDtoList.add(betSlipDto);
+        }
+
+        return betSlipDtoList;
     }
 }
