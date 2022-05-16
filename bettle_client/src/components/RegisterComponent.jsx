@@ -11,7 +11,7 @@ function RegisterComponent (/*{setName,getName}*/) {
         e.preventDefault();
 
         const response = UserService.register(details);
-        if(response !== true){
+        if(response.type !== Promise){
             setErrMsg({errmsg : response});
         }else{
             //setName(details.username);

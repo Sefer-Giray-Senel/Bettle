@@ -2,7 +2,11 @@ import axios from "axios";
 class UserService{
 
     getUsers(){
-        return axios.get("http://localhost:8080/users", );
+        return axios.get("http://localhost:8080/users", {
+            headers: {
+            Authorization: localStorage.getItem('token')
+            }
+          });
     }
 
     async logIn(details){
@@ -12,8 +16,9 @@ class UserService{
                     username: details.username,
                     password: details.password
                 }
-              });
-            localStorage.setItem('token', response.data);
+            });
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('username', details.username);
             return true;
         }
         catch(e){
@@ -25,7 +30,7 @@ class UserService{
     async register(details){
         try{
             const response = await axios.post("http://localhost:8080/register", details);
-            return response;
+            return true;
         }
         catch(e){
             console.log(e);

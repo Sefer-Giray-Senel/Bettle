@@ -12,8 +12,10 @@ function App() {
   
     const setName = (username) => {
       setNameInside({username});
-      if(username === "")
+      if(username === ""){
         localStorage.removeItem('username');
+        localStorage.removeItem('token');
+      }
       else
         localStorage.setItem('username', name);
     }

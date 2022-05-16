@@ -2,21 +2,25 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import UserService from "../services/UserService";
 
-function LoginComponent ({setName,getName}) {
+function LoginComponent ({setName}) {
 
     const [details, setDetails] = useState({username: "", password: ""});
-    const [errmsg, setErrMsg] = useState({errmsg: ""});
+    const [errmsg, setErrMsg] = useState({message : ""});
 
     const handleLogin = e => {
         e.preventDefault();
 
         const response = UserService.logIn(details);
-        if(response !== true){
-            setErrMsg({errmsg : response});
-            setName("Usman");
-        }else{
-            setName(details.username);
-        }
+
+        response.then(value => {
+            console.log(value);
+            if(value !== true){
+                setErrMsg({message : value.message});
+            }
+            else{
+                setName(details.username);
+            }
+        });
 
     }
 
@@ -34,8 +38,8 @@ function LoginComponent ({setName,getName}) {
                 <button>Log in</button>
             </div>
             <Link to="/register">Register</Link>
+            <div>{errmsg.message}</div>
         </form>
-            
     );
     
 }
