@@ -172,11 +172,13 @@ public class BetSlipController {
         for (BetSlip k: unsharedBetSlipList) {
             BetSlipDto betSlipDto = new BetSlipDto();
 
-            List<Integer> betIdList= displayService.findBetsByBetSlipId(k.getId());
+            List<Display> displayList= displayService.findDisplaysByBetSlipId(k.getId());
             List<Bet> betList = new ArrayList<>();
-            for (int m: betIdList)
-                betList.add(betService.findOneById(m));
-
+            for (Display m: displayList) {
+                Bet tempBet = betService.findOneById(m.getId().getBetId());
+                tempBet.setOdd(m.getHasOdd());
+                betList.add(tempBet);
+            }
             betSlipDto.setBetList(betList);
             betSlipDto.setBetSlipId(k.getId());
             betSlipDtoList.add(betSlipDto);

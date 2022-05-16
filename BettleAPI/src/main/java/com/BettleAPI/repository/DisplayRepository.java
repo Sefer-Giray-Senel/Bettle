@@ -47,6 +47,12 @@ public class DisplayRepository {
                 .getResultList();
     }
 
+    public List<Display> findDisplaysByBetSlipId(int betSlipId) {
+        Query query = entityManager.createQuery("select a from Display a where a.id.betSlipId=?1", Display.class)
+                    .setParameter(1, betSlipId);
+        return query.getResultList();
+    }
+
     public void deleteById(DisplayId id) {
         entityManager.createNativeQuery("DELETE FROM display WHERE bet_id = ? AND bet_slip_id = ?")
                 .setParameter(1, id.getBetId())
