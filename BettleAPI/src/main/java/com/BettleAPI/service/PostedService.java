@@ -32,4 +32,7 @@ public class PostedService {
 
     public Posted findOneById(PostedId id) { return postedRepository.findOneById(id.getBetSlipPostId(), id.getBetSlipId(), id.getUserId());}
 
+    public Integer findPostFromBetSlipId(int betSlipId){ return postedRepository.findPostFromBetSlipId(betSlipId); }
+
+    public List<Integer> findAllBetSlipsByUserId(int givenUserId) { return postedRepository.findAllBetSlipsByUserId(givenUserId); }
 }
