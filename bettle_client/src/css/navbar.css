@@ -1,0 +1,12 @@
+.navbar {
+    background-color: #E2CAE6;
+    display: block;
+}
+
+.logoutbtn {
+    float: right;
+}
+
+.navbar-nav{
+    display: inline-block;
+}
