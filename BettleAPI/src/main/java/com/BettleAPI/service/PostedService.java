@@ -34,5 +34,7 @@ public class PostedService {
 
     public Integer findPostFromBetSlipId(int betSlipId){ return postedRepository.findPostFromBetSlipId(betSlipId); }
 
+    public List<Integer> findAllBetSlipPostsByUserId(int betSlipPostId){ return postedRepository.findAllBetSlipPostsByUserId(betSlipPostId); }
+
     public List<Integer> findAllBetSlipsByUserId(int givenUserId) { return postedRepository.findAllBetSlipsByUserId(givenUserId); }
 }

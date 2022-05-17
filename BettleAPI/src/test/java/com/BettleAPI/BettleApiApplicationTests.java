@@ -2,7 +2,9 @@ package com.BettleAPI;
 
 import com.BettleAPI.entity.*;
 import com.BettleAPI.entity.compositeId.BansId;
+import com.BettleAPI.entity.compositeId.FriendId;
 import com.BettleAPI.entity.compositeId.HasSlipId;
+import com.BettleAPI.entity.compositeId.PostedId;
 import com.BettleAPI.repository.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,9 @@ class BettleApiApplicationTests {
 	private final GameRepository gameRepository;
 	private final BetSlipRepository betSlipRepository;
 	private final BettorHasSlipRepository bettorHasSlipRepository;
+	private final FriendRepository friendRepository;
+	private final BetSlipPostRepository betSlipPostRepository;
+	private final PostedRepository postedRepository;
 
 	@Test
 	void contextLoads() {
@@ -74,19 +79,52 @@ class BettleApiApplicationTests {
 		//betRepository.save(bet1);
 		//betRepository.save(bet2);
 	}*/
-/*
+
 	@Test
-	public void betInsert() {
-		Bet bet = new Bet();
-		bet.setId(5);
-		bet.setTitle("KG");
-		bet.setMbn(1);
-		bet.setOdd(1.7);
-		bet.setGameId(2);
+	public void betSlipPostInsert() {
+		/*BetSlipPost betSlipPost = new BetSlipPost();
+		betSlipPost.setPostText("Usmanin Postu");
+		betSlipPost.setId(13);
+		betSlipPost.setTestCount(2);
 
-		betRepository.save(bet);
+		betSlipPostRepository.save(betSlipPost);
+		*/
+		/*
+		Posted posted = new Posted();
+		PostedId postedId = new PostedId();
 
+		postedId.setUserId(180);
+		postedId.setBetSlipPostId(12);
+		postedId.setBetSlipId(1);
+
+		posted.setId(postedId);
+		postedRepository.save(posted);
+
+		 */
 	}
- */
+
+/*	@Test
+	public void friendInsert() {
+		Friend friend = new Friend();
+		FriendId friendId = new FriendId();
+
+		friendId.setFirstBettorId(180);
+		friendId.setSecondBettorId(190);
+		friend.setId(friendId);
+		friendRepository.save(friend);
+
+		Friend friend2 = new Friend();
+		FriendId friendId2 = new FriendId();
+
+		friendId2.setFirstBettorId(190);
+		friendId2.setSecondBettorId(180);
+		friend2.setId(friendId2);
+		friendRepository.save(friend2);
+
+		//List<BetSlipPost> betSlipPosts = betSlipPostRepository.findBetSlipPostsOfFriendsByUserId(180);
+		//System.out.println(betSlipPosts.get(0).getPostText());
+	}
+*/
+
 }
 
