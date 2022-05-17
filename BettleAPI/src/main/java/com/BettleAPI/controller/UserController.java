@@ -1,20 +1,15 @@
 package com.BettleAPI.controller;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import com.BettleAPI.dto.SocialUserDto;
 import com.BettleAPI.dto.UserDto;
 import com.BettleAPI.entity.Bettor;
 import com.BettleAPI.entity.Editor;
 import com.BettleAPI.entity.SocialUser;
 import com.BettleAPI.entity.User;
-import com.BettleAPI.service.BettorService;
-import com.BettleAPI.service.EditorService;
-import com.BettleAPI.service.SocialUserService;
-import com.BettleAPI.service.UserService;
+import com.BettleAPI.service.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +31,8 @@ public class UserController {
     private final EditorService editorService;
     private final BettorService bettorService;
     private final SocialUserService socialUserService;
+    private final SubscribeService subscribeService;
+    private final FriendService friendService;
 
     @PostMapping("/login")
     public UserDto login(@RequestParam("username") String username, @RequestParam("password") String pwd) {
@@ -111,8 +108,57 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<User> userList() {
-        return userService.findAll();
+    public List<SocialUserDto> userList(@RequestParam("user_id") int id) {
+        List<SocialUser> socialUsers = socialUserService.findAll();
+        List<SocialUserDto> socialUserDtos = new ArrayList<>();
+
+        for (SocialUser socialUser: socialUsers) {
+            SocialUserDto socialUserDto = new SocialUserDto();
+
+            socialUserDto.setEmail(socialUser.getEmail());
+            socialUserDto.setFirstName(socialUser.getFirstName());
+            socialUserDto.setGender(socialUser.getGender());
+            socialUserDto.setLastName(socialUser.getLastName());
+            socialUserDto.setNationality(socialUser.getNationality());
+
+            Editor editor = editorService.findOneById(socialUser.getId());
+            if (editor != null) {
+                socialUserDto.setEditor(true);
+                socialUserDto.setBalance(-1);
+                socialUserDto.setFriendCount(-1);
+                socialUserDto.setSubscriberCount(editor.getSubscriberCount());
+                socialUserDto.setSuccessfulBetSlipCount(editor.getSuccessfulBetSlipCount());
+
+                socialUserDto.setFriend(false); //doesn't matter
+
+                List<Integer> subscribedIds = subscribeService.findSubscribedIdsByEditorId(socialUser.getId());
+                boolean subscribed = false;
+                for (int k: subscribedIds)
+                    if (k == id)
+                        subscribed = true;
+
+                socialUserDto.setSubscribed(subscribed);
+            }
+            else {
+                Bettor bettor = bettorService.findOneById(socialUser.getId());
+
+                socialUserDto.setEditor(false);
+                socialUserDto.setBalance(bettor.getBalance());
+                socialUserDto.setFriendCount(bettor.getFriendCount());
+                socialUserDto.setSubscriberCount(-1);
+                socialUserDto.setSuccessfulBetSlipCount(-1);
+
+                socialUserDto.setSubscribed(false); //doesn't matter
+                List<Integer> friendIds = friendService.findFriendsByUserId(socialUser.getId());
+                boolean isFriend = false;
+                for (int k: friendIds)
+                    if (k == id)
+                        isFriend = true;
+                socialUserDto.setFriend(isFriend);
+            }
+            socialUserDtos.add(socialUserDto);
+        }
+        return socialUserDtos;
     }
 
     @PutMapping

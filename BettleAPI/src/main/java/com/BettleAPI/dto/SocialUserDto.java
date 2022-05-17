@@ -28,4 +28,7 @@ public class SocialUserDto {
     private int successfulBetSlipCount;
 
     private boolean isEditor;
+
+    private boolean isFriend;
+    private boolean isSubscribed;
 }
