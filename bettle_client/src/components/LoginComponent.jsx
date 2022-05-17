@@ -27,7 +27,7 @@ function LoginComponent ({setName, getName}) {
 
     return (
         <form className="form-properties" onSubmit={handleLogin}>
-            { getName() !== "" ? (<Navigate push to="/home"/>) : null }
+            { getName() !== "" ? (<Navigate push to="/"/>) : null }
             <div className="form-inner">
                 <div className="form-group">
                     <label >Username: </label>

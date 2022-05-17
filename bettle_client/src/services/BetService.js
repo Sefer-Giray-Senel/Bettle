@@ -51,7 +51,7 @@ class BetService{
     }
 
     playEditorBet(slipId){
-        return axios.get("http://localhost:8080/", {
+        return axios.post("http://localhost:8080/bet-slip/save-editor-betslip", {}, {
             headers: {
                 Authorization: localStorage.getItem('token')
             },

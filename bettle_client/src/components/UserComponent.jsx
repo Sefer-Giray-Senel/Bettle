@@ -39,7 +39,7 @@ class UserComponent extends React.Component {
     render(){
         return (
             <div>
-                { this.props.getName() === "" ? (<Navigate push to="/"/>) : null }
+                { this.props.getName() === "" ? (<Navigate push to="/login"/>) : null }
                 <h1 className="text-center">Users List</h1>
                 <table className ="table table-striped">
                     <thead>

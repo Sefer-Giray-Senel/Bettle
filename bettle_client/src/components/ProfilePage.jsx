@@ -18,7 +18,7 @@ class ProfilePage extends React.Component {
 
     render() { 
         return (<div className="container mt-5">
-            { this.props.getName() === "" ? (<Navigate push to="/"/>) : null }
+            { this.props.getName() === "" ? (<Navigate push to="/login"/>) : null }
             <div className="row d-flex justify-content-center">
                 <div className="col-md-7">
                     <div className="card p-3 py-4">

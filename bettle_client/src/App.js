@@ -33,9 +33,9 @@ function App() {
     <div className="App">
       <NavBar setName={setName} getName={getName}/>
       <Routes>
-        <Route path='/home' element={<HomeComponent/>} />
+        <Route path='/' element={<HomeComponent/>} />
         <Route path='/users' element={<UserComponent getName={getName}/>} />
-        <Route path='/' element={<LoginComponent setName={setName} getName={getName}/>} />
+        <Route path='/login' element={<LoginComponent setName={setName} getName={getName}/>} />
         <Route path='/register' element={<RegisterComponent/>} />
         <Route path='/betslip' element={<BetslipPage getName={getName}/>} />
         <Route path='/feed' element={<FeedPage getName={getName}/>} />

@@ -42,12 +42,12 @@ function RegisterComponent (/*{setName,getName}*/) {
                     </select>
                 </div>
                 <div className="formbtn"><button className="loginbtn">Register</button>
-                    <Link className="registerbtn" to="/">Login</Link>
+                    <Link className="registerbtn" to="/login">Login</Link>
                 </div>
             </div>
             <div>{errmsg.message}</div>
             
-            { success.state ? (<Navigate push to="/"/>) : null }
+            { success.state ? (<Navigate push to="/login"/>) : null }
         </form>
             
     );

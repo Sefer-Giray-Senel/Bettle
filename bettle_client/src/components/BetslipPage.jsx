@@ -80,7 +80,7 @@ class BetslipPage extends React.Component {
     render() { 
         return (
         <div>
-            { this.props.getName() === "" ? (<Navigate push to="/"/>) : null }
+            { this.props.getName() === "" ? (<Navigate push to="/login"/>) : null }
             <div className="wrapper" style={{overflow: 'hidden'}}>
                 <div className="leftdiv">
                     <h4>Matches</h4>

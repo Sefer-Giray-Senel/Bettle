@@ -20,7 +20,7 @@ class BetsPage extends React.Component {
     render() { 
         return (
             <div>
-                { this.props.getName() === "" ? (<Navigate push to="/"/>) : null }
+                { this.props.getName() === "" ? (<Navigate push to="/login"/>) : null }
                 <ul className="list-group">
                     {this.state.betslips.map((betslip) => 
                     <li key={betslip.betSlipId}>
