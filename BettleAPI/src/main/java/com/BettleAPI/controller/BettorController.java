@@ -3,6 +3,7 @@ package com.BettleAPI.controller;
 import com.BettleAPI.entity.*;
 
 import com.BettleAPI.entity.compositeId.FriendId;
+import com.BettleAPI.entity.compositeId.SubscribeId;
 import com.BettleAPI.service.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ public class BettorController {
     private final FriendService friendService;
     private final SubscribeService subscribeService;
     private final SocialUserService socialUserService;
+    private final EditorService editorService;
 
     @GetMapping("/list")
     public List<Bettor> getBettors() {
@@ -59,7 +61,7 @@ public class BettorController {
         return bettorList;
     }
 
-    @GetMapping("subsribed-editors")
+    @GetMapping("subscribed-editors")
     public List<SocialUser> getSubscribedEditorIdsByBettorId(@RequestParam("bettor_id") int id) {
         List<Integer> editorIdList = subscribeService.findSubscribedEditorIdsByBettorId(id);
         List<SocialUser> editorList = new ArrayList<>();
@@ -90,5 +92,27 @@ public class BettorController {
 
         bettorService.findOneById(firstBettorId).setFriendCount(bettorService.findOneById(firstBettorId).getFriendCount() + 1);
         bettorService.findOneById(secondBettorId).setFriendCount(bettorService.findOneById(secondBettorId).getFriendCount() + 1); //increment friend count
+    }
+
+    @PostMapping("/remove-friend")
+    public void removeFriend(@RequestParam("user_id") int user_id, @RequestParam("friend_id") int friend_id){
+        FriendId friendId = new FriendId();
+        friendId.setFirstBettorId(user_id);
+        friendId.setSecondBettorId(friend_id);
+        friendService.delete(friendId);
+        friendId.setSecondBettorId(user_id);
+        friendId.setFirstBettorId(friend_id);
+        friendService.delete(friendId);
+        bettorService.findOneById(user_id).setFriendCount(bettorService.findOneById(user_id).getFriendCount() - 1);
+        bettorService.findOneById(friend_id).setFriendCount(bettorService.findOneById(friend_id).getFriendCount() - 1);
+    }
+
+    @PostMapping("/remove-subscribed-editor")
+    public void removeSubscribed(@RequestParam("user_id") int user_id, @RequestParam("editor_id") int editor_id){
+        SubscribeId subscribeId = new SubscribeId();
+        subscribeId.setBettorId(user_id);
+        subscribeId.setEditorId(editor_id);
+        subscribeService.delete(subscribeId);
+        editorService.findOneById(editor_id).setSubscriberCount(editorService.findOneById(editor_id).getSubscriberCount() - 1);
     }
 }
