@@ -45,6 +45,7 @@ public class EditorHasSlipRepository {
                 .getResultList();
     }
 
+    @Transactional
     public void deleteById(HasSlipId id) {
         entityManager.createNativeQuery("DELETE FROM editor_has_slip WHERE bet_slip_id = ? AND user_id = ?")
                 .setParameter(1, id.getBetSlipId())

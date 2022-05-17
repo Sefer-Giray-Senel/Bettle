@@ -39,12 +39,14 @@ public class BettorRepository {
                 .getSingleResult();
     }
 
+    @Transactional
     public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM bettor WHERE id = ?")
                 .setParameter(1, id)
                 .executeUpdate();
     }
 
+    @Transactional
     public void updateBettor(int id, int balance, int friend_count) {
         if (balance != -1) {
             entityManager.createQuery("update Bettor a set a.balance =?1 where a.id =?2")

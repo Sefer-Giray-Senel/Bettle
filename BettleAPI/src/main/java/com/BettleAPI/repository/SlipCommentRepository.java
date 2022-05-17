@@ -46,6 +46,7 @@ public class SlipCommentRepository {
                 .getResultList();
     }
 
+    @Transactional
     public void deleteById(PostLikeId id) {
         entityManager.createNativeQuery("DELETE FROM slip_comment WHERE bet_slip_post_id = ? AND user_id = ?")
                 .setParameter(1, id.getBetSlipPostId())

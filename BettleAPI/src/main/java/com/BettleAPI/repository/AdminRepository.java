@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.TransactionScoped;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,6 +39,7 @@ public class AdminRepository {
                 .getSingleResult();
     }
 
+    @Transactional
     public void updateAdmin(int id, String phoneNo) {
         if(phoneNo != "") {
             entityManager.createQuery("update Admin a set a.phoneNumber =?1 where a.id =?2")
@@ -47,6 +49,7 @@ public class AdminRepository {
         }
     }
 
+    @Transactional
     public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM admin WHERE id = ?")
                 .setParameter(1, id)

@@ -47,6 +47,7 @@ public class BansRepository {
                 .getSingleResult();
     }
 
+    @Transactional
     public void deleteById(BansId id) {
         entityManager.createNativeQuery("DELETE FROM bans WHERE admin_id = ? AND social_user_id = ?")
                 .setParameter(1, id.getAdminId())

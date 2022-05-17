@@ -39,12 +39,14 @@ public class BetSlipRepository {
                 .getSingleResult();
     }
 
+    @Transactional
     public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM bet_slip WHERE id = ?")
                 .setParameter(1, id)
                 .executeUpdate();
     }
 
+    @Transactional
     public void updateBetSlip(int id, double odd, boolean shared) {
         if (odd != -1) {
             entityManager.createQuery("update BetSlip a set a.odd =?1 where a.id =?2")

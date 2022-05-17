@@ -52,6 +52,7 @@ public class UserRepository {
         }
     }
 
+    @Transactional
     public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM user WHERE id = ?")
                 .setParameter(1, id)

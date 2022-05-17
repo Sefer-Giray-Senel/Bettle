@@ -49,12 +49,14 @@ public class BetRepository {
                 .getResultList();
     }
 
+    @Transactional
     public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM bet WHERE id = ?")
                 .setParameter(1, id)
                 .executeUpdate();
     }
 
+    @Transactional
     public void updateBet(int id, double odd) {
         if(odd != -1) {
             entityManager.createQuery("update Bet a set a.odd =?1 where a.id =?2")

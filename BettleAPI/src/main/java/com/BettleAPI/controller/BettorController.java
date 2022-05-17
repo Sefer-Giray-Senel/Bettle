@@ -115,6 +115,7 @@ public class BettorController {
         subscribeId.setBettorId(user_id);
         subscribeId.setEditorId(editor_id);
         subscribeService.delete(subscribeId);
+
         editorService.updateEditor(editor_id, editorService.findOneById(editor_id).getSubscriberCount() - 1, -1);
     }
 }

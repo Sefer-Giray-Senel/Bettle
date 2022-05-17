@@ -44,16 +44,18 @@ public class EditorRepository {
         }
     }
 
+    @Transactional
     public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM editor WHERE id = ?")
                 .setParameter(1, id)
                 .executeUpdate();
     }
 
-    public void updateEditor(int id, int subscriberCount, int successfulBetSlipCount){
-        if(subscriberCount!= -1) {
-            entityManager.createQuery("update Editor a set a.subscriberCount =?1 where a.id =?2")
-                    .setParameter(1, subscriberCount)
+    @Transactional
+    public void updateEditor(int id, int givenSubscriberCount, int successfulBetSlipCount){
+        if(givenSubscriberCount!= -1) {
+            entityManager.createQuery("update Editor set subscriberCount =?1 where id =?2")
+                    .setParameter(1, givenSubscriberCount)
                     .setParameter(2, id)
                     .executeUpdate();
         }
