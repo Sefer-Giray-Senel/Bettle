@@ -156,36 +156,49 @@ public class BetSlipPostController {
     public List<SlipComment> findCommentsBySlipPostId(@RequestParam("post_id") int id) {
         return slipCommentService.findCommentsBySlipPostId(id);
     }
-/*
+
     @GetMapping("/posted")
-    public List<BetSlipPostDto> getAllPostCommentsFromUserId(@RequestParam("user_id") int id) {
+    public List<BetSlipPostDto> getUserPosts(@RequestParam("user_id") int id) {
+        //editor check
+        boolean isEditor = false;
+        List<Editor> editors = editorService.findAll();
+        for (Editor e: editors)
+            if (e.getId() == id)
+                isEditor = true;
+
         List<Integer> betSlips = postedService.findAllBetSlipsByUserId(id);
 
         List<BetSlipPostDto> dtos = new ArrayList<>();
         for(int k : betSlips){
             List<Integer> betIds = displayService.findBetsByBetSlipId(k);
 
-            List<Bet> bets = new ArrayList<>();
-            for(int m: betIds)
-                bets.add(betService.findOneById(m));
+            List<BetDto> betDtos = new ArrayList<>();
+            for(int m: betIds) {
+                BetDto betDto = new BetDto();
+                betDto.getBet().setGameId(betService.findOneById(m).getGameId());
+                betDto.getBet().setMbn(betService.findOneById(m).getMbn());
+                betDto.getBet().setOdd(betService.findOneById(m).getOdd());
+                betDto.getBet().setTitle(betService.findOneById(m).getTitle());
+                betDto.setGame(gameService.findOneById(betService.findOneById(m).getGameId()));
 
+                betDtos.add(betDto);
+            }
             int betSlipPostId = postedService.findPostFromBetSlipId(k);
             String postText = betSlipPostService.findOneById(betSlipPostId).getPostText();
 
             BetSlipPostDto dto = new BetSlipPostDto();
-            dto.setBets(bets);
+            dto.setBets(betDtos);
             dto.setText(postText);
             dto.setBetSlipId(k);
             dto.setLikeCount(postLikeService.getLikeCountByBetSlipPostId(betSlipPostId));
 
             dto.setUserId(id);
             dto.setUsername(userService.findOneById(id).getUsername());
+            dto.setEditor(isEditor);
 
             dtos.add(dto);
         }
         return dtos;
     }
-
- */
 
 }
