@@ -115,9 +115,12 @@ public class UserController {
         for (SocialUser socialUser: socialUsers) {
             SocialUserDto socialUserDto = new SocialUserDto();
 
+            if (id == socialUser.getId())
+                continue;
+
             socialUserDto.setId(socialUser.getId());
             socialUserDto.setUsername(userService.findOneById(socialUser.getId()).getUsername());
-            
+
             socialUserDto.setEmail(socialUser.getEmail());
             socialUserDto.setFirstName(socialUser.getFirstName());
             socialUserDto.setGender(socialUser.getGender());
