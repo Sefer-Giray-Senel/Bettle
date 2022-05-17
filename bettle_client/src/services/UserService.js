@@ -38,7 +38,12 @@ class UserService{
                 params: {
                     username: details.username,
                     password: details.password,
-                    role: details.role
+                    role: details.role,
+                    firstname: details.firstname,
+                    lastname: details.lastname,
+                    gender: details.gender,
+                    email: details.email,
+                    nationality: details.nationality
                 }
             });
             return true;
