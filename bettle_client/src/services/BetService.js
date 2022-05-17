@@ -39,10 +39,10 @@ class BetService{
         });
     }
 
-    getBetSlips(){
-        return axios.get("http://localhost:8080/bet-slip/list-unshared", {
+    async getBetSlips(){
+        return await axios.get("http://localhost:8080/bet-slip/list-unshared", {
             headers: {
-            Authorization: localStorage.getItem('token')
+                Authorization: localStorage.getItem('token')
             },
             params: {
                 user_id: localStorage.getItem('id')

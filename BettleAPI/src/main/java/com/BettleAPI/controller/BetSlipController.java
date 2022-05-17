@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.NoResultException;
 import java.sql.Date;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -171,24 +172,32 @@ public class BetSlipController {
 
     @GetMapping("/list-unshared")
     public List<BetSlipDto> getUnsharedBetSlips(@RequestParam("user_id") int userId) {
-        List<BetSlip> unsharedBetSlipList = betSlipService.findBetSlipsByShared(userId, false);
-        List<BetSlipDto> betSlipDtoList = new ArrayList<>();
+        List<Integer> userBetSlipIds = bettorHasSlipService.findBetSlipIdByUserId(userId);
 
-        for (BetSlip k: unsharedBetSlipList) {
-            BetSlipDto betSlipDto = new BetSlipDto();
-
-            List<Display> displayList= displayService.findDisplaysByBetSlipId(k.getId());
-            List<Bet> betList = new ArrayList<>();
-            for (Display m: displayList) {
-                Bet tempBet = betService.findOneById(m.getId().getBetId());
-                tempBet.setOdd(m.getHasOdd());
-                betList.add(tempBet);
-            }
-            betSlipDto.setBetList(betList);
-            betSlipDto.setBetSlipId(k.getId());
-            betSlipDtoList.add(betSlipDto);
+        List<BetSlip> userBetSlipList = new ArrayList<>();
+        for(Integer m: userBetSlipIds){
+            userBetSlipList.add(betSlipService.findOneById(m));
         }
 
+
+        List<BetSlipDto> betSlipDtoList = new ArrayList<>();
+
+        for (BetSlip k: userBetSlipList) {
+            if(!k.isShared()){
+                BetSlipDto betSlipDto = new BetSlipDto();
+
+                List<Display> displayList= displayService.findDisplaysByBetSlipId(k.getId());
+                List<Bet> betList = new ArrayList<>();
+                for (Display m: displayList) {
+                    Bet tempBet = betService.findOneById(m.getId().getBetId());
+                    tempBet.setOdd(m.getHasOdd());
+                    betList.add(tempBet);
+                }
+                betSlipDto.setBetList(betList);
+                betSlipDto.setBetSlipId(k.getId());
+                betSlipDtoList.add(betSlipDto);
+            }
+        }
         return betSlipDtoList;
     }
 
