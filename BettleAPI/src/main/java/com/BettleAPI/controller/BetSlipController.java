@@ -1,5 +1,6 @@
 package com.BettleAPI.controller;
 
+import com.BettleAPI.dto.BetDto;
 import com.BettleAPI.dto.BetSlipDto;
 import com.BettleAPI.entity.*;
 import com.BettleAPI.entity.compositeId.DisplayId;
@@ -30,6 +31,7 @@ public class BetSlipController {
     private final BettorService bettorService;
     private final EditorHasSlipService editorHasSlipService;
     private final BettorHasSlipService bettorHasSlipService;
+    private final GameService gameService;
 
     @GetMapping("/show")
     public BetSlip getBetSlipById(@RequestParam("bet_slip_id") int id) {
@@ -187,11 +189,14 @@ public class BetSlipController {
                 BetSlipDto betSlipDto = new BetSlipDto();
 
                 List<Display> displayList= displayService.findDisplaysByBetSlipId(k.getId());
-                List<Bet> betList = new ArrayList<>();
+                List<BetDto> betList = new ArrayList<>();
                 for (Display m: displayList) {
                     Bet tempBet = betService.findOneById(m.getId().getBetId());
+                    BetDto tempBetDto = new BetDto();
                     tempBet.setOdd(m.getHasOdd());
-                    betList.add(tempBet);
+                    tempBetDto.setGame(gameService.findOneById(tempBet.getGameId()));
+                    tempBetDto.setBet(tempBet);
+                    betList.add(tempBetDto);
                 }
                 betSlipDto.setBetList(betList);
                 betSlipDto.setBetSlipId(k.getId());

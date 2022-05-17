@@ -1,6 +1,7 @@
 package com.BettleAPI.dto;
 
 import com.BettleAPI.entity.Bet;
+import com.BettleAPI.entity.Game;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class BetSlipDto {
-    List<BetDto> betList;
-    int betSlipId;
+public class BetDto {
+    Bet bet;
+    Game game;
 }
