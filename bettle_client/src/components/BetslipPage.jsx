@@ -73,6 +73,7 @@ class BetslipPage extends React.Component {
 
     createBetslip = () => {
         BetService.createBetslip(this.state.betslip.map(bet => bet.id));
+        window.location.reload(false);
     }
 
     render() { 
