@@ -87,5 +87,8 @@ public class BettorController {
         Friend friend2 = new Friend();
         friend2.setId(friendId2);
         friendService.save(friend2);
+
+        bettorService.findOneById(firstBettorId).setFriendCount(bettorService.findOneById(firstBettorId).getFriendCount() + 1);
+        bettorService.findOneById(secondBettorId).setFriendCount(bettorService.findOneById(secondBettorId).getFriendCount() + 1); //increment friend count
     }
 }
