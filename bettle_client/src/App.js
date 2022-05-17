@@ -35,7 +35,7 @@ function App() {
       <Routes>
         <Route path='/home' element={<HomeComponent/>} />
         <Route path='/users' element={<UserComponent getName={getName}/>} />
-        <Route path='/' element={<LoginComponent setName={setName}/>} />
+        <Route path='/' element={<LoginComponent setName={setName} getName={getName}/>} />
         <Route path='/register' element={<RegisterComponent/>} />
         <Route path='/betslip' element={<BetslipPage getName={getName}/>} />
         <Route path='/feed' element={<FeedPage getName={getName}/>} />

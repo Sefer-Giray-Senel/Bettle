@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import UserService from "../services/UserService";
 import "../css/login.css";
 
-function LoginComponent ({setName}) {
+function LoginComponent ({setName, getName}) {
 
     const [details, setDetails] = useState({username: "", password: ""});
     const [errmsg, setErrMsg] = useState({message : ""});
@@ -27,6 +27,7 @@ function LoginComponent ({setName}) {
 
     return (
         <form className="form-properties" onSubmit={handleLogin}>
+            { getName() !== "" ? (<Navigate push to="/home"/>) : null }
             <div className="form-inner">
                 <div className="form-group">
                     <label >Username: </label>

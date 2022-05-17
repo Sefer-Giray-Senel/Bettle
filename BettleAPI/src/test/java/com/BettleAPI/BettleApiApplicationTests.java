@@ -51,6 +51,30 @@ class BettleApiApplicationTests {
 		newBettor.setBalance(99999);
 		newBettor.setFriendCount(31);
 		bettorRepository.save(newBettor);
+
+		Date date = new Date(100);
+		Game newGame = new Game();
+		newGame.setFirstTeamName("GS");
+		newGame.setSecondTeamName("FB");
+		newGame.setId(1);
+		newGame.setDate(date);
+		gameRepository.save(newGame);
+
+		Bet newBet = new Bet();
+		newBet.setOdd(1.5);
+		newBet.setId(1);
+		newBet.setGameId(1);
+		newBet.setTitle("3.5 üst");
+		newBet.setMbn(1);
+		betRepository.save(newBet);
+
+		Bet newBet2 = new Bet();
+		newBet2.setOdd(2.8);
+		newBet2.setId(2);
+		newBet2.setGameId(1);
+		newBet2.setTitle("3.5 alt");
+		newBet2.setMbn(2);
+		betRepository.save(newBet2);
 	}
 }
 

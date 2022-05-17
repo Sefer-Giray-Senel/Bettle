@@ -39,6 +39,12 @@ public class PostLikeRepository {
                 .getSingleResult();
     }
 
+    public int getLikeCountByBetSlipPostId(int betSlipPostId) {
+        return entityManager.createQuery("select a from PostLike a where a.id.betSlipPostId =?1")
+                .setParameter(1, betSlipPostId)
+                .getResultList()
+                .size();
+    }
 /*    public List<Integer> findLikedPostsByUserId(int userId){
         return entityManager.createQuery("select a.id.betSlipPostId from PostLike a where a.id.userId =?1")
                 .setParameter(1, userId)
