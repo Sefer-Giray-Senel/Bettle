@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 @EqualsAndHashCode()
 @Data
 @AllArgsConstructor
+
 @NoArgsConstructor
 @Entity
 public class Posted {

@@ -2,8 +2,10 @@ package com.BettleAPI;
 
 import com.BettleAPI.entity.*;
 import com.BettleAPI.entity.compositeId.BansId;
+import com.BettleAPI.entity.compositeId.FriendId;
 import com.BettleAPI.entity.compositeId.HasSlipId;
 import com.BettleAPI.repository.*;
+import com.BettleAPI.service.FriendService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
@@ -27,54 +29,26 @@ class BettleApiApplicationTests {
 	private final BettorHasSlipRepository bettorHasSlipRepository;
 	private final SocialUserRepository socialUserRepository;
 	private final BettorRepository bettorRepository;
+	private final FriendRepository friendRepository;
 
 	@Test
 	public void insertUser() {
-		User newUser = new User();
-		newUser.setId(190);
-		newUser.setPassword("123");
-		newUser.setUsername("usmanyilmaz");
-		userRepository.save(newUser);
 
-		SocialUser newSocialUser = new SocialUser();
-		newSocialUser.setNationality("Turk");
-		newSocialUser.setLastName("yilmaz");
-		newSocialUser.setFirstName("osman");
-		newSocialUser.setBanned(false);
-		newSocialUser.setEmail("deneme1@email.com");
-		newSocialUser.setGender("adam gibi adam");
-		newSocialUser.setId(newUser.getId());
-		socialUserRepository.save(newSocialUser);
+		//Friend newFriendship = new Friend();
+		//FriendId friendId = new FriendId();
+		//friendId.setFirstBettorId(1407770411);
+		//friendId.setSecondBettorId(757819306);
+		//newFriendship.setId(friendId);
+		//friendRepository.save(newFriendship);
+/*
+		Friend newFriendship1 = new Friend();
+		FriendId friendId1 = new FriendId();
+		friendId1.setSecondBettorId(1407770411);
+		friendId1.setFirstBettorId(757819306);
+		newFriendship1.setId(friendId1);
+		friendRepository.save(newFriendship1);
+*/
 
-		Bettor newBettor = new Bettor();
-		newBettor.setId(newUser.getId());
-		newBettor.setBalance(99999);
-		newBettor.setFriendCount(31);
-		bettorRepository.save(newBettor);
-
-		Date date = new Date(100);
-		Game newGame = new Game();
-		newGame.setFirstTeamName("GS");
-		newGame.setSecondTeamName("FB");
-		newGame.setId(1);
-		newGame.setDate(date);
-		gameRepository.save(newGame);
-
-		Bet newBet = new Bet();
-		newBet.setOdd(1.5);
-		newBet.setId(1);
-		newBet.setGameId(1);
-		newBet.setTitle("3.5 üst");
-		newBet.setMbn(1);
-		betRepository.save(newBet);
-
-		Bet newBet2 = new Bet();
-		newBet2.setOdd(2.8);
-		newBet2.setId(2);
-		newBet2.setGameId(1);
-		newBet2.setTitle("3.5 alt");
-		newBet2.setMbn(2);
-		betRepository.save(newBet2);
 	}
 }
 

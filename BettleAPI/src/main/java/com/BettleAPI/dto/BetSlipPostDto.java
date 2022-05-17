@@ -17,4 +17,7 @@ public class BetSlipPostDto {
     String text;
     int betSlipId;
     int likeCount;
+
+    String username;
+    int userId;
 }
