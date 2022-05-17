@@ -179,6 +179,7 @@ public class BetSlipPostController {
                 betDto.getBet().setMbn(betService.findOneById(m).getMbn());
                 betDto.getBet().setOdd(betService.findOneById(m).getOdd());
                 betDto.getBet().setTitle(betService.findOneById(m).getTitle());
+
                 betDto.setGame(gameService.findOneById(betService.findOneById(m).getGameId()));
 
                 betDtos.add(betDto);

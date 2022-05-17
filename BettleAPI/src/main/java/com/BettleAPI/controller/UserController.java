@@ -56,7 +56,9 @@ public class UserController {
 
     @PostMapping("/register")
     public void register(@RequestParam("username") String username, @RequestParam("password") String pwd,
-                         @RequestParam("role") String role) {
+                         @RequestParam("role") String role, @RequestParam("firstname") String firstname,
+                         @RequestParam("lastname") String lastname, @RequestParam("email") String email,
+                         @RequestParam("gender") String gender, @RequestParam("nationality") String nationality) {
 
         Random rd = new Random();
         int upperbound = Integer.MAX_VALUE;
@@ -81,11 +83,11 @@ public class UserController {
         SocialUser newSocialUser = new SocialUser();
         newSocialUser.setId(user.getId());
         newSocialUser.setBanned(false);
-        newSocialUser.setEmail("");
-        newSocialUser.setGender("");
-        newSocialUser.setFirstName("");
-        newSocialUser.setLastName("");
-        newSocialUser.setNationality("");
+        newSocialUser.setEmail(email);
+        newSocialUser.setGender(gender);
+        newSocialUser.setFirstName(firstname);
+        newSocialUser.setLastName(lastname);
+        newSocialUser.setNationality(nationality);
         socialUserService.save(newSocialUser);
 
         if(role.equals("editor")) {
