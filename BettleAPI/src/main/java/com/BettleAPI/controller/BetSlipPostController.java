@@ -102,13 +102,15 @@ public class BetSlipPostController {
             List<Bet> bets = new ArrayList<>();
             for(int m: betIds)
                 bets.add(betService.findOneById(m));
-            
-            String postText = betSlipPostService.findOneById(postedService.findPostFromBetSlipId(k)).getPostText();
+
+            int betSlipPostId = postedService.findPostFromBetSlipId(k);
+            String postText = betSlipPostService.findOneById(betSlipPostId).getPostText();
 
             BetSlipPostDto dto = new BetSlipPostDto();
             dto.setBets(bets);
             dto.setText(postText);
             dto.setBetSlipId(k);
+            dto.setLikeCount(postLikeService.getLikeCountByBetSlipPostId(betSlipPostId));
 
             dtos.add(dto);
         }
