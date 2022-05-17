@@ -37,10 +37,10 @@ function App() {
         <Route path='/users' element={<UserComponent getName={getName}/>} />
         <Route path='/' element={<LoginComponent setName={setName}/>} />
         <Route path='/register' element={<RegisterComponent/>} />
-        <Route path='/betslip' element={<BetslipPage/>} />
-        <Route path='/feed' element={<FeedPage/>} />
-        <Route path='/profile' element={<ProfilePage/>} />
-        <Route path='/bets' element={<BetsPage/>} />
+        <Route path='/betslip' element={<BetslipPage getName={getName}/>} />
+        <Route path='/feed' element={<FeedPage getName={getName}/>} />
+        <Route path='/profile' element={<ProfilePage getName={getName}/>} />
+        <Route path='/bets' element={<BetsPage getName={getName}/>} />
       </Routes>
     </div>
   );

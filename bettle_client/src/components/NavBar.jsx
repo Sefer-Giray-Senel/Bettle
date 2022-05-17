@@ -10,10 +10,10 @@ function NavBar({setName,getName}){
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-                {(getName() === "") ? "" : 
-                <div className="navbar-nav">
                   <NavLink to="/" className="nav-links">Bettle</NavLink>
                   <NavLink to="/home" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Home</NavLink>
+                {(getName() === "") ? "" : 
+                <div className="navbar-nav">
                     <NavLink to="/users" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Users</NavLink>
                     <NavLink to="/profile" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Profile</NavLink>
                     <NavLink to="/betslip" className={(navData)=> navData.isActive ? "nav-links-active" : "nav-links"}>Bet Now</NavLink>

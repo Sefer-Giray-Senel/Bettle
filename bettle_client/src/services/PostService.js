@@ -12,6 +12,19 @@ class PostService{
         });
     }
 
+    createPost(caption, betSlipId){
+        return axios.post("http://localhost:8080/feed/share-bet-slip", {}, {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            },
+            params: {
+                bet_slip_id: betSlipId,
+                user_id: localStorage.getItem('id'),
+                post_text: caption
+            }
+        });
+    }
+
     getFeed(){
         return axios.get("http://localhost:8080/", {
             headers: {
