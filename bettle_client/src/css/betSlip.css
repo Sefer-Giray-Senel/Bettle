@@ -1,0 +1,25 @@
+.wrapper {
+    min-width: 1200px;
+    margin-top: 30px;
+}
+
+.leftdiv {
+    float: left;
+    min-width: 300px;
+    width: 33%;
+
+}
+
+.middiv {
+    float: left;
+    min-width: 300px;
+    width: 33%;
+
+}
+
+.rightdiv {
+    float: left;
+    min-width: 300px;
+    width: 33%;
+
+}

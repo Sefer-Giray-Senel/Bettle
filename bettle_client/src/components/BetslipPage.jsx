@@ -1,5 +1,6 @@
 import React from "react";
 import BetService from "../services/BetService";
+import "../css/betSlip.css";
 
 class BetslipPage extends React.Component {
     state = { 
@@ -77,21 +78,20 @@ class BetslipPage extends React.Component {
     render() { 
         return (
         <div>
-            Betslip Page
-            <div style={{overflow: 'hidden'}}>
-                <div className="list-group">
-                    <h3>Matches</h3>
+            <div className="wrapper" style={{overflow: 'hidden'}}>
+                <div className="leftdiv">
+                    <h4>Matches</h4>
                     {this.state.matches.map(match => <button type="button" onClick={() => this.getBets(match)}
                         className={this.state.activeId === match.id ? "list-group-item list-group-item-action active" : 
                         "list-group-item list-group-item-action"} key={match.id}>{match.firstTeamName} - {match.secondTeamName} ({match.date})</button>)}
                 </div>
-                <div className="list-group">
-                    <h3>Bets</h3>
+                <div className="middiv">
+                    <h4>Bets</h4>
                     {this.state.bets.map(bet => <button type="button" onClick={() => this.addBet(bet)}
                         className="list-group-item list-group-item-action" key={bet.id}>{bet.title}</button>)}
                 </div>
-                <div>
-                    <h3>Your Betslip</h3>
+                <div className="rightdiv">
+                    <h4>Your Betslip</h4>
                     <ul className="list-group list-group-flush">
                         {this.state.betslip.map(bet => <li className="list-group-item" key={bet.id}>{bet.match} - {bet.title} - MBN: {bet.mbn} ... 
                             <button type="button" onClick={() => this.removeBet(bet)} className="btn btn-danger">X</button></li>)}
