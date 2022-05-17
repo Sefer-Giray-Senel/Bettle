@@ -51,6 +51,7 @@ public class SubscribeRepository {
                 .getResultList();
     }
 
+    @Transactional
     public void deleteById(SubscribeId id) {
         entityManager.createNativeQuery("DELETE FROM subscribe WHERE bettor_id = ? AND editor_id = ?")
                 .setParameter(1, id.getBettorId())

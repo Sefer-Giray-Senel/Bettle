@@ -18,30 +18,22 @@ class UserComponent extends React.Component {
 
     handleAddFriend = (bettorId) => {
         UserService.addFriend(bettorId);
-        UserService.getUsers().then((response) => {
-            this.setState({users : response.data})
-        });
+        window.location.reload(false);
     }
 
     handleRemoveFriend = (bettorId) => {
         UserService.removeFriend(bettorId);
-        UserService.getUsers().then((response) => {
-            this.setState({users : response.data})
-        });
+        window.location.reload(false);
     }
 
     handleSubscribe = (editorId) => {
         UserService.subscribe(editorId);
-        UserService.getUsers().then((response) => {
-            this.setState({users : response.data})
-        });
+        window.location.reload(false);
     }
 
     handleUnsubscribe = (editorId) => {
         UserService.unsubscribe(editorId);
-        UserService.getUsers().then((response) => {
-            this.setState({users : response.data})
-        });
+        window.location.reload(false);
     }
 
     render(){

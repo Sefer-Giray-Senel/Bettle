@@ -88,7 +88,7 @@ public class UserController {
         newSocialUser.setNationality("");
         socialUserService.save(newSocialUser);
 
-        if(role.equals("EDITOR")) {
+        if(role.equals("editor")) {
             Editor newEditor = new Editor();
             newEditor.setSubscriberCount(0);
             newEditor.setSuccessfulBetSlipCount(0);
