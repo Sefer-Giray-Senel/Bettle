@@ -24,9 +24,9 @@ class BetsPage extends React.Component {
                 <ul className="list-group">
                     {this.state.betslips.map((betslip) => 
                     <li key={betslip.betSlipId}>
-                        <a href="#">{betslip.betSlipId}</a>
                         <ul className="list-group">
-                            {betslip.betList.map((bet) => <li className="list-group-item" key={bet.id}>{bet.title}</li>)}
+                            {betslip.betList.map((bet) => <li className="list-group-item" key={bet.bet.id}>
+                            {bet.game.firstTeamName} - {bet.game.secondTeamName} ( {bet.game.date} ) {bet.bet.title}</li>)}
                         </ul>
                         
                         { betslip.betSlipId !== this.state.shareId ? <button onClick={() => this.setState({shareId:betslip.betSlipId})}>Share</button>

@@ -175,13 +175,10 @@ public class BetSlipPostController {
             List<BetDto> betDtos = new ArrayList<>();
             for(int m: betIds) {
                 BetDto betDto = new BetDto();
-                betDto.getBet().setGameId(betService.findOneById(m).getGameId());
-                betDto.getBet().setMbn(betService.findOneById(m).getMbn());
-                betDto.getBet().setOdd(betService.findOneById(m).getOdd());
-                betDto.getBet().setTitle(betService.findOneById(m).getTitle());
 
                 betDto.setGame(gameService.findOneById(betService.findOneById(m).getGameId()));
 
+                betDto.setBet(betService.findOneById(m));
                 betDtos.add(betDto);
             }
             int betSlipPostId = postedService.findPostFromBetSlipId(k);
