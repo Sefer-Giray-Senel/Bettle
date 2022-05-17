@@ -1,19 +1,22 @@
 import React from "react";
 import "../css/profilePage.css";
+import BetService from "../services/BetService";
 
 class BetsPage extends React.Component {
-    state = {  } 
+    state = { betslips: [] } 
+
+    componentDidMount(){
+        BetService.getBetSlips().then((response) => this.setState({betslips:response.data}));
+    }
+
     render() { 
         return (
             <ul className="list-group">
-                {this.state.posts.map((post) => 
-                <li key={post.id}>
-                    <p className="fonts2">{post.text}</p>
-                    <a href="#">
-                    <img src="https://i.imgur.com/bDLhJiP.jpg" width="350px" height="150"/>
-                    </a>
+                {this.state.betslips.map((betslip) => 
+                <li key={betslip.id}>
+                    <a href="#">Click</a>
                     <ul className="list-group">
-                        {post.map((bet) => <li className="list-group-item" key={bet.id}>{bet.title}</li>)}
+                        {betslip.map((bet) => <li className="list-group-item" key={bet.id}>{bet.title}</li>)}
                     </ul>
                 </li>
                 )} 

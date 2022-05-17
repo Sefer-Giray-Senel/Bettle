@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/profilePage.css";
 import UserService from "../services/UserService";
-import BetService from "../services/BetService";
+import PostService from "../services/PostService";
 
 class ProfilePage extends React.Component {
     state = { 
@@ -11,7 +11,7 @@ class ProfilePage extends React.Component {
     
     componentDidMount(){
         UserService.getUser().then((response) => this.setState({user:response.data}));
-        BetService.getPosts().then((response) => this.setState({posts:response.data}));
+        PostService.getPosts().then((response) => this.setState({posts:response.data}));
     }
 
 
@@ -21,11 +21,11 @@ class ProfilePage extends React.Component {
                 <div className="col-md-7">
                     <div className="card p-3 py-4">
                         <div className="text-center">
-                            <h5 className="mt-2 mb-0">{this.state.user.username}</h5>
+                            <h5 className="mt-2 mb-0">{this.state.user.firstName} {this.state.user.lastName}</h5>
                         </div>
 
                         <div className="text-center mt-3">
-                            <span>nationality</span>
+                            <span>Nationality: {this.state.user.nationality}</span>
                             <div className="px-4 mt-1">
                                 <p className="fonts">{this.state.user.email}</p>
                             </div>

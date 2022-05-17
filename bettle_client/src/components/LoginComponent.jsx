@@ -36,9 +36,10 @@ function LoginComponent ({setName}) {
                     <label>Password: </label>
                     <input type="password" name="password" id="password" onChange={e => setDetails({...details, password: e.target.value})} value={details.password}/>
                 </div>
-                <button className="loginbtn">Log in</button>
+                <div className="formbtn"><button className="loginbtn">Log in</button>
+                    <Link className="registerbtn" to="/register">Register</Link>
+                </div>
             </div>
-            <Link to="/register">Register</Link>
             <div>{errmsg.message}</div>
         </form>
     );

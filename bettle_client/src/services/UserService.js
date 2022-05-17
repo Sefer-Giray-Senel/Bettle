@@ -48,7 +48,14 @@ class UserService{
 
     
     getUser(){
-        return axios.get("http://localhost:8080/register");
+        return axios.get("http://localhost:8080/social-user/profile", {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            },
+            params: {
+                social_user_id: localStorage.getItem('id')
+            } 
+        });
     }
 
 }

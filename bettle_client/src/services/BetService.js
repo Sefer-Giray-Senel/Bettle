@@ -9,7 +9,7 @@ class BetService{
         });
     }
 
-    async getBets(matchId){
+    async getBetsByMatch(matchId){
         const response = await axios.get("http://localhost:8080/bet/list-by-game", {
             headers: {
                 Authorization: localStorage.getItem('token')
@@ -23,17 +23,24 @@ class BetService{
 
     createBetslip(bets){
         console.log(bets);
-        return axios.post("http://localhost:8080/bet-slip?user_id=" + localStorage.getItem('id') + 
-            "&" + bets.map((n) => `bets=${n}`).join('&'), {
+        const qs = require('qs');
+
+        return axios.post("http://localhost:8080/bet-slip", {}, {
             headers: {
                 Authorization: localStorage.getItem('token')
+            },
+            params: {
+                user_id: localStorage.getItem('id'),
+                bets: bets
+            },
+            paramsSerializer: params => {
+                return qs.stringify(params, { arrayFormat: 'repeat' })
             }
         });
-        //"http://localhost:8080/bet-slip?user_id=" + localStorage.getItem('id') + "&" + bets.map((n, index) => `bets[${index}]=${n}`).join('&')
     }
 
-    getBetslips(){
-        return axios.get("http://localhost:8080/match", {
+    getBetSlips(){
+        return axios.get("http://localhost:8080/bet-slip/list-unshared", {
             headers: {
             Authorization: localStorage.getItem('token')
             },

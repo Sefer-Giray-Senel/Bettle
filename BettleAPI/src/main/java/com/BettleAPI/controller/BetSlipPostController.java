@@ -25,10 +25,22 @@ public class BetSlipPostController {
     private final PostedService postedService;
     private final DisplayService displayService;
     private final BetService betService;
+    private final FriendService friendService;
+    private final SocialUserService socialUserService;
 
     @GetMapping()
-    public List<BetSlipPost> getBetSlipPosts() {
-        return betSlipPostService.findAll();
+    public List<BetSlipPost> getBetSlipPostsOfFriends(@RequestParam("user_id") int userId) {
+        List<Integer> friendIdList = friendService.findFriendsByUserId(userId);
+        List<BetSlipPost> betSlipPosts = new ArrayList<>();
+
+        for (int k: friendIdList) {
+            List<Integer> betSlipIdPostList = postedService.findAllBetSlipPostsByUserId(k);
+
+            for (int m: betSlipIdPostList)
+                betSlipPosts.add(betSlipPostService.findOneById(m));
+        }
+
+        return betSlipPosts;
     }
 
     @GetMapping("/show")
