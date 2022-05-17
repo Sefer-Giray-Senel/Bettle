@@ -20,10 +20,13 @@ class FeedPage extends React.Component {
             <ul className="list-group">
                 {this.state.posts.map((post) =>
                 <li key={post.betSlipId}>
-                    <a href="#">{post.betSlipId}</a>
                     <ul className="list-group">
-                        {post.bets.map((bet) => <li className="list-group-item" key={bet.id}>{bet.title}</li>)}
+                        {post.bets.map((bet) => <li className="list-group-item" key={bet.bet.id}>
+                            {bet.game.firstTeamName} - {bet.game.secondTeamName} ( {bet.game.date} ) {bet.bet.title}</li>)}
                     </ul>
+                    <p className="font-weight-bold">{post.username}</p>
+                    <p className="font-weight-normal">{post.text}</p>
+                    <span className="badge badge-pill badge-primary">{post.likeCount} likes</span>
                 </li>
                 )} 
             </ul>

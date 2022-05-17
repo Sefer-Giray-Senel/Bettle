@@ -56,6 +56,7 @@ class UserService{
                 Authorization: localStorage.getItem('token')
             },
             params: {
+                user_id: localStorage.getItem('id'),
                 social_user_id: localStorage.getItem('id')
             } 
         });
