@@ -3,6 +3,7 @@ import "../css/profilePage.css";
 import { Navigate } from "react-router-dom";
 import BetService from "../services/BetService";
 import ShareComponent from "./ShareComponent";
+import "../css/bets.css";
 
 class BetsPage extends React.Component {
     state = { 
@@ -19,17 +20,17 @@ class BetsPage extends React.Component {
 
     render() { 
         return (
-            <div>
+            <div id="betsList">
                 { this.props.getName() === "" ? (<Navigate push to="/login"/>) : null }
                 <ul className="list-group">
                     {this.state.betslips.map((betslip) => 
-                    <li key={betslip.betSlipId}>
+                    <li className="betsOverrideList" key={betslip.betSlipId}>
                         <ul className="list-group">
                             {betslip.betList.map((bet) => <li className="list-group-item" key={bet.bet.id}>
                             {bet.game.firstTeamName} - {bet.game.secondTeamName} ( {bet.game.date} ) {bet.bet.title}</li>)}
                         </ul>
                         
-                        { betslip.betSlipId !== this.state.shareId ? <button onClick={() => this.setState({shareId:betslip.betSlipId})}>Share</button>
+                        { betslip.betSlipId !== this.state.shareId ? <button className="shareBtn" onClick={() => this.setState({shareId:betslip.betSlipId})}>Share</button>
                             : <ShareComponent betSlipId={betslip.betSlipId}/>}
                     </li>
                     )} 

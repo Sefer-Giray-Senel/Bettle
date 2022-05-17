@@ -1,0 +1,21 @@
+#betsList {
+    width: 40%;
+    min-width: 350px;
+    margin: auto;
+}
+
+.shareBtn {
+    color: 4E4E4E;
+    border-radius: 5px;
+    border-color: #d0d0d0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.list-group {
+    list-style: none;
+}
+
+.betsOverrideList {
+    
+}
