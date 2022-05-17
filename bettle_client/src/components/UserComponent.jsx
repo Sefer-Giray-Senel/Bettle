@@ -1,6 +1,7 @@
 import React from "react";
 import UserService from "../services/UserService";
 import { Navigate } from "react-router-dom";
+import "../css/user.css";
 
 class UserComponent extends React.Component {
     constructor(props){
@@ -62,7 +63,7 @@ class UserComponent extends React.Component {
                                             :
                                             <div>{ user.friend ? 
                                                 <button onClick={() => this.handleRemoveFriend(user.id)}>Remove Friend</button>
-                                                : <button onClick={() => this.handleAddFriend(user.id)}>Add Friend{user.isFriend}</button>
+                                                : <button className="addFriendBtn" onClick={() => this.handleAddFriend(user.id)}>Add Friend{user.isFriend}</button>
                                             }</div>
                                         }
                                     </td>

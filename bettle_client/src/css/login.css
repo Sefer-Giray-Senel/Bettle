@@ -40,7 +40,28 @@
     margin-left: 12px;
 }
 
+#firstname {
+    margin-left: 12px;
+}
+
+#lastname {
+    margin-left: 14px;
+}
+
+#gender {
+    margin-left: 26px;
+}
+
+#nationality {
+    margin-left: 2px;
+}
+
+#email {
+    margin-left: 40px;
+}
+
 .formbtn {
     margin-top: 20px;
 }
+
 
