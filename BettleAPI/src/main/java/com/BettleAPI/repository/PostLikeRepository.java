@@ -57,7 +57,7 @@ public class PostLikeRepository {
                 .getResultList();
     }
 
-
+    @Transactional
     public void deleteById(PostLikeId id) {
         entityManager.createNativeQuery("DELETE FROM post_like WHERE bet_slip_post_id = ? AND user_id = ?")
                 .setParameter(1, id.getBetSlipPostId())

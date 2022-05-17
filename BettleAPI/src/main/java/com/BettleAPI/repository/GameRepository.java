@@ -43,6 +43,7 @@ public class GameRepository {
                 .getSingleResult();
     }
 
+    @Transactional
     public void updateGame(int id, Date date) {
         if(date != null) {
             entityManager.createQuery("update Game a set a.date =?1 where a.id =?2")
@@ -52,6 +53,7 @@ public class GameRepository {
         }
     }
 
+    @Transactional
     public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM game WHERE id = ?")
                 .setParameter(1, id)

@@ -48,6 +48,7 @@ public class BetSlipPostRepository {
                 .getSingleResult();
     }
 
+    @Transactional
     public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM bet_slip_post WHERE id = ?")
                 .setParameter(1, id)

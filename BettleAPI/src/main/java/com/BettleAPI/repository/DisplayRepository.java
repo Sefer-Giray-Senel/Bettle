@@ -53,6 +53,7 @@ public class DisplayRepository {
         return query.getResultList();
     }
 
+    @Transactional
     public void deleteById(DisplayId id) {
         entityManager.createNativeQuery("DELETE FROM display WHERE bet_id = ? AND bet_slip_id = ?")
                 .setParameter(1, id.getBetId())

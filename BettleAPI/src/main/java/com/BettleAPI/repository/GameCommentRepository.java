@@ -46,6 +46,7 @@ public class GameCommentRepository {
                 .getResultList();
     }
 
+    @Transactional
     public void deleteById(GameCommentId id) {
         entityManager.createNativeQuery("DELETE FROM game_comment WHERE match_id = ? AND user_id = ?")
                 .setParameter(1, id.getMatchId())

@@ -79,6 +79,7 @@ public class SocialUserRepository {
         }
     }
 
+    @Transactional
     public void deleteById(int id) {
         entityManager.createNativeQuery("DELETE FROM social_user WHERE id = ?")
                 .setParameter(1, id)
