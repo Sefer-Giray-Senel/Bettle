@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import PostService from "../services/PostService";
+import BetService from "../services/BetService";
 
 class FeedPage extends React.Component {
     state = { 
@@ -11,6 +12,10 @@ class FeedPage extends React.Component {
         PostService.getFeed().then((response) => this.setState({posts:response.data}, function() {
             console.log(this.state)
         }));
+    }
+
+    handlePlay = (slipId) => {
+        BetService.playEditorBet(slipId);
     }
     
     render() {
@@ -27,6 +32,7 @@ class FeedPage extends React.Component {
                     <p className="font-weight-bold">{post.username}</p>
                     <p className="font-weight-normal">{post.text}</p>
                     <span className="badge badge-pill badge-primary">{post.likeCount} likes</span>
+                    { post.editor ? <button onClick={() => this.handlePlay(post.betSlipId)}>Play</button> : "" }
                 </li>
                 )} 
             </ul>

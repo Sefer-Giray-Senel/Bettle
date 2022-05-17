@@ -49,6 +49,18 @@ class BetService{
             }
         });
     }
+
+    playEditorBet(slipId){
+        return axios.get("http://localhost:8080/", {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            },
+            params: {
+                user_id: localStorage.getItem('id'),
+                slipId: slipId
+            }
+        });
+    }
 }
 
 export default new BetService();
