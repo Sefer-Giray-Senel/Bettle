@@ -23,6 +23,7 @@ public class SocialUserController {
     private final BettorService bettorService;
     private final SubscribeService subscribeService;
     private final FriendService friendService;
+    private final UserService userService;
 
     @GetMapping("/list")
     public List<SocialUser> getSocialUsers() {
@@ -33,6 +34,9 @@ public class SocialUserController {
     public SocialUserDto getSocialUserById(@RequestParam("social_user_id") int socialUserId, @RequestParam("user_id") int id) {
         SocialUser socialUser = socialUserService.findOneById(socialUserId);
         SocialUserDto socialUserDto = new SocialUserDto();
+
+        socialUserDto.setId(socialUserId);
+        socialUserDto.setUsername(userService.findOneById(socialUserId).getUsername());
 
         socialUserDto.setEmail(socialUser.getEmail());
         socialUserDto.setFirstName(socialUser.getFirstName());
