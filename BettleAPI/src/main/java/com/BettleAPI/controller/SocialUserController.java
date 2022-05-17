@@ -22,6 +22,7 @@ public class SocialUserController {
     private final EditorService editorService;
     private final BettorService bettorService;
     private final SubscribeService subscribeService;
+    private final FriendService friendService;
 
     @GetMapping("/list")
     public List<SocialUser> getSocialUsers() {
@@ -29,8 +30,8 @@ public class SocialUserController {
     }
 
     @GetMapping("/profile")
-    public SocialUserDto getSocialUserById(@RequestParam("social_user_id") int id) {
-        SocialUser socialUser = socialUserService.findOneById(id);
+    public SocialUserDto getSocialUserById(@RequestParam("social_user_id") int socialUserId, @RequestParam("user_id") int id) {
+        SocialUser socialUser = socialUserService.findOneById(socialUserId);
         SocialUserDto socialUserDto = new SocialUserDto();
 
         socialUserDto.setEmail(socialUser.getEmail());
@@ -39,22 +40,40 @@ public class SocialUserController {
         socialUserDto.setLastName(socialUser.getLastName());
         socialUserDto.setNationality(socialUser.getNationality());
         
-        Editor editor = editorService.findOneById(id);
+        Editor editor = editorService.findOneById(socialUserId);
         if (editor != null) {
             socialUserDto.setEditor(true);
             socialUserDto.setBalance(-1);
             socialUserDto.setFriendCount(-1);
             socialUserDto.setSubscriberCount(editor.getSubscriberCount());
             socialUserDto.setSuccessfulBetSlipCount(editor.getSuccessfulBetSlipCount());
+
+            socialUserDto.setFriend(false); //doesn't matter
+
+            List<Integer> subscribedIds = subscribeService.findSubscribedIdsByEditorId(socialUserId);
+            boolean subscribed = false;
+            for (int k: subscribedIds)
+                if (k == id)
+                    subscribed = true;
+
+            socialUserDto.setSubscribed(subscribed);
         }
         else {
-            Bettor bettor = bettorService.findOneById(id);
+            Bettor bettor = bettorService.findOneById(socialUserId);
 
             socialUserDto.setEditor(false);
             socialUserDto.setBalance(bettor.getBalance());
             socialUserDto.setFriendCount(bettor.getFriendCount());
             socialUserDto.setSubscriberCount(-1);
             socialUserDto.setSuccessfulBetSlipCount(-1);
+
+            socialUserDto.setSubscribed(false); //doesn't matter
+            List<Integer> friendIds = friendService.findFriendsByUserId(socialUserId);
+            boolean isFriend = false;
+            for (int k: friendIds)
+                if (k == id)
+                    isFriend = true;
+            socialUserDto.setFriend(isFriend);
         }
 
         return socialUserDto;
