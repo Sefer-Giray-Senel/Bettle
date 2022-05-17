@@ -12,8 +12,7 @@ class FeedPage extends React.Component {
             console.log(this.state)
         }));
     }
-    //{ betslip.betSlipId !== this.state.shareId ? <button onClick={() => this.setState({shareId:betslip.betSlipId})}>Share</button>
-    //: <ShareComponent betSlipId={betslip.betSlipId}/>}
+    
     render() {
         return (
         <div>
@@ -25,8 +24,6 @@ class FeedPage extends React.Component {
                     <ul className="list-group">
                         {post.bets.map((bet) => <li className="list-group-item" key={bet.id}>{bet.title}</li>)}
                     </ul>
-                    
-                    
                 </li>
                 )} 
             </ul>

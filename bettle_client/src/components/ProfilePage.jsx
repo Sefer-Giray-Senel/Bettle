@@ -34,7 +34,7 @@ class ProfilePage extends React.Component {
 
                             <ul className="list-group">
                                 {this.state.posts.map((post) => 
-                                <li key={post.id}>
+                                <li key={post.betSlipId}>
                                     <p className="fonts2">{post.text}</p>
                                     <a href="#">
                                     <img src="https://i.imgur.com/bDLhJiP.jpg" width="350px" height="150"/>

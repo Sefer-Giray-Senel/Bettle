@@ -70,9 +70,9 @@ public class PostedRepository {
     }
 
     public Posted findPostedByBetSlipPostIdAndUserId(int givenBetSlipPostId, int givenUserId){
-        return entityManager.createQuery("select a from Posted a where a.id.userId =?1 and a.id.betSlipPostId =?3", Posted.class)
+        return entityManager.createQuery("select a from Posted a where a.id.userId =?1 and a.id.betSlipPostId =?2", Posted.class)
                 .setParameter(1, givenUserId)
-                .setParameter(3,givenBetSlipPostId)
+                .setParameter(2,givenBetSlipPostId)
                 .getSingleResult();
     }
 }

@@ -26,7 +26,7 @@ class PostService{
     }
 
     getFeed(){
-        return axios.get("http://localhost:8080/feed/posted", {
+        return axios.get("http://localhost:8080/feed", {
             headers: {
             Authorization: localStorage.getItem('token')
             },
