@@ -12,7 +12,6 @@ class ProfilePage extends React.Component {
     componentDidMount(){
         UserService.getUser().then((response) => this.setState({user:response.data}));
         PostService.getPosts().then((response) => this.setState({posts:response.data}));
-        console.log(this.state.user);
     }
 
 
@@ -22,7 +21,7 @@ class ProfilePage extends React.Component {
                 <div className="col-md-7">
                     <div className="card p-3 py-4">
                         <div className="text-center">
-                            <h5 className="mt-2 mb-0">{this.state.user.username}</h5>
+                            <h5 className="mt-2 mb-0">{this.state.user.firstName} {this.state.user.lastName}</h5>
                         </div>
 
                         <div className="text-center mt-3">

@@ -19,7 +19,7 @@ public class BetSlipRepository {
 
     @Transactional
     public BetSlip save(BetSlip betSlip) {
-        entityManager.createNativeQuery("INSERT INTO bet_slip (id, odd) VALUES (?,?,?)")
+        entityManager.createNativeQuery("INSERT INTO bet_slip (id, odd, shared) VALUES (?,?,?)")
                 .setParameter(1, betSlip.getId())
                 .setParameter(2, betSlip.getOdd())
                 .setParameter(3,betSlip.isShared())

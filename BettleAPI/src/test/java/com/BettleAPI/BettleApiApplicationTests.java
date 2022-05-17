@@ -25,68 +25,32 @@ class BettleApiApplicationTests {
 	private final GameRepository gameRepository;
 	private final BetSlipRepository betSlipRepository;
 	private final BettorHasSlipRepository bettorHasSlipRepository;
+	private final SocialUserRepository socialUserRepository;
+	private final BettorRepository bettorRepository;
 
 	@Test
-	void contextLoads() {
+	public void insertUser() {
+		User newUser = new User();
+		newUser.setId(190);
+		newUser.setPassword("123");
+		newUser.setUsername("usmanyilmaz");
+		userRepository.save(newUser);
+
+		SocialUser newSocialUser = new SocialUser();
+		newSocialUser.setNationality("Turk");
+		newSocialUser.setLastName("yilmaz");
+		newSocialUser.setFirstName("osman");
+		newSocialUser.setBanned(false);
+		newSocialUser.setEmail("deneme1@email.com");
+		newSocialUser.setGender("adam gibi adam");
+		newSocialUser.setId(newUser.getId());
+		socialUserRepository.save(newSocialUser);
+
+		Bettor newBettor = new Bettor();
+		newBettor.setId(newUser.getId());
+		newBettor.setBalance(99999);
+		newBettor.setFriendCount(31);
+		bettorRepository.save(newBettor);
 	}
-/*
-	@Test
-	public void basicInsertTest() {
-		Game game1 = new Game();
-		Game game2 = new Game();
-		Bet	bet1 = new Bet();
-		Bet bet2 = new Bet();
-		Date date = new Date(500);
-
-		game1.setDate(date);
-		game1.setId(1);
-		game1.setFirstTeamName("FB");
-		game1.setSecondTeamName("GS");
-
-		game2.setId(2);
-		game2.setDate(date);
-		game2.setFirstTeamName("kB");
-		game2.setSecondTeamName("er");
-
-		bet1.setTitle("deneme1");
-		bet1.setGameId(1);
-		bet1.setMbn(10);
-		bet1.setOdd(2.1);
-		bet1.setId(1);
-
-		bet2.setTitle("deneme2");
-		bet2.setGameId(2);
-		bet2.setMbn(21);
-		bet2.setOdd(3.1);
-		bet2.setId(2);
-
-		User deneme = new User();
-		deneme.setId(13);
-		deneme.setPassword("123");
-		deneme.setUsername("kaan");
-
-		//userRepository.save(deneme);
-
-		//System.out.println("username: " + userRepository.findOneById(13).getUsername() + " password: " + userRepository.findOneById(13).getPassword());
-		//gameRepository.save(game1);
-		//gameRepository.save(game2);
-
-		//betRepository.save(bet1);
-		//betRepository.save(bet2);
-	}*/
-/*
-	@Test
-	public void betInsert() {
-		Bet bet = new Bet();
-		bet.setId(5);
-		bet.setTitle("KG");
-		bet.setMbn(1);
-		bet.setOdd(1.7);
-		bet.setGameId(2);
-
-		betRepository.save(bet);
-
-	}
- */
 }
 

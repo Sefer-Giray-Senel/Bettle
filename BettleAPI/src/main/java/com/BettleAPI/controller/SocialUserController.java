@@ -1,10 +1,8 @@
 package com.BettleAPI.controller;
 
 import com.BettleAPI.dto.SocialUserDto;
-import com.BettleAPI.entity.Admin;
-import com.BettleAPI.entity.Bettor;
-import com.BettleAPI.entity.Editor;
-import com.BettleAPI.entity.SocialUser;
+import com.BettleAPI.entity.*;
+import com.BettleAPI.entity.compositeId.SubscribeId;
 import com.BettleAPI.service.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +21,7 @@ public class SocialUserController {
     private final BansService bansService;
     private final EditorService editorService;
     private final BettorService bettorService;
+    private final SubscribeService subscribeService;
 
     @GetMapping("/list")
     public List<SocialUser> getSocialUsers() {
@@ -73,5 +72,15 @@ public class SocialUserController {
         return adminService.findOneById(bansService.findAdminIdByBannedUser(id));
     }
 
+    @PostMapping
+    public void subscribe(@RequestParam("editor_id") int editor_id, @RequestParam("bettor_id") int bettor_id){
+        Subscribe newSubscribe = new Subscribe();
+        SubscribeId subscribeId = new SubscribeId();
 
+        subscribeId.setBettorId(bettor_id);
+        subscribeId.setEditorId(editor_id);
+        newSubscribe.setId(subscribeId);
+        subscribeService.save(newSubscribe);
+        editorService.findOneById(editor_id).setSubscriberCount(editorService.findOneById(editor_id).getSubscriberCount() + 1);
+    }
 }

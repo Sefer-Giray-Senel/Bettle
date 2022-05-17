@@ -21,7 +21,7 @@ public class PostedRepository {
 
     @Transactional
     public Posted save(Posted posted) {
-        entityManager.createNativeQuery("INSERT INTO posted (bet_slip_post_id, bet_slip_id, user_id) VALUES (?,?)")
+        entityManager.createNativeQuery("INSERT INTO posted (bet_slip_post_id, bet_slip_id, user_id) VALUES (?,?,?)")
                 .setParameter(1, posted.getId().getBetSlipPostId())
                 .setParameter(2, posted.getId().getBetSlipId())
                 .setParameter(3,posted.getId().getUserId())
@@ -53,6 +53,12 @@ public class PostedRepository {
 
     public List<Integer> findAllBetSlipsByUserId(int givenUserId){
         return entityManager.createQuery("select a.id.betSlipId from Posted a where a.id.userId =?1")
+                .setParameter(1, givenUserId)
+                .getResultList();
+    }
+
+    public List<Integer> findAllBetSlipPostsByUserId(int givenUserId){
+        return entityManager.createQuery("select a.id.betSlipPostId from Posted a where a.id.userId =?1")
                 .setParameter(1, givenUserId)
                 .getResultList();
     }
