@@ -45,6 +45,7 @@ public class FriendRepository {
                 .getResultList();
     }
 
+    @Transactional
     public void deleteById(FriendId id) {
         entityManager.createNativeQuery("DELETE FROM friend WHERE first_bettor_id = ? AND second_bettor_id = ?")
                 .setParameter(1, id.getFirstBettorId())

@@ -45,6 +45,7 @@ public class EditRepository {
                 .getResultList();
     }
 
+    @Transactional
     public void deleteById(EditId id) {
         entityManager.createNativeQuery("DELETE FROM edit WHERE bet_id = ? AND user_id = ?")
                 .setParameter(1, id.getBetId())

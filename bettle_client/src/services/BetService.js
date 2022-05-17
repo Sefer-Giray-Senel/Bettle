@@ -4,7 +4,7 @@ class BetService{
     getMatches(){
         return axios.get("http://localhost:8080/match/list", {
             headers: {
-            Authorization: localStorage.getItem('token')
+                Authorization: localStorage.getItem('token')
             }
         });
     }
