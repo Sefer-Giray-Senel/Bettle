@@ -1,6 +1,7 @@
 import React from "react";
 import BetService from "../services/BetService";
 import "../css/betSlip.css";
+import { Navigate } from "react-router-dom";
 
 class BetslipPage extends React.Component {
     state = { 
@@ -79,6 +80,7 @@ class BetslipPage extends React.Component {
     render() { 
         return (
         <div>
+            { this.props.getName() === "" ? (<Navigate push to="/"/>) : null }
             <div className="wrapper" style={{overflow: 'hidden'}}>
                 <div className="leftdiv">
                     <h4>Matches</h4>

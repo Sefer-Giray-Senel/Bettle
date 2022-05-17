@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/profilePage.css";
+import { Navigate } from "react-router-dom";
 import UserService from "../services/UserService";
 import PostService from "../services/PostService";
 
@@ -17,6 +18,7 @@ class ProfilePage extends React.Component {
 
     render() { 
         return (<div className="container mt-5">
+            { this.props.getName() === "" ? (<Navigate push to="/"/>) : null }
             <div className="row d-flex justify-content-center">
                 <div className="col-md-7">
                     <div className="card p-3 py-4">

@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/profilePage.css";
+import { Navigate } from "react-router-dom";
 import BetService from "../services/BetService";
 import ShareComponent from "./ShareComponent";
 
@@ -21,6 +22,7 @@ class BetsPage extends React.Component {
     render() { 
         return (
             <div>
+                { this.props.getName() === "" ? (<Navigate push to="/"/>) : null }
                 <ul className="list-group">
                     {this.state.betslips.map((betslip) => 
                     <li key={betslip.betSlipId}>
