@@ -7,7 +7,7 @@ function ShareComponent ({betSlipId}) {
     const [caption, setCaption] = useState("");
 
     const handleShare = (e) => {
-        e. preventDefault();
+        e.preventDefault();
         PostService.createPost(caption, betSlipId);
     }
 

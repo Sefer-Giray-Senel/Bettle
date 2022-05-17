@@ -30,8 +30,9 @@ class BetsPage extends React.Component {
                         <ul className="list-group">
                             {betslip.betList.map((bet) => <li className="list-group-item" key={bet.id}>{bet.title}</li>)}
                         </ul>
-                        <button onClick={() => this.setState({shareId:betslip.betSlipId})}>Share</button>
-                        { betslip.betSlipId !== this.state.shareId ? '' : <ShareComponent betSlipId={betslip.betSlipId}/>}
+                        
+                        { betslip.betSlipId !== this.state.shareId ? <button onClick={() => this.setState({shareId:betslip.betSlipId})}>Share</button>
+                            : <ShareComponent betSlipId={betslip.betSlipId}/>}
                     </li>
                     )} 
                 </ul>
