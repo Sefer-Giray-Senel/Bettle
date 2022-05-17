@@ -2,6 +2,7 @@ package com.BettleAPI.controller;
 
 import com.BettleAPI.entity.*;
 
+import com.BettleAPI.entity.compositeId.FriendId;
 import com.BettleAPI.service.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -67,5 +68,24 @@ public class BettorController {
             editorList.add(socialUserService.findOneById(k));
 
         return editorList;
+    }
+
+    @PostMapping("/add-friend")
+    public void saveFriends(@RequestParam("first_bettor_id") int firstBettorId, @RequestParam("second_bettor_id") int secondBettorId) {
+        FriendId friendId = new FriendId();
+        friendId.setFirstBettorId(firstBettorId);
+        friendId.setSecondBettorId(secondBettorId);
+
+        Friend friend = new Friend();
+        friend.setId(friendId);
+        friendService.save(friend);
+
+        FriendId friendId2 = new FriendId();
+        friendId2.setFirstBettorId(secondBettorId);
+        friendId2.setSecondBettorId(firstBettorId);
+
+        Friend friend2 = new Friend();
+        friend2.setId(friendId2);
+        friendService.save(friend2);
     }
 }
