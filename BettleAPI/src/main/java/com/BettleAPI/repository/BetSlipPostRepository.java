@@ -19,10 +19,9 @@ public class BetSlipPostRepository {
 
     @Transactional
     public BetSlipPost save(BetSlipPost betSlipPost) {
-        entityManager.createNativeQuery("INSERT INTO bet_slip_post (id, post_text, test_count) VALUES (?,?,?)")
+        entityManager.createNativeQuery("INSERT INTO bet_slip_post (id, post_text, test_count) VALUES (?,?)")
                 .setParameter(1, betSlipPost.getId())
                 .setParameter(2, betSlipPost.getPostText())
-                .setParameter(3, betSlipPost.getTestCount())
                 .executeUpdate();
         return betSlipPost;
     }

@@ -15,5 +15,4 @@ import javax.persistence.Entity;
 @Entity
 public class BetSlipPost extends BaseEntity{
     private String postText;
-    private int testCount;
 }
