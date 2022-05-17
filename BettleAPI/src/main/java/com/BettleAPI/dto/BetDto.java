@@ -14,6 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class BetDto {
-    Bet bet;
+    private Bet bet;
     Game game;
 }

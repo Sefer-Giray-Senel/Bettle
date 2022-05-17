@@ -13,11 +13,13 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class BetSlipPostDto {
-    List<Bet> bets;
-    String text;
-    int betSlipId;
-    int likeCount;
+    private List<BetDto> bets;
+    private String text;
+    private int betSlipId;
+    private int likeCount;
 
-    String username;
-    int userId;
+    private String username;
+    private int userId;
+
+    private boolean isEditor;
 }

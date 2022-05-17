@@ -13,6 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class BetSlipDto {
-    List<BetDto> betList;
-    int betSlipId;
+    private List<BetDto> betList;
+    private int betSlipId;
 }

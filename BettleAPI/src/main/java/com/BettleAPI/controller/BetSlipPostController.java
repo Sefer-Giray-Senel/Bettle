@@ -1,5 +1,6 @@
 package com.BettleAPI.controller;
 
+import com.BettleAPI.dto.BetDto;
 import com.BettleAPI.dto.BetSlipPostDto;
 import com.BettleAPI.entity.*;
 import com.BettleAPI.entity.compositeId.PostedId;
@@ -28,12 +29,16 @@ public class BetSlipPostController {
     private final FriendService friendService;
     private final SocialUserService socialUserService;
     private final BetSlipService betSlipService;
+    private final GameService gameService;
+    private final EditorService editorService;
+    private final SubscribeService subscribeService;
 
     @GetMapping()
     public List<BetSlipPostDto> getBetSlipPostsOfFriends(@RequestParam("user_id") int userId) {
         List<BetSlipPostDto> betSlipPostDtos = new ArrayList<>(); //return list
 
         List<Integer> friendIdList = friendService.findFriendsByUserId(userId); //get friend id list
+        List<Integer> editorIdList = subscribeService.findSubscribedEditorIdsByBettorId(userId);
 
         for (int k: friendIdList) {
             List<Integer> betSlipPostIdsList = postedService.findAllBetSlipPostsByUserId(k); //get all bet slip posts of a friend
@@ -50,15 +55,52 @@ public class BetSlipPostController {
 
                 List<Integer> idListOfBets = displayService.findBetsByBetSlipId(betSlip.getId()); //get bet_id_list of bet_slip
 
-                List<Bet> bets = new ArrayList<>();
-                for(int b: idListOfBets)
-                    bets.add(betService.findOneById(b)); //add bets to list
-
+                List<BetDto> bets = new ArrayList<>();
+                for(int b: idListOfBets) {
+                    BetDto betDto = new BetDto();
+                    betDto.setBet(betService.findOneById(b));
+                    betDto.setGame(gameService.findOneById(betService.findOneById(b).getGameId()));
+                    bets.add(betDto); //add bets to list
+                }
                 betSlipPostDto.setBets(bets); //set bets as that list
 
                 betSlipPostDto.setText(betSlipPostService.findOneById(m).getPostText());
                 betSlipPostDto.setLikeCount(postLikeService.getLikeCountByBetSlipPostId(m));
                 betSlipPostDto.setUserId(userId);
+                betSlipPostDto.setEditor(false);
+
+                betSlipPostDtos.add(betSlipPostDto);
+            }
+        }
+
+        for (int k: editorIdList) {
+            List<Integer> betSlipPostIdsList = postedService.findAllBetSlipPostsByUserId(k); //get all bet slip posts of a friend
+
+            for (int m: betSlipPostIdsList) {
+                BetSlipPostDto betSlipPostDto = new BetSlipPostDto(); //create dto to be added to the return list
+
+                betSlipPostDto.setUsername(userService.findOneById(k).getUsername());
+
+                Posted posted = postedService.findPostedByBetSlipPostIdAndUserId(m,k); //find posted entity by user_id and bet_slip_post_id
+                BetSlip betSlip = betSlipService.findOneById(posted.getId().getBetSlipId()); //get bet slip of that specific post
+
+                betSlipPostDto.setBetSlipId(betSlip.getId()); //set bet_slip id
+
+                List<Integer> idListOfBets = displayService.findBetsByBetSlipId(betSlip.getId()); //get bet_id_list of bet_slip
+
+                List<BetDto> bets = new ArrayList<>();
+                for(int b: idListOfBets) {
+                    BetDto betDto = new BetDto();
+                    betDto.setBet(betService.findOneById(b));
+                    betDto.setGame(gameService.findOneById(betService.findOneById(b).getGameId()));
+                    bets.add(betDto); //add bets to list
+                }
+                betSlipPostDto.setBets(bets); //set bets as that list
+
+                betSlipPostDto.setText(betSlipPostService.findOneById(m).getPostText());
+                betSlipPostDto.setLikeCount(postLikeService.getLikeCountByBetSlipPostId(m));
+                betSlipPostDto.setUserId(userId);
+                betSlipPostDto.setEditor(true);
 
                 betSlipPostDtos.add(betSlipPostDto);
             }
@@ -114,7 +156,7 @@ public class BetSlipPostController {
     public List<SlipComment> findCommentsBySlipPostId(@RequestParam("post_id") int id) {
         return slipCommentService.findCommentsBySlipPostId(id);
     }
-
+/*
     @GetMapping("/posted")
     public List<BetSlipPostDto> getAllPostCommentsFromUserId(@RequestParam("user_id") int id) {
         List<Integer> betSlips = postedService.findAllBetSlipsByUserId(id);
@@ -143,5 +185,7 @@ public class BetSlipPostController {
         }
         return dtos;
     }
+
+ */
 
 }
