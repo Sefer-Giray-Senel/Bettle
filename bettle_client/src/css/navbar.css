@@ -5,6 +5,9 @@
 
 .logoutbtn {
     float: right;
+    color: #828282;
+    border-radius: 5px;
+    border-color: #d0d0d0;
 }
 
 .navbar-nav{

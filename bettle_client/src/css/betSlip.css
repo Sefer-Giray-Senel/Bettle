@@ -6,20 +6,46 @@
 .leftdiv {
     float: left;
     min-width: 300px;
-    width: 33%;
+    margin-left: 4%;
+    width: 28%;
 
 }
 
 .middiv {
     float: left;
     min-width: 300px;
-    width: 33%;
+    margin-left: 4%;
+    width: 28%;
 
 }
 
 .rightdiv {
     float: left;
     min-width: 300px;
-    width: 33%;
+    margin-left: 4%;
+    width: 28%;
 
+}
+
+.createBtn {
+    margin-top: 20px;
+    color: 4E4E4E;
+    border-radius: 5px;
+    border-color: #d0d0d0;
+}
+
+li:nth-child(odd) {
+    background-color: #BEE3EB;
+}
+li:nth-child(even) {
+    background-color: #DCEEF2;
+}
+
+.removeBtn {
+    float: right;
+    font-size: 11px;
+    background-color: #C13A3A;
+    color: white;
+    border-radius: 5px;
+    border-color: #CA4A4A;
 }

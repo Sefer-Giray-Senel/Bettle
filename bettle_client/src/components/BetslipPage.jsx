@@ -92,11 +92,11 @@ class BetslipPage extends React.Component {
                 </div>
                 <div className="rightdiv">
                     <h4>Your Betslip</h4>
-                    <ul className="list-group list-group-flush">
+                    <ul>
                         {this.state.betslip.map(bet => <li className="list-group-item" key={bet.id}>{bet.match} - {bet.title} - MBN: {bet.mbn} ... 
-                            <button type="button" onClick={() => this.removeBet(bet)} className="btn btn-danger">X</button></li>)}
+                            <button type="button" onClick={() => this.removeBet(bet)} className="removeBtn">X</button></li>)}
                     </ul>
-                    { this.state.enable ? <button onClick={this.createBetslip}>Create</button> : <button disabled>Create</button> }
+                    { this.state.enable ? <button className="createBtn" onClick={this.createBetslip}>Create</button> : <button disabled>Create</button> }
                 </div>
             </div>
             
