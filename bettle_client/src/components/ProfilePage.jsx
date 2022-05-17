@@ -40,7 +40,7 @@ class ProfilePage extends React.Component {
                                     <img src="https://i.imgur.com/bDLhJiP.jpg" width="350px" height="150"/>
                                     </a>
                                     <ul className="list-group">
-                                        {post.map((bet) => <li className="list-group-item" key={bet.id}>{bet.title}</li>)}
+                                        {post.bets.map((bet) => <li className="list-group-item" key={bet.id}>{bet.title}</li>)}
                                     </ul>
                                 </li>
                                 )} 

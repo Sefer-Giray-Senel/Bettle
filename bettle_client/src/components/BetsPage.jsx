@@ -12,9 +12,7 @@ class BetsPage extends React.Component {
 
     componentDidMount(){
         BetService.getBetSlips().then((response) => {
-            this.setState({betslips:response.data}, function() {
-                console.log(this.state)
-              });
+            this.setState({betslips:response.data});
         });
         
     }
