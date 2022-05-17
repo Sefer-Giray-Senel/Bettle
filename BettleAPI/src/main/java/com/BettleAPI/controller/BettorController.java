@@ -90,8 +90,9 @@ public class BettorController {
         friend2.setId(friendId2);
         friendService.save(friend2);
 
-        bettorService.findOneById(firstBettorId).setFriendCount(bettorService.findOneById(firstBettorId).getFriendCount() + 1);
-        bettorService.findOneById(secondBettorId).setFriendCount(bettorService.findOneById(secondBettorId).getFriendCount() + 1); //increment friend count
+        bettorService.updateBettor(firstBettorId, -1, bettorService.findOneById(firstBettorId).getFriendCount() + 1);
+        bettorService.updateBettor(secondBettorId, -1, bettorService.findOneById(secondBettorId).getFriendCount() + 1);
+
     }
 
     @PostMapping("/remove-friend")
@@ -103,8 +104,9 @@ public class BettorController {
         friendId.setSecondBettorId(user_id);
         friendId.setFirstBettorId(friend_id);
         friendService.delete(friendId);
-        bettorService.findOneById(user_id).setFriendCount(bettorService.findOneById(user_id).getFriendCount() - 1);
-        bettorService.findOneById(friend_id).setFriendCount(bettorService.findOneById(friend_id).getFriendCount() - 1);
+
+        bettorService.updateBettor(user_id, -1, bettorService.findOneById(user_id).getFriendCount() - 1);
+        bettorService.updateBettor(friend_id, -1, bettorService.findOneById(friend_id).getFriendCount() - 1);
     }
 
     @PostMapping("/remove-subscribed-editor")
@@ -113,6 +115,6 @@ public class BettorController {
         subscribeId.setBettorId(user_id);
         subscribeId.setEditorId(editor_id);
         subscribeService.delete(subscribeId);
-        editorService.findOneById(editor_id).setSubscriberCount(editorService.findOneById(editor_id).getSubscriberCount() - 1);
+        editorService.updateEditor(editor_id, editorService.findOneById(editor_id).getSubscriberCount() - 1, -1);
     }
 }

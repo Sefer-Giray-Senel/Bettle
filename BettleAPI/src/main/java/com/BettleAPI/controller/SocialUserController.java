@@ -104,6 +104,6 @@ public class SocialUserController {
         subscribeId.setEditorId(editor_id);
         newSubscribe.setId(subscribeId);
         subscribeService.save(newSubscribe);
-        editorService.findOneById(editor_id).setSubscriberCount(editorService.findOneById(editor_id).getSubscriberCount() + 1);
+        editorService.updateEditor(editor_id, editorService.findOneById(editor_id).getSubscriberCount() + 1, -1);
     }
 }
