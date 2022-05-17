@@ -172,6 +172,68 @@ public class BetSlipController {
         throw new ResponseStatusException(HttpStatus.OK, "Bet Slip was successfully saved");
     }
 
+    @PostMapping("/save-editor-betslip")
+    public void saveEditorBetSlip(@RequestParam("slipId") int betSlipId, @RequestParam("user_id") int userId) { //is it List<Bet> or List<Integer>
+        BetSlip betSlip = new BetSlip();
+
+
+        List<Bet> betList = new ArrayList<>();
+        List<Integer> betIdList = displayService.findBetsByBetSlipId(betSlipId);
+        for(int k: betIdList)
+            betList.add(betService.findOneById(k));
+
+        // add constraints if exists
+
+        double odd = 1;
+
+        Random rd = new Random();
+        int upperbound = Integer.MAX_VALUE;
+        int int_random = rd.nextInt(upperbound);
+        betSlip.setId(int_random);
+
+        for (Bet k: betList) {
+            odd *= k.getOdd();
+
+            DisplayId displayId = new DisplayId();
+            displayId.setBetSlipId(betSlip.getId());
+            displayId.setBetId(k.getId());
+
+            Display display = new Display();
+            display.setId(displayId);
+            display.setHasOdd(k.getOdd());
+
+            displayService.save(display);
+        }
+
+        betSlip.setOdd(odd);
+        betSlip.setShared(false);
+        betSlipService.save(betSlip);
+
+
+        Editor editor = editorService.findOneById(userId);
+        if(editor != null){
+            HasSlipId editorHasSlipId = new HasSlipId();
+            editorHasSlipId.setBetSlipId(betSlip.getId());
+            editorHasSlipId.setUserId(userId);
+
+            EditorHasSlip editorHasSlip = new EditorHasSlip();
+            editorHasSlip.setId(editorHasSlipId);
+
+            editorHasSlipService.save(editorHasSlip);
+        }
+        else {
+            HasSlipId bettorHasSlipId = new HasSlipId();
+            bettorHasSlipId.setBetSlipId(betSlip.getId());
+            bettorHasSlipId.setUserId(userId);
+
+            BettorHasSlip bettorHasSlip = new BettorHasSlip();
+            bettorHasSlip.setId(bettorHasSlipId);
+
+            bettorHasSlipService.save(bettorHasSlip);
+        }
+        throw new ResponseStatusException(HttpStatus.OK, "Bet Slip was successfully saved");
+    }
+
     @GetMapping("/list-unshared")
     public List<BetSlipDto> getUnsharedBetSlips(@RequestParam("user_id") int userId) {
         List<Integer> userBetSlipIds = bettorHasSlipService.findBetSlipIdByUserId(userId);
