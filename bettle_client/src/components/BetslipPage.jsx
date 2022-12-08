@@ -10,7 +10,8 @@ class BetslipPage extends React.Component {
         bets:[],
         betslip:[],
         maxMbn: 0,
-        enable: false
+        enable: false,
+        totalOdd: 0
     } 
 
     componentDidMount(){
@@ -33,6 +34,8 @@ class BetslipPage extends React.Component {
     addBet = (bet) => {
         if( this.state.betslip.find(b => b.id === bet.id) === undefined){
             const betslip = [...this.state.betslip, bet];
+            var newOdd = this.state.totalOdd + bet.odd;
+            this.setState({totalOdd:newOdd});
             this.setState({betslip});
             if(bet.mbn > this.state.maxMbn){
                 this.setState({maxMbn: bet.mbn});
@@ -52,6 +55,10 @@ class BetslipPage extends React.Component {
 
     removeBet = (bet) => {
         const betslip = this.state.betslip.filter(b => b.id !== bet.id);
+
+        var newOdd = this.state.totalOdd - bet.odd;
+        this.setState({totalOdd:newOdd});
+
         this.setState({betslip});
         if(bet.mbn === this.state.maxMbn ){
             const newMbn = Math.max(...betslip.map(bet => bet.mbn));
@@ -69,6 +76,7 @@ class BetslipPage extends React.Component {
         if(betslip.length === 0){
             this.setState({enable: false});
             this.setState({maxMbn: 0});
+            this.setState({totalOdd: 0});
         }
     }
 
@@ -91,15 +99,16 @@ class BetslipPage extends React.Component {
                 <div className="middiv">
                     <h4>Bets</h4>
                     {this.state.bets.map(bet => <button type="button" onClick={() => this.addBet(bet)}
-                        className="list-group-item list-group-item-action" key={bet.id}>{bet.title}</button>)}
+                        className="list-group-item list-group-item-action" key={bet.id}>{bet.title} - Odd: {bet.odd} </button>)}
                 </div>
                 <div className="rightdiv">
                     <h4>Your Betslip</h4>
                     <ul>
-                        {this.state.betslip.map(bet => <li className="list-group-item" key={bet.id}>{bet.match} - {bet.title} - MBN: {bet.mbn} ... 
+                        {this.state.betslip.map(bet => <li className="list-group-item" key={bet.id}>{bet.match} - {bet.title} - MBN: {bet.mbn} - Odd: {bet.odd} 
                             <button type="button" onClick={() => this.removeBet(bet)} className="removeBtn">X</button></li>)}
                     </ul>
-                    { this.state.enable ? <button className="createBtn" onClick={this.createBetslip}>Create</button> : <button disabled>Create</button> }
+                    { this.state.enable ? <button className="createBtn" onClick={this.createBetslip}>Create</button> : <button disabled>Create</button> } 
+                    <div>TOTAL ODD : {this.state.totalOdd}</div>
                 </div>
             </div>
             
